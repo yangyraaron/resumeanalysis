@@ -1,6 +1,10 @@
 #-*- coding: UTF-8 -*-
 
-app={'name':'resumeAnalyser'}
+app = {'name': 'resumeAnalyser',
+       'dataFolder': 'jsons',
+       'resumesFolder': 'files'
+       }
+
 
 logging = {
     'version': 1,

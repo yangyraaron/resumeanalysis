@@ -1,23 +1,24 @@
 #-*- coding: UTF-8 -*-
 
 import util
-import logging
 import setting
+import common
 
-logger = logging.getLogger(setting.app['name']+'.'+__name__)
+logger = common.getLogger(__name__)
 
 
 class ResumeParser(object):
 
     """parse the resume html and output information"""
 
-    def __init__(self, soup):
+    def __init__(self):
         super(ResumeParser, self).__init__()
-        self.soup = soup
 
-    def parse(self):
+    def parse(self,soup):
         """parse the html file and generate json structure"""
 
+        self.soup = soup
+        
         if not self.isSupport():
             logger.warning('the file isn\'t supprt by zhilian parser')
         else:
@@ -109,7 +110,7 @@ class ResumeParser(object):
         result[
             'education'] = {'graduatedTime': self.education[0].strip().strip('\n'),
                             'university': self.education[1].strip().strip('\n'),
-                            'spciality': self.education[2].strip().strip('\n')}
+                            'speciality': self.education[2].strip().strip('\n')}
         result['experiences'] = self.workexs
 
         return result
