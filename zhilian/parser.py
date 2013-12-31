@@ -2,8 +2,10 @@
 
 import util
 import logging
+import setting
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(setting.app['name']+'.'+__name__)
+
 
 class ResumeParser(object):
 
@@ -14,6 +16,8 @@ class ResumeParser(object):
         self.soup = soup
 
     def parse(self):
+        """parse the html file and generate json structure"""
+
         if not self.isSupport():
             logger.warning('the file isn\'t supprt by zhilian parser')
         else:
@@ -22,6 +26,8 @@ class ResumeParser(object):
             self._setContacts()
             self._setEducation()
             self._setWorkExperiences()
+
+            return self._parse()
 
     def isSupport(self):
         """indicate if the resume is from zhilian
@@ -80,13 +86,30 @@ class ResumeParser(object):
         for hd in wkex_heads:
             workex = {}
             str_hd = hd.string.split(u'\xa0\xa0')
-            workex['time'] = str_hd[0]
-            workex['company'] = str_hd[1]
+            workex['time'] = str_hd[0].strip().strip('\n')
+            workex['company'] = str_hd[1].strip().strip('\n')
 
             po = hd.next_sibling.next_sibling
             pos = po.string.split(u'|')
-            workex['position'] = pos[1]
+            workex['position'] = pos[1].strip().strip('\n')
 
-            workexs.push(workex)
+            workexs.append(workex)
 
         self.workexs = workexs
+
+    def _parse(self):
+        result = {}
+
+        result['username'] = self.username.strip().strip('\n')
+        result['birthday'] = self.birthday.strip().strip('\n')
+        result['degree'] = self.degree.strip().strip('\n')
+        result['contacts'] = {
+            'mobile': self.contacts[u'手机'].strip().strip('\n'),
+            'email': self.contacts['E-mail'].strip().strip('\n')}
+        result[
+            'education'] = {'graduatedTime': self.education[0].strip().strip('\n'),
+                            'university': self.education[1].strip().strip('\n'),
+                            'spciality': self.education[2].strip().strip('\n')}
+        result['experiences'] = self.workexs
+
+        return result

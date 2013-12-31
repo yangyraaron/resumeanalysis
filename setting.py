@@ -1,7 +1,8 @@
 #-*- coding: UTF-8 -*-
 
+app={'name':'resumeAnalyser'}
 
-LOGGING = {
+logging = {
     'version': 1,
     'disable_existing_loggers': True,
     'formatters': {
@@ -21,7 +22,7 @@ LOGGING = {
         }
     },
     'loggers': {
-        'resumeAnalyser': {
+        app['name']: {
             'handlers': ['console'],
             'propagate': True,
             'level': 'INFO',

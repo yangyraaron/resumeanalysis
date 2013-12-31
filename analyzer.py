@@ -8,8 +8,34 @@ import logging.config
 import setting
 
 ## initialization ##
-logging.config.dictConfig(setting.LOGGING)
+logging.config.dictConfig(setting.logging)
 logger = logging.getLogger('resumeAnalyser')
+
+def print_data(dicObj):
+	print(u'username : {}'.format(dicObj['username']))
+	print(u'birthday : {}'.format(dicObj['birthday']))
+	print(u'degree : {}'.format(dicObj['degree']))
+
+	print('contacts : ')
+	contacts = dicObj['contacts']
+	c_keys = contacts.viewkeys()
+	for ck in c_keys:
+		print(u'{} : {}'.format(ck,contacts[ck]))
+
+	print('education : ')
+	ed = dicObj['education']
+	ed_keys = ed.viewkeys()
+	for ed_key in ed_keys:
+		print(u'{} : {}'.format(ed_key,ed[ed_key]))
+
+	print('experiences : ')
+	exs = dicObj['experiences']
+	for ex in exs:
+		print('-------------------')
+		ex_keys = ex.viewkeys()
+		for ex_key in ex_keys:
+			print(u'{} : {}'.format(ex_key,ex[ex_key]))
+
 
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -18,50 +44,9 @@ soup = BeautifulSoup(open(filename))
 parser = parser.ResumeParser(soup)
 
 logger.info('parsing resume...')
+json = parser.parse()
 
+print_data(json)
 
-# find birth day degree ##
-# summary_top = soup.find_all("div", class_="summary-top")[0].span
-# summary_top_contents = summary_top.string.split(u'\xa0\xa0\xa0\xa0')
-# birthday = summary_top_contents[1]
+	
 
-# print(u'birthday:{}'.format(parser.find_content_in_bracket(birthday)))
-# print(u'degree:{}'.format(summary_top_contents[3]))
-
-# find the contact information ##
-# summary_bottom = soup.find_all("div", class_="summary-bottom")[0]
-# str_contacts = summary_bottom.get_text(u' ')
-# contacts = parser.parse_contact(str_contacts)
-
-# keys = contacts.viewkeys()
-
-# for key in keys:
-#     print(u'{} : {}'.format(key, contacts[key]))
-
-# find education info ##
-
-# ed_title = soup.find('h3', text=u'教育经历')
-# because a string:comma and new line between two elements
-# use 2 sibling to get the next element
-# ed_container = ed_title.next_sibling.next_sibling
-# str_ed = ed_container.contents[0]
-# eds = str_ed.split(u'\xa0\xa0')
-
-# for ed in eds:
-#     print(ed)
-
-
-# find work experience ##
-# wkex_title = soup.find('h3', text=u'工作经历')
-# wkex_heads = wkex_title.parent.find_all('h2')
-
-# for hd in wkex_heads:
-#     hd_details = hd.string.split(u'\xa0\xa0')
-#     for hd_detail in hd_details:
-#         print(hd_detail)
-
-#     wkex_po = hd.next_sibling.next_sibling
-#     wkex_pos = wkex_po.string.split(u'|')
-
-#     for po in wkex_pos:
-#         print(po)
