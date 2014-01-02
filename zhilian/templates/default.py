@@ -87,17 +87,17 @@ class Template(object):
         contacts = util.parse_contact(str_contacts)
 
         self.contacts={}
-        keys = self.contacts.viewkeys()
+        pairs = contacts.items()
 
-        for key in keys:
-        	self.contacts[common.strip(key)] = common.strip(contacts[key])
+        for pair in pairs:
+        	self.contacts[common.strip(pair[0])] = common.strip(pair[1])
 
 
     def _setEducation(self):
         """set education array from resume"""
 
         logger.debug('parsing and setting education')
-        self.education = None
+        self.education = {}
         self.degree = None
 
         ed_title = self.soup.find('h3', text=u'教育经历')
@@ -110,12 +110,14 @@ class Template(object):
         ed_container = ed_title.next_sibling.next_sibling
 
         str_ed = ed_container.contents[0]
-        self.education = str_ed.split(u'\xa0\xa0')
+        arrEd= str_ed.split(u'\xa0\xa0')
 
-        for x in range(len(self.education)):
-        	self.education[x] = common.strip(self.education[x])
+        seg = arrEd[0].split('-')
+        self.education['graduateTime'] = common.strip(seg[1])
+        self.education['college'] = common.strip(arrEd[1])
+        self.education['sepcialty'] = common.strip(arrEd[2])
 
-        self.degree = common.strip(self.education[3])
+        self.degree = common.strip(arrEd[3])
 
     # get work experiences
     def _setWorkExperiences(self):

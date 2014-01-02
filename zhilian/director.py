@@ -43,7 +43,7 @@ class ResumeParser(object):
         contacts = template.getContacts()
         result['contacts'] = common.dicIfNone(contacts)
         education = template.getEducations()
-        result['eduction'] = common.dicIfNone(education)
+        result['education'] = common.dicIfNone(education)
         expriences = template.getWorkExpriences()
         result['experiences'] = common.listIfNoneOrEmpty(expriences)
 
