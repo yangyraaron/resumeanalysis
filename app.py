@@ -2,7 +2,7 @@
 
 import os
 from bs4 import BeautifulSoup
-from zhilian import parser
+from zhilian import director
 import logging
 import logging.config
 import setting
@@ -14,6 +14,8 @@ logging.config.dictConfig(setting.logging)
 logger = common.getLogger(setting.app['name'])
 
 # print josn data
+
+
 def print_data(dicObj):
     print(u'username : {}'.format(dicObj['username']))
     print(u'birthday : {}'.format(dicObj['birthday']))
@@ -39,24 +41,24 @@ def print_data(dicObj):
         for ex_key in ex_keys:
             print(u'{} : {}'.format(ex_key, ex[ex_key]))
 
-#initilize variables
+# initilize variables
 dataFolder = setting.app['dataFolder']
 if not os.path.exists(dataFolder):
     os.makedirs(dataFolder)
 
-
 resumes = fileMgr.getResumes()
 
 for r in resumes:
-	soup = BeautifulSoup(open(r))
-	parser = parser.ResumeParser()
+    soup = BeautifulSoup(open(r))
+    parser = director.ResumeParser()
 
-	logger.info('parsing resume {} ...'.format(r))
+    logger.info('parsing resume {} ...'.format(r))
+    data = parser.export(soup)
 
-	data = parser.parse(soup)
-
-	logger.info('save data')
-
-	fileMgr.saveJson(data)
-	
-
+    userName = data['userName']
+    if data is not None:
+        logger.info(u'save json to file {}.json...'.format(userName, userName))
+        fileMgr.saveJson(data)
+    else:
+        logger.warning(u"the resume of {} can not be analized".format(userName))
+    

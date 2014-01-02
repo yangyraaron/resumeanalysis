@@ -1,9 +1,8 @@
 #-*- coding: UTF-8 -*-
 
 
-#
+
 # get the cotent in () of string
-#
 def find_content_in_bracket(content):
     index_begin = content.find(u'(')
     index_end = content.find(u')')
@@ -14,10 +13,8 @@ def find_content_in_bracket(content):
     return content[index_begin + 1:index_end]
 
 
-#
 # get the contact information from html array
 # format: key: value key: value
-#
 def parse_contact(str_contacts):
     contacts = {}
     key = ''
