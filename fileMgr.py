@@ -29,9 +29,7 @@ def _dumpJson(fd,dic):
 def getResumes(source='zhilian/default'):
 	resumes=[]
 	directory = setting.app['resumesFolder']+'/'+source
-
 	for fd in os.listdir(directory):
-		if fd.endswith('.html'):
-			resumes.append('{}/{}'.format(directory,fd))
+		resumes.append('{}/{}'.format(directory,fd))
 
 	return resumes

@@ -23,7 +23,7 @@ class Template(object):
 
     def isSupport(self):
         head = self.soup.find('div', class_='zpResumeS')
-        return (head is not None) and len(head) > 0
+        return head is not None
 
     def parse(self):
         self._setUserName()

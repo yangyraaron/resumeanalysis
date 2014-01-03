@@ -24,7 +24,7 @@ class Template(object):
     def isSupport(self):
         head = self.soup.find('div', class_='resume-preview-head')
 
-        return (head is not None) and len(head) > 0
+        return head is not None
 
     def parse(self):
         self._setUserName()
@@ -32,8 +32,6 @@ class Template(object):
         self._setContacts()
         self._setEducation()
         self._setWorkExperiences()
-
-        # return self._merge()
 
     def getUserName(self):
         return self.userName

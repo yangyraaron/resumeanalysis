@@ -20,7 +20,7 @@ logging = {
     'filters': {},
     'handlers': {
         'console': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
         }
@@ -29,7 +29,7 @@ logging = {
         app['name']: {
             'handlers': ['console'],
             'propagate': True,
-            'level': 'INFO',
+            'level': 'DEBUG',
         }
     }
 }
