@@ -14,6 +14,12 @@ class Template(object):
     def __init__(self, soup):
         super(Template, self).__init__()
         self.soup = soup
+        self.userName=None
+        self.birthday=None
+        self.degree = None
+        self.contacts=None
+        self.education = None
+        self.workexs = None
 
     def isSupport(self):
         head = self.soup.find('div', class_='resume-preview-head')
@@ -21,7 +27,7 @@ class Template(object):
         return (head is not None) and len(head) > 0
 
     def parse(self):
-        self._setUsername()
+        self._setUserName()
         self._setBirthday()
         self._setContacts()
         self._setEducation()
@@ -30,7 +36,7 @@ class Template(object):
         # return self._merge()
 
     def getUserName(self):
-        return self.username
+        return self.userName
 
     def getBirthday(self):
         return self.birthday
@@ -47,16 +53,14 @@ class Template(object):
     def getWorkExpriences(self):
         return self.workexs
 
-    def _setUsername(self):
+    def _setUserName(self):
         """set user name from resume"""
 
         logger.debug('parsing and setting user name')
 
-        self.username = None
-
         title = self.soup.find_all(
             "div", class_="resume-preview-main-title")[0]
-        self.username = common.strip(title.div.string)
+        self.userName = common.strip(title.div.string)
 
     # html content format: sex | birthday | years been work | education |  marriage
     # eg: 				   女    24岁(1989年8月)    2年工作经验    本科    未婚
@@ -64,8 +68,6 @@ class Template(object):
         """set birthday from resume"""
 
         logger.debug('parsing and setting birthday and degree')
-
-        self.birthday = None
 
         summary_top = self.soup.find_all(
             "div", class_="summary-top")[0].span
@@ -79,8 +81,6 @@ class Template(object):
         """set contacts json from resume"""
 
         logger.debug('parsing and setting contacts')
-
-        self.contacts = None
 
         summary_bottom = self.soup.find_all("div", class_="summary-bottom")[0]
         str_contacts = summary_bottom.get_text(u' ')
@@ -98,7 +98,6 @@ class Template(object):
 
         logger.debug('parsing and setting education')
         self.education = {}
-        self.degree = None
 
         ed_title = self.soup.find('h3', text=u'教育经历')
         # doesn't have any educations

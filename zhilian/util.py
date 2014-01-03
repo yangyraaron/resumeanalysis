@@ -1,8 +1,10 @@
 #-*- coding: UTF-8 -*-
 
-
+import common
 
 # get the cotent in () of string
+# @content the string to find in {}
+# @return string
 def find_content_in_bracket(content):
     index_begin = content.find(u'(')
     index_end = content.find(u')')
@@ -13,8 +15,10 @@ def find_content_in_bracket(content):
     return content[index_begin + 1:index_end]
 
 
-# get the contact information from html array
-# format: key: value key: value
+# get the contact information from html string
+# eg. mobile:{} email:{}
+# @str_contacts string to parse
+# @return dictionary
 def parse_contact(str_contacts):
     contacts = {}
     key = ''
@@ -50,3 +54,38 @@ def parse_contact(str_contacts):
         contacts[key] = value.strip()
 
     return contacts
+
+# get the content from position until first ecounters
+# the indicated terminal charater
+# @strSource original string
+# @position the from position
+# @strTer the termianl charater
+# @isReverse true:from end to start ,false:form start to end
+# @return string
+def strGetUnitl(strSource, position, strTer,isReverse=False):
+    strLen = len(strSource)
+    result=''
+    c = ''
+
+    istart=position
+    iend=strLen
+    interval=1
+
+    if isReverse:
+        istart = position - strLen
+        iend = 0-strLen
+        interval = -1
+    
+
+    for x in xrange(istart, iend,interval):
+        c = strSource[x]
+        if c == strTer:
+            break
+        elif c in common.ESC_CHARS:
+            continue
+        elif not isReverse:
+            result += c
+        else:
+            result = u'{}{}'.format(c,result)
+        
+    return result

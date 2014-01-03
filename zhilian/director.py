@@ -60,11 +60,13 @@ class ResumeParser(object):
         template = default.Template(self.soup)
 
         if template.isSupport():
+            logger.info('template is default')
             return template
 
         template = combination.Template(self.soup)
 
         if template.isSupport():
+            logger.info('template is combination')
             return template
 
 

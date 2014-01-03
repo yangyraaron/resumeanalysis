@@ -4,6 +4,8 @@
 import logging
 import setting
 
+ESC_CHARS=[' ','\n','\t','\r']
+
 def getLogger(name=''):
 	if name.strip()=='':
 		return logging.getLogger(setting.app['name'])
@@ -16,7 +18,7 @@ def strIfNoneOrEmpty(value,defalutValue=''):
 	return value
 
 def listIfNoneOrEmpty(list,defalutValue=[]):
-	if len(list)==0 or list is None:
+	if list is None or len(list)==0:
 		return defalutValue
 	return list
 
@@ -25,5 +27,9 @@ def dicIfNone(dic,defalutValue={}):
 		return defalutValue
 	return dic
 
-def strip(str):
-	return str.strip().strip('\r\n').strip('\t')
+def strip(strValue):
+	#return str.strip().strip('\r').strip('\n').strip('\t')
+	for c in ESC_CHARS:
+		strValue = strValue.strip(c)
+
+	return strValue

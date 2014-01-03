@@ -46,7 +46,7 @@ dataFolder = setting.app['dataFolder']
 if not os.path.exists(dataFolder):
     os.makedirs(dataFolder)
 
-resumes = fileMgr.getResumes()
+resumes = fileMgr.getResumes('zhilian/combination')
 
 for r in resumes:
     soup = BeautifulSoup(open(r))
@@ -55,10 +55,15 @@ for r in resumes:
     logger.info('parsing resume {} ...'.format(r))
     data = parser.export(soup)
 
+    if(data is None):
+        break
+
     userName = data['userName']
     if data is not None:
         logger.info(u'save json to file {}.json...'.format(userName, userName))
         fileMgr.saveJson(data)
     else:
         logger.warning(u"the resume of {} can not be analized".format(userName))
+
+    
     
