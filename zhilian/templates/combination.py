@@ -13,13 +13,11 @@ class Template(object):
     def __init__(self, soup):
         super(Template, self).__init__()
         self.soup = soup
-        self.soup = soup
-        self.userName = None
-        self.birthday = None
-        self.degree = None
-        self.contacts = None
-        self.education = None
-        self.workexs = None
+        self.userName = ''
+        self.birthday = ''
+        self.contacts = {}
+        self.education = {}
+        self.workexs = []
 
     def isSupport(self):
         head = self.soup.find('div', class_='zpResumeS')
@@ -27,7 +25,7 @@ class Template(object):
 
     def parse(self):
         self._setUserName()
-        self._setBirthday()
+        self._setBasic()
         self._setEducation()
         self._setWorkExperiences()
 
@@ -36,9 +34,6 @@ class Template(object):
 
     def getBirthday(self):
         return self.birthday
-
-    def getDegree(self):
-        return self.degree
 
     def getContacts(self):
         return self.contacts
@@ -53,26 +48,23 @@ class Template(object):
         div = self.soup.find('div', class_='name')
         self.userName = div.string
 
-    def _setBirthday(self):
+    def _setBasic(self):
     	div = self.soup.find('div',class_='baseinfo')
     	strInfo = common.strip(div.get_text())
 
-        ibirth = strInfo.find(u'月生')
-        strBirth = common.strip(util.strGetUnitl(strInfo,ibirth,'|',True))
+        strBirth = common.getStrByIndexUtil(u'月生',strInfo,'|',True)
         self.birthday = strBirth
 
         logger.info(u"birth:{}".format(strBirth))
 
-        self.contacts = {}
-        imobile = strInfo.find(u'(手机)')-1
-        strMobile = common.strip(util.strGetUnitl(strInfo,imobile,'\n',True))
+        strMobile = common.getStrByIndexUtil(u'(手机)',strInfo,'\n',True)
         self.contacts['mobile'] = strMobile
 
         logger.info(u'mobile:{}'.format(strMobile))
 
         iemail = strInfo.find(u'E-mail:')
         iemail = iemail+len(u'E-mail:')
-        strEmail = common.strip(util.strGetUnitl(strInfo,iemail,'|'))
+        strEmail = common.getStrByIndexUtil(u'E-mail:',strInfo,'|')
         self.contacts['email'] = strEmail
 
         logger.info(u'email:{}'.format(strEmail))
@@ -88,11 +80,9 @@ class Template(object):
         strEdInfo = common.strip(divInfo.get_text())
         edInfos = strEdInfo.split('|')
 
-        self.education={}
-
         self.education['speciality']=common.strip(edInfos[1])
-        self.degree = common.strip(edInfos[2])
-        logger.info(u'degree:{}'.format(self.degree))
+        self.education['degree'] = common.strip(edInfos[2])
+        logger.info(u'degree:{}'.format(self.education['degree']))
 
         headInfo = edInfos[0].split(u'：')
         self.education['college'] = common.strip(headInfo[1])
@@ -110,7 +100,6 @@ class Template(object):
 
         divInfo = span.parent.next_sibling.next_sibling
         rows = divInfo.find_all('tr')
-        self.workexs = []
 
         for row in rows:
             workex = self._createWorkEx(row)

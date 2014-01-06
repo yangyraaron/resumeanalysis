@@ -49,46 +49,6 @@ def find_content_in_bracket(content):
     return content[index_begin + 1:index_end]
 
 
-# get the contact information from html string
-# eg. mobile:{} email:{}
-# @str_contacts string to parse
-# @return dictionary
-def parse_contact(str_contacts):
-    contacts = {}
-    key = ''
-    value = ''
-    # indicate what recording content is, 0:key 1:value
-    tp = 0
-
-    for c in str_contacts:
-        if c == u'：':
-            tp = 1
-        elif tp == 0:
-            # escape all whitespace and newline chars in front of key
-            if key == '' and(c == '\n' or c == ' '):
-                continue
-            else:
-                key += c
-        elif tp == 1:
-            # escape all whitespace and new line chars in front of value
-            if (c == '\n' or c == ' ') and value == '':
-                continue
-            # when encounter whitespace,then stop appending str to vlaue
-            elif c == ' ':
-                # store the contact and reset state
-                contacts[key] = value.strip()
-                tp = 0
-                key = ''
-                value = ''
-            else:
-                value += c
-
-    # store last contact entry
-    if not key == '':
-        contacts[key] = value.strip()
-
-    return contacts
-
 # get the content from position until first ecounters
 # the indicated terminal charater
 # @strSource original string
@@ -96,9 +56,7 @@ def parse_contact(str_contacts):
 # @strTer the termianl charater
 # @isReverse true:from end to start ,false:form start to end
 # @return string
-
-
-def strGetUnitl(strSource, position, strTer, isReverse=False):
+def strGetUnitl(strSource, position, strTers, isReverse=False):
     strLen = len(strSource)
     result = ''
     c = ''
@@ -114,7 +72,7 @@ def strGetUnitl(strSource, position, strTer, isReverse=False):
 
     for x in xrange(istart, iend, interval):
         c = strSource[x]
-        if c == strTer:
+        if c in strTers:
             break
         elif c in ESC_CHARS:
             continue
@@ -125,14 +83,32 @@ def strGetUnitl(strSource, position, strTer, isReverse=False):
 
     return result
 
-def getStrByIndexUtil(strIndex, strSource, strTer, isReverse=False):
+def getStrByIndexUtil(strIndex, strSource, strTers, isReverse=False):
     index = strSource.find(strIndex)
     if index != -1:
         if isReverse:
             index -= 1
         else:
             index += len(strIndex)
-        strValue = strGetUnitl(strSource, index, strTer, isReverse)
+        strValue = strGetUnitl(strSource, index, strTers, isReverse)
         return strip(strValue)
 
     return ''
+
+def indexNextSibling(ele,index=1):
+    if ele is None:
+        return None
+
+    result = ele
+    end = index+1;
+    for x in xrange(1,end):
+        if result.next_sibling is not None and result.next_sibling.next_sibling is not None:
+            result = result.next_sibling.next_sibling
+        else: # if index is overflow then return none
+            return None
+
+    return result
+            
+
+        
+

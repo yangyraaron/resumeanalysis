@@ -10,7 +10,7 @@ import os
 logger = common.getLogger()
 
 def saveJson(dic):
-	logger.debug(u'save json to file {}'.format(file))
+	logger.debug(u'save json to file {}'.format(dic['userName']))
 
 	filePath = u'{}/{}.json'.format(setting.app['dataFolder'], dic['userName'])
 

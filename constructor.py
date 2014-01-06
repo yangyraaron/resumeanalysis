@@ -12,8 +12,6 @@ def construct(template):
     result['userName'] = common.strIfNoneOrEmpty(userName)
     birthday = template.getBirthday()
     result['birthday'] = common.strIfNoneOrEmpty(birthday)
-    degree = template.getDegree()
-    result['degree'] = common.strIfNoneOrEmpty(degree)
     contacts = template.getContacts()
     result['contacts'] = common.dicIfNone(contacts)
     education = template.getEducations()

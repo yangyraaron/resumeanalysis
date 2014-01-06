@@ -5,120 +5,133 @@ import common
 
 logger = common.getLogger(__name__)
 
+
 class Template(object):
-	"""template for parse 51job resume"""
-	def __init__(self, soup):
-		super(Template, self).__init__()
-		self.soup = soup
-		self.userName=None
-		self.birthday=None
-		self.degree = None
-		self.contacts={}
-		self.education = {}
-		self.workexs = None
 
-	def isSupport(self):
-	    return True
+    """template for parse 51job resume"""
 
-	def parse(self):
-		self._initialize()
-		self._setBasicInfo()
-		self._setEducation()
-		self._setWorkExperiences()
+    def __init__(self, soup):
+        super(Template, self).__init__()
+        self.soup = soup
+        self.userName = ''
+        self.birthday = ''
+        self.contacts = {}
+        self.education = {}
+        self.workexs = []
 
-	def getUserName(self):
-	    return self.userName
+    def isSupport(self):
+        return True
 
-	def getBirthday(self):
-	    return self.birthday
+    def parse(self):
+        self._initialize()
+        self._setBasicInfo()
+        self._setEducation()
+        self._setWorkExperiences()
 
-	def getDegree(self):
-	    return self.degree
+    def getUserName(self):
+        return self.userName
 
-	def getContacts(self):
-	    return self.contacts
+    def getBirthday(self):
+        return self.birthday
 
-	def getEducations(self):
-	    return self.education
+    def getDegree(self):
+        return self.degree
 
-	def getWorkExpriences(self):
-	    return self.workexs
+    def getContacts(self):
+        return self.contacts
 
-	def _initialize(self):
-		table = self.soup.body.contents[4]
+    def getEducations(self):
+        return self.education
 
-		contentTable = table.tbody.tr.td.contents[3]
-		# head table contains user name contacts birthday
-		self.headTable = contentTable.tbody.tr.td.table
-		# info table contains education 
-		self.infoTable = self.headTable.next_sibling.next_sibling
+    def getWorkExpriences(self):
+        return self.workexs
 
-	def _setBasicInfo(self):
-		rows = self.headTable.find_all('tr')
-		spans = rows[0].find_all('span')
-		strong = spans[1].find('strong')
-		#refactor
-		strBasic = common.strip(self.headTable.get_text())
-		strBasic = strBasic.replace('\n','#')
-		print(strBasic)
+    def _initialize(self):
+        title = self.soup.find('strong')
 
-		self.userName = strong.string
-		logger.debug(u'user name:{}'.format(self.userName))
+        self.headTable = title.parent.parent.parent.parent.parent
+        self.infoTable = self.headTable.next_sibling.next_sibling
 
-		infoRows = rows[1].find_all('tr')
-		# basic info contains  birthday in 1st row
-		basicInfo = common.strip(infoRows[0].td.get_text())
-		ibirth = basicInfo.find(u'日)')
-		self.birthday = common.strGetUnitl(basicInfo,ibirth+1,'|',True)
-		self.birthday = common.find_content_in_bracket(self.birthday)
-		logger.debug(u'birthday:{}'.format(self.birthday))
+    def _setBasicInfo(self):
+        strBasic = common.strip(self.headTable.get_text())
+        strBasic = strBasic.replace('\n', '|')
 
-		#contact
-		for x in xrange(1,len(infoRows)):
-			row = infoRows[x]
-			info = common.strip(row.get_text())
-			self._substractMobile(info)
-			self._substractEmail(info)
+        self.userName = common.strGetUnitl(strBasic, 0, '|')
+        logger.debug(u'user name:{}'.format(self.userName))
 
-		logger.debug(u"mobile:{}".format(self.contacts['mobile']))
-		logger.debug(u"email:{}".format(self.contacts['email']))
-	
-	def _substractMobile(self,strSource):
-		strIndex = u'（手机）'
-		self.contacts['mobile'] = common.getStrByIndexUtil(strIndex,strSource,u'：',True)
+        # basic info contains  birthday in 1st row
+        ibirth = strBasic.find(u'日)')
+        self.birthday = common.strGetUnitl(strBasic, ibirth + 1, '|', True)
+        self.birthday = common.find_content_in_bracket(self.birthday)
+        logger.debug(u'birthday:{}'.format(self.birthday))
 
-	def _substractEmail(self,strSource):
-		strIndex = u'E-mail：'
-		self.contacts['email'] = common.getStrByIndexUtil(strIndex,strSource,'')
+        self._substractMobile(strBasic)
+        self._substractEmail(strBasic)
 
-	def _setEducation(self):
-		strEd = common.strip(self.infoTable.get_text())
-		strEd = strEd.replace('\n','|')
+        logger.debug(u"mobile:{}".format(self.contacts['mobile']))
+        logger.debug(u"email:{}".format(self.contacts['email']))
 
-		strIndex = u'学　历：|'
-		self.education['degree'] = common.getStrByIndexUtil(strIndex,strEd,'|')
+    def _substractMobile(self, strSource):
+        strIndex = u'（手机）'
+        mobile = common.getStrByIndexUtil(strIndex, strSource, u'|', True)
+        self.contacts['mobile'] = mobile
 
-		strIndex = u'学　校：|'
-		self.education['college'] = common.getStrByIndexUtil(strIndex,strEd,'|')
+    def _substractEmail(self, strSource):
+        strIndex = u'E-mail：'
+        email = common.getStrByIndexUtil(strIndex, strSource, '')
+        self.contacts['email'] = email.strip('|')
 
-		strIndex = u'专　业：|'
-		self.education['speciality'] = common.getStrByIndexUtil(strIndex,strEd,'|')
+    def _setEducation(self):
+        strEd = common.strip(self.infoTable.get_text())
+        strEd = strEd.replace('\n', '|')
 
+        strIndex = u'学　历：|'
+        degree = common.getStrByIndexUtil(strIndex, strEd, '|')
+        self.education['degree'] = degree.strip('|')
 
-		logger.debug(u'degree:{}'.format(self.education['degree']))
-		logger.debug(u'college:{}'.format(self.education['college']))
-		logger.debug(u'speciality:{}'.format(self.education['speciality']))
+        strIndex = u'学　校：|'
+        college = common.getStrByIndexUtil(strIndex, strEd, '|')
+        self.education['college'] = college.strip('|')
 
-	def _getStrByIndex(self,strIndex,strSource,strTer,isReverse=False):
-		index = strSource.find(strIndex)
-		if index!=-1:
-			if isReverse:
-				index -= 1
-			else:
-				index += len(strIndex)
-			strValue = common.strGetUnitl(strSource,index,strTer,isReverse)
-			return common.strip(strValue)
+        strIndex = u'专　业：|'
+        speciality = common.getStrByIndexUtil(strIndex, strEd, '|')
+        self.education['speciality'] = speciality.strip('|')
 
-		return ''
+        logger.debug(u'degree:{}'.format(self.education['degree']))
+        logger.debug(u'college:{}'.format(self.education['college']))
+        logger.debug(u'speciality:{}'.format(self.education['speciality']))
 
+    def _setWorkExperiences(self):
+        title = self.soup.find('td', text='工作经验')
+        wkRow = common.indexNextSibling(title.parent, 3)
 
+        # not default layout
+        if wkRow is None:
+            wkRow = common.indexNextSibling(title.parent.parent.parent, 1)
+            rows = wkRow.find_all('tr')
+        else:
+            rows = wkRow.td.table.find_all('tr')
+
+        track = 0  # track a start of new work experience
+        count = len(rows)
+        strCompany = ''
+        strPosition = ''
+        workex = {}
+        for x in xrange(0, count):
+            if track == 0:
+                strCompany = rows[x].get_text()
+                workex['company'] = common.getStrByIndexUtil(
+                    u'：', strCompany, [u'（', u'['])
+                workex['time'] = common.getStrByIndexUtil(
+                    u'：', strCompany, '', True)
+            elif track == 2:
+                strPosition = rows[x].get_text()
+                workex['position'] = common.getStrByIndexUtil(
+                    '\n', strPosition.strip(), '')
+            elif rows[x].find('hr') is not None:
+                track = 0
+                self.workexs.append(workex)
+                workex = {}
+                continue
+
+            track += 1

@@ -53,6 +53,7 @@ for r in resumes:
     else:
         logger.warning(u"the resume of {} can not be analized".format(userName))
 
-    break
+    
+    
 
     

@@ -14,12 +14,11 @@ class Template(object):
     def __init__(self, soup):
         super(Template, self).__init__()
         self.soup = soup
-        self.userName=None
-        self.birthday=None
-        self.degree = None
-        self.contacts=None
-        self.education = None
-        self.workexs = None
+        self.userName=''
+        self.birthday=''
+        self.contacts={}
+        self.education = {}
+        self.workexs = []
 
     def isSupport(self):
         head = self.soup.find('div', class_='resume-preview-head')
@@ -39,9 +38,6 @@ class Template(object):
     def getBirthday(self):
         return self.birthday
 
-    def getDegree(self):
-        return self.degree
-
     def getContacts(self):
         return self.contacts
 
@@ -60,6 +56,8 @@ class Template(object):
             "div", class_="resume-preview-main-title")[0]
         self.userName = common.strip(title.div.string)
 
+        logger.debug(u'username:{}'.format(self.userName))
+
     # html content format: sex | birthday | years been work | education |  marriage
     # eg: 				   女    24岁(1989年8月)    2年工作经验    本科    未婚
     def _setBirthday(self):
@@ -67,35 +65,35 @@ class Template(object):
 
         logger.debug('parsing and setting birthday and degree')
 
-        summary_top = self.soup.find_all(
-            "div", class_="summary-top")[0].span
-        summary_top_contents = summary_top.string.split(
-            u'\xa0\xa0\xa0\xa0')
-        self.birthday = common.strip(util.find_content_in_bracket(
-            summary_top_contents[1]))
-        # self.degree = summary_top_contents[3]
+        strSummaryTop = self.soup.find_all(
+            "div", class_="summary-top")[0].span.get_text()
+
+        self.birthday = common.getStrByIndexUtil(u'(',strSummaryTop,')')
+
+        logger.debug(u'birthday:{}'.format(self.birthday))
+
 
     def _setContacts(self):
         """set contacts json from resume"""
 
         logger.debug('parsing and setting contacts')
 
-        summary_bottom = self.soup.find_all("div", class_="summary-bottom")[0]
-        str_contacts = summary_bottom.get_text(u' ')
-        contacts = util.parse_contact(str_contacts)
+        summaryBottom = self.soup.find_all("div", class_="summary-bottom")[0]
+        strContacts = summaryBottom.get_text(u'|')
+        strMobile = common.getStrByIndexUtil(u'手机：',strContacts,'|')
+        strEmail = common.getStrByIndexUtil(u'E-mail：|',strContacts,'|')
 
-        self.contacts={}
-        pairs = contacts.items()
+        self.contacts['mobile'] = strMobile
+        self.contacts['email'] = strEmail
 
-        for pair in pairs:
-        	self.contacts[common.strip(pair[0])] = common.strip(pair[1])
+        logger.debug(u'mobile:{}'.format(strMobile))
+        logger.debug(u'email:{}'.format(strEmail))
 
 
     def _setEducation(self):
         """set education array from resume"""
 
         logger.debug('parsing and setting education')
-        self.education = {}
 
         ed_title = self.soup.find('h3', text=u'教育经历')
         # doesn't have any educations
@@ -114,14 +112,11 @@ class Template(object):
         self.education['college'] = common.strip(arrEd[1])
         self.education['sepcialty'] = common.strip(arrEd[2])
 
-        self.degree = common.strip(arrEd[3])
+        self.education['degree'] = common.strip(arrEd[3])
 
     # get work experiences
     def _setWorkExperiences(self):
         """get work exprience array from resume"""
-
-        workexs = []
-        self.workexs = workexs
 
         wkex_title = self.soup.find('h3', text=u'工作经历')
         # if does't have any work expriences
@@ -144,6 +139,4 @@ class Template(object):
             else:
                 workex['position'] = common.strip(pos[1])
 
-            workexs.append(workex)
-
-            self.workexs = workexs
+            self.workexs.append(workex)
