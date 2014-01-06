@@ -83,6 +83,12 @@ def strGetUnitl(strSource, position, strTers, isReverse=False):
 
     return result
 
+# get string from source string by index string until terminal string enconters
+# @strIndex index string
+# @strSource source string
+# @strTers a string array contains terminal string
+# @isReverse indicate the order in which read the chars 
+# @return string
 def getStrByIndexUtil(strIndex, strSource, strTers, isReverse=False):
     index = strSource.find(strIndex)
     if index != -1:
