@@ -24,7 +24,7 @@ class ResumeMgr(object):
 
 	def _verifyConnection(self):
 		if self.isConnected:
-			return self._isConnected
+			return self.isConnected
 
 		try:
 			self._connect()

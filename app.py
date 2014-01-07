@@ -84,7 +84,7 @@ class Application(object):
 
     def run(self,args):
         # exporting
-        resumes = fileMgr.getResumes('51')
+        resumes = fileMgr.getResumes('zhilian/combination')
         for r in resumes:
             try:
                 f = open(r)
