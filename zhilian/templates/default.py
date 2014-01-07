@@ -32,6 +32,9 @@ class Template(object):
         self._setEducation()
         self._setWorkExperiences()
 
+    def getSource(self):
+        return u'智联'
+
     def getUserName(self):
         return self.userName
 

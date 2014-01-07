@@ -28,6 +28,9 @@ class Template(object):
         self._setEducation()
         self._setWorkExperiences()
 
+    def getSource(self):
+        return u'51Job'
+
     def getUserName(self):
         return self.userName
 
@@ -47,8 +50,7 @@ class Template(object):
         return self.workexs
 
     def _initialize(self):
-        title = self.soup.find('strong')
-
+        title = self.soup.find(u'strong')
         self.headTable = title.parent.parent.parent.parent.parent
         self.infoTable = self.headTable.next_sibling.next_sibling
 

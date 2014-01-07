@@ -13,9 +13,12 @@ def construct(template):
         template.parse()
     except Exception, e:
         logger.error("some thing wrong when parsing html file")
+        logger.error('exception:'.format(str(e)))
     else:
         userName = template.getUserName()
         result['userName'] = common.strIfNoneOrEmpty(userName)
+        source = template.getSource()
+        result['source'] = common.strIfNoneOrEmpty(source)
         birthday = template.getBirthday()
         result['birthday'] = common.strIfNoneOrEmpty(birthday)
         contacts = template.getContacts()

@@ -28,7 +28,10 @@ def _dumpJson(fd,dic):
 
 def getResumes(source='zhilian/default'):
 	resumes=[]
-	directory = setting.app['resumesFolder']+'/'+source
+
+	if source is not None or source.strip() != '':
+		directory = setting.app['resumesFolder']+'/'+source
+		
 	for fd in os.listdir(directory):
 		resumes.append('{}/{}'.format(directory,fd))
 
