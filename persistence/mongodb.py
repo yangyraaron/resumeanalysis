@@ -29,6 +29,7 @@ class ResumeMgr(object):
 		try:
 			self._connect()
 		except Exception as e:
+			self.isConnected = False
 			logger.error('can not connect ot mongodb {}'.format(self.url))
 			logger.error('exception:{}'.format(str(e)))
 
@@ -45,6 +46,9 @@ class ResumeMgr(object):
 			try:
 				users = self.db.users
 				users.insert(userInfo)
+			except pymongo.errors.ConnectionFailure as ce:
+				self.isConnected = False
+				logger.error('connecton is lost')
 			except Exception as e:
 				logger.error('add user {} errors!'.format(userName))
 				logger.error('exception:{}'.format(str(e)))

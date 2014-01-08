@@ -4,7 +4,12 @@ app = {'name': 'resumeAnalyser',
        'dataFolder': 'jsons',
        'resumesFolder': 'files'
        }
-
+db = {
+    'mongodb': {
+        'host': 'localhost',
+        'port': '27017'
+    }
+}
 
 logging = {
     'version': 1,

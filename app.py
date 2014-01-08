@@ -19,8 +19,11 @@ from persistence import mongodb
 logging.config.dictConfig(setting.logging)
 logger = common.getLogger(setting.app['name'])
 
+
 class Application(object):
+
     """application class"""
+
     def __init__(self):
         super(Application, self).__init__()
         self.resumeMgr = None
@@ -37,51 +40,53 @@ class Application(object):
         templateFactory.registerFilter(zlFilter)
         templateFactory.registerFilter(jobFilter)
 
-
-    def _exportToFile(self,data):
+    def _exportToFile(self, data):
         userName = data['userName']
-        if userName is not None and userName!='':
+        if userName is not None and userName != '':
             logger.info(u'save data to file {}.json...'.format(userName))
             fileMgr.saveJson(data)
         else:
-            logger.warning(u"the resume of {} can not be analized".format(userName))
+            logger.warning(
+                u"the resume of {} can not be analized".format(userName))
 
     def _getMongoInstance(self):
         if self.resumeMgr is None:
-            self.resumeMgr = mongodb.ResumeMgr()
+            self.resumeMgr = mongodb.ResumeMgr(
+                setting.db['mongodb']['host'], setting.db['mongodb']['port'])
 
         return self.resumeMgr
 
-    def _exportToDb(self,data):
+    def _exportToDb(self, data):
         userName = data['userName']
-        if userName is not None and userName!='':
+        if userName is not None and userName != '':
             logger.info(u'save {} data to db...'.format(userName))
 
             resumeMgr = self._getMongoInstance()
             resumeMgr.addUser(data)
         else:
-            logger.warning(u"the resume of {} can not be analized".format(userName))
+            logger.warning(
+                u"the resume of {} can not be analized".format(userName))
 
     # get encodign from html file
     def _getEncoding(self, soup):
-        meta = soup.find('meta',attrs={'http-equiv':'Content-Type'})
+        meta = soup.find('meta', attrs={'http-equiv': 'Content-Type'})
         if meta is None:
             return None
 
         content = meta['content']
         charset = meta.get('charset')
-        
+
         if charset is not None:
             return charset
         elif content is None:
             return None
         else:
-            charset = common.strip(common.getStrByIndexUtil('charset=',content,''))
+            charset = common.strip(
+                common.getStrByIndexUtil('charset=', content, ''))
 
         return charset
 
-
-    def run(self,args):
+    def run(self, args):
         # exporting
         resumes = fileMgr.getResumes('zhilian/combination')
         for r in resumes:
@@ -90,65 +95,65 @@ class Application(object):
                 soup = BeautifulSoup(f)
                 encoding = self._getEncoding(soup)
 
-                logger.debug('encoding of file {} is {}'.format(r,encoding))
+                logger.debug('encoding of file {} is {}'.format(r, encoding))
 
                 if encoding is not None:
                     logger.debug('recreate a new soup with new encoding')
-                    #reset the position to start
+                    # reset the position to start
                     f.seek(0)
-                    soup = BeautifulSoup(f,from_encoding=encoding)
-                    
+                    soup = BeautifulSoup(f, from_encoding=encoding)
+
             except IOError as ioe:
                 logger.error('open file faild!')
-                logger.error("detail:{}".format(str(ioe)))     
+                logger.error("detail:{}".format(str(ioe)))
             except Exception as e:
-                logger.error('the {} file should be a valid html file'.format(r))
+                logger.error(
+                    'the {} file should be a valid html file'.format(r))
                 logger.error('detail:{}'.format(str(e)))
-                break # if something exceptional then stop
+                break  # if something exceptional then stop
             finally:
                 f.close()
 
             template = templateFactory.getTemplate(soup)
 
             if template is None:
-                logger.warning('there is not any template could handle "{}"'.format(r))
-                break # if something exceptional then stop
+                logger.warning(
+                    'there is not any template could handle "{}"'.format(r))
+                break  # if something exceptional then stop
 
             logger.info('parsing resume {} ...'.format(r))
             data = constructor.construct(template)
 
-            if args>0:
+            if args > 0:
                 dummy = args.get('dummy')
-                if dummy is not None and dummy =='file':
-                    self._exportToFile(data) # export to file
+                if dummy is not None and dummy == 'file':
+                    self._exportToFile(data)  # export to file
                 else:
-                    self._exportToDb(data) # add to database
+                    self._exportToDb(data)  # add to database
 
-                
-            #break
+
+            # break
 
 def main():
-    cmdArgs={}
+    cmdArgs = {}
 
-    #parse the command line arguments
+    # parse the command line arguments
     try:
-        opts,args = getopt.getopt(sys.argv[1:],'d:',["dummy="])
+        opts, args = getopt.getopt(sys.argv[1:], 'd:', ["dummy="])
     except getopt.GetoptError as e:
         print(str(e))
         sys.exit(2)
 
-    for opt,arg in opts:
+    for opt, arg in opts:
         # get the dummy argument
-        if opt in ('-d','--dummy'):
+        if opt in ('-d', '--dummy'):
             cmdArgs['dummy'] = arg
         else:
-            assert False,"unhandled option"
+            assert False, "unhandled option"
 
     app = Application()
     app.run(cmdArgs)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
-
-    
