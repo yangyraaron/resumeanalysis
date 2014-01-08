@@ -70,7 +70,7 @@ class Application(object):
 
         content = meta['content']
         charset = meta.get('charset')
-        print(charset)
+        
         if charset is not None:
             return charset
         elif content is None:
@@ -78,7 +78,6 @@ class Application(object):
         else:
             charset = common.strip(common.getStrByIndexUtil('charset=',content,''))
 
-        print(charset)
         return charset
 
 
@@ -116,7 +115,6 @@ class Application(object):
                 break # if something exceptional then stop
 
             logger.info('parsing resume {} ...'.format(r))
-            template.parse()
             data = constructor.construct(template)
 
             if args>0:

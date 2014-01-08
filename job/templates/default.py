@@ -14,6 +14,7 @@ class Template(object):
         super(Template, self).__init__()
         self.soup = soup
         self.userName = ''
+        self.sex = ''
         self.birthday = ''
         self.contacts = {}
         self.education = {}
@@ -25,6 +26,7 @@ class Template(object):
     def parse(self):
         self._initialize()
         self._setBasicInfo()
+        self._setSex()
         self._setEducation()
         self._setWorkExperiences()
 
@@ -33,6 +35,9 @@ class Template(object):
 
     def getUserName(self):
         return self.userName
+
+    def getSex(self):
+        return self.sex
 
     def getBirthday(self):
         return self.birthday
@@ -53,6 +58,13 @@ class Template(object):
         title = self.soup.find(u'strong')
         self.headTable = title.parent.parent.parent.parent.parent
         self.infoTable = self.headTable.next_sibling.next_sibling
+
+    def _setSex(self):
+        title = self.headTable.find('b').get_text()
+        contents = title.split('|')
+        self.sex = common.strip(contents[1])
+
+        logger.debug(u'sex:{}'.format(self.sex))
 
     def _setBasicInfo(self):
         strBasic = common.strip(self.headTable.get_text())

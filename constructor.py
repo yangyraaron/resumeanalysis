@@ -17,15 +17,24 @@ def construct(template):
     else:
         userName = template.getUserName()
         result['userName'] = common.strIfNoneOrEmpty(userName)
-        source = template.getSource()
-        result['source'] = common.strIfNoneOrEmpty(source)
+
+        sex = template.getSex()
+        result['sex'] = common.strIfNoneOrEmpty(sex)
+
         birthday = template.getBirthday()
         result['birthday'] = common.strIfNoneOrEmpty(birthday)
+
         contacts = template.getContacts()
         result['contacts'] = common.dicIfNone(contacts)
+
         education = template.getEducations()
         result['education'] = common.dicIfNone(education)
+
         expriences = template.getWorkExpriences()
         result['experiences'] = common.listIfNoneOrEmpty(expriences)
+        
+        source = template.getSource()
+        result['source'] = common.strIfNoneOrEmpty(source)
+
 
     return result

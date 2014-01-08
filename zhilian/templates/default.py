@@ -15,6 +15,7 @@ class Template(object):
         super(Template, self).__init__()
         self.soup = soup
         self.userName=''
+        self.sex=''
         self.birthday=''
         self.contacts={}
         self.education = {}
@@ -37,6 +38,9 @@ class Template(object):
 
     def getUserName(self):
         return self.userName
+
+    def getSex(self):
+        return self.sex
 
     def getBirthday(self):
         return self.birthday
@@ -68,12 +72,14 @@ class Template(object):
 
         logger.debug('parsing and setting birthday and degree')
 
-        strSummaryTop = self.soup.find_all(
-            "div", class_="summary-top")[0].span.get_text()
+        strSummaryTop = common.strip(self.soup.find_all(
+            "div", class_="summary-top")[0].span.get_text());
 
+        self.sex = strSummaryTop[0];
         self.birthday = common.getStrByIndexUtil(u'(',strSummaryTop,')')
 
         logger.debug(u'birthday:{}'.format(self.birthday))
+        logger.debug(u'sex:{}'.format(self.sex))
 
 
     def _setContacts(self):

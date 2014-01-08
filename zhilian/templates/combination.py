@@ -14,6 +14,7 @@ class Template(object):
         super(Template, self).__init__()
         self.soup = soup
         self.userName = ''
+        self.sex = ''
         self.birthday = ''
         self.contacts = {}
         self.education = {}
@@ -35,6 +36,9 @@ class Template(object):
     def getUserName(self):
         return self.userName
 
+    def getSex(self):
+        return self.sex
+
     def getBirthday(self):
         return self.birthday
 
@@ -55,22 +59,25 @@ class Template(object):
     	div = self.soup.find('div',class_='baseinfo')
     	strInfo = common.strip(div.get_text())
 
+        self.sex = strInfo[0]
+        logger.debug(u'sex:{}'.format(self.sex))
+
         strBirth = common.getStrByIndexUtil(u'月生',strInfo,'|',True)
         self.birthday = strBirth
 
-        logger.info(u"birth:{}".format(strBirth))
+        logger.debug(u"birth:{}".format(strBirth))
 
         strMobile = common.getStrByIndexUtil(u'(手机)',strInfo,'\n',True)
         self.contacts['mobile'] = strMobile
 
-        logger.info(u'mobile:{}'.format(strMobile))
+        logger.debug(u'mobile:{}'.format(strMobile))
 
         iemail = strInfo.find(u'E-mail:')
         iemail = iemail+len(u'E-mail:')
         strEmail = common.getStrByIndexUtil(u'E-mail:',strInfo,'|')
         self.contacts['email'] = strEmail
 
-        logger.info(u'email:{}'.format(strEmail))
+        logger.debug(u'email:{}'.format(strEmail))
 
     def _setEducation(self):
         span = self.soup.find('span',text=u'教育经历')
@@ -85,14 +92,14 @@ class Template(object):
 
         self.education['speciality']=common.strip(edInfos[1])
         self.education['degree'] = common.strip(edInfos[2])
-        logger.info(u'degree:{}'.format(self.education['degree']))
+        logger.debug(u'degree:{}'.format(self.education['degree']))
 
         headInfo = edInfos[0].split(u'：')
         self.education['college'] = common.strip(headInfo[1])
         time = headInfo[0].split('--')
         self.education['graduatedTime'] = common.strip(time[1])
 
-        logger.info(u'education:{}'.format(self.education))
+        logger.debug(u'education:{}'.format(self.education))
 
     def _setWorkExperiences(self):
         span = self.soup.find('span',text=u'工作经历')
