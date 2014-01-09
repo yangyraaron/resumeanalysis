@@ -88,7 +88,7 @@ class Application(object):
 
     def run(self, args):
         # exporting
-        resumes = fileMgr.getResumes('zhilian/combination')
+        resumes = fileMgr.getResumes('51')
         for r in resumes:
             try:
                 f = open(r)
@@ -131,8 +131,8 @@ class Application(object):
                 else:
                     self._exportToDb(data)  # add to database
 
+            #break
 
-            # break
 
 def main():
     cmdArgs = {}
