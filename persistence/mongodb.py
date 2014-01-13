@@ -34,8 +34,8 @@ class ResumeMgr(object):
             self._connect()
         except Exception as e:
             self.isConnected = False
-            logger.error('can not connect ot mongodb {}'.format(self.url))
-            logger.error('exception:{}'.format(str(e)))
+            logger.error('can not connect ot mongodb {}'.format(self.url),exc_info=True)
+            #logger.error('exception:{}'.format(str(e)))
 
         else:
             self.isConnected = True
@@ -55,8 +55,8 @@ class ResumeMgr(object):
             self.isConnected = False
             logger.error('connecton is lost')
         except Exception as e:
-            logger.error(u'check if user {} has been exist error!'.format(userName))
-            logger.error('exception:{}'.format(str(e)))
+            logger.error(u'check if user {} has been exist error!'.format(userName),exc_info=True)
+            #logger.error('exception:{}'.format(str(e)))
 
     def addUser(self, userInfo):
         userName = userInfo['userName']
@@ -66,18 +66,18 @@ class ResumeMgr(object):
             if self._has(userInfo):
                 logger.info(
                     u'the user {} is already in database'.format(userName))
-                return False
+                return 2
 
             try:
                 users = self.db.users
                 users.insert(userInfo)
             except pymongo.errors.ConnectionFailure as ce:
                 self.isConnected = False
-                logger.error('connecton is lost')
-                return False
+                logger.error('connecton is lost',exc_info=True)
+                return 1
             except Exception as e:
-                logger.error(u'add user {} error!'.format(userName))
-                logger.error('exception:{}'.format(str(e)))
-                return False
+                logger.error(u'add user {} error!'.format(userName),exc_info=True)
+                #logger.error('exception:{}'.format(str(e)))
+                return 1
 
-            return True
+            return 0

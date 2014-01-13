@@ -5,15 +5,14 @@ import common
 
 logger = common.getLogger(__name__)
 
-
 def construct(template):
     result = {}
 
     try:
         template.parse()
     except Exception, e:
-        logger.error("some thing wrong when parsing html file")
-        logger.error('exception:'.format(str(e)))
+        logger.error("some thing wrong when parsing html file",exc_info=True)
+        #logger.error('exception:'.format(str(e)))
     else:
         userName = template.getUserName()
         result['userName'] = common.strIfNoneOrEmpty(userName)

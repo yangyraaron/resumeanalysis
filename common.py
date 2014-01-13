@@ -3,6 +3,7 @@
 
 import logging
 import setting
+from datetime import datetime
 
 ESC_CHARS = [' ', '\n', '\t', '\r']
 
@@ -13,20 +14,36 @@ def getLogger(name=''):
 
     return logging.getLogger(setting.app['name'] + '.' + name)
 
+
+def isDicNoneOrEmpty(dic):
+    if dic is None:
+        return True
+    elif len(dic) == 0:
+        pass
+
+    return False
+
+
 def strIfNoneOrEmpty(value, defalutValue=''):
     if value is None or (value == ''):
         return defalutValue
     return value
+
 
 def listIfNoneOrEmpty(list, defalutValue=[]):
     if list is None or len(list) == 0:
         return defalutValue
     return list
 
+
 def dicIfNone(dic, defalutValue={}):
     if dic is None:
         return defalutValue
     return dic
+
+def strDefaultNow():
+    return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
 
 def strip(strValue):
     # return strValue.strip().strip('\r').strip('\n').strip('\t')
@@ -39,6 +56,8 @@ def strip(strValue):
 # get the cotent in () of string
 # @content the string to find in {}
 # @return string
+
+
 def find_content_in_bracket(content):
     index_begin = content.find(u'(')
     index_end = content.find(u')')
@@ -87,8 +106,10 @@ def strGetUnitl(strSource, position, strTers, isReverse=False):
 # @strIndex index string
 # @strSource source string
 # @strTers a string array contains terminal string
-# @isReverse indicate the order in which read the chars 
+# @isReverse indicate the order in which read the chars
 # @return string
+
+
 def getStrByIndexUtil(strIndex, strSource, strTers, isReverse=False):
     index = strSource.find(strIndex)
     if index != -1:
@@ -101,20 +122,17 @@ def getStrByIndexUtil(strIndex, strSource, strTers, isReverse=False):
 
     return ''
 
-def indexNextSibling(ele,index=1):
+
+def indexNextSibling(ele, index=1):
     if ele is None:
         return None
 
     result = ele
-    end = index+1;
-    for x in xrange(1,end):
+    end = index + 1
+    for x in xrange(1, end):
         if result.next_sibling is not None and result.next_sibling.next_sibling is not None:
             result = result.next_sibling.next_sibling
-        else: # if index is overflow then return none
+        else:  # if index is overflow then return none
             return None
 
     return result
-            
-
-        
-

@@ -2,8 +2,25 @@
 
 app = {'name': 'resumeAnalyser',
        'dataFolder': 'jsons',
-       'resumesFolder': 'files'
+       'resumesFolder': 'files',
+       'handlers': {
+           'exported': {
+               'folder': 'log/exported',
+           },
+           'failed': {
+               'folder': 'log/failed',
+               'extension': 'err.log',
+               'template': '$time $file'
+           },
+           'duplicate': {
+               'folder': 'log/duplicate',
+               'extension': 'dup.log',
+               'template': '$time $file'
+           }
        }
+
+       }
+
 db = {
     'mongodb': {
         'host': 'localhost',
@@ -19,20 +36,38 @@ logging = {
             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
         },
         'simple': {
-            'format': '%(levelname)s %(message)s'
+            'format': '%(levelname)s %(module)s %(message)s'
         },
     },
     'filters': {},
     'handlers': {
         'console': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
+        },
+        "info_file_handler": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "level": "INFO",
+            "formatter": "simple",
+            "filename": "info.log",
+            "maxBytes": "10485760",
+            "backupCount": "20",
+            "encoding": "utf8"
+        },
+        "error_file_handler": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "level": "ERROR",
+            "formatter": "simple",
+            "filename": "errors.log",
+            "maxBytes": "10485760",
+            "backupCount": "20",
+            "encoding": "utf8"
         }
     },
     'loggers': {
         app['name']: {
-            'handlers': ['console'],
+            'handlers': ['console', 'info_file_handler', 'error_file_handler'],
             'propagate': True,
             'level': 'INFO',
         }
