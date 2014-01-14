@@ -46,7 +46,7 @@ def moveFile(fd, destDir):
 	try:
 		shutil.move(fd, destDir)
 	except Exception as e:
-		logger.error(u'move file {} to {} failed'.foramt(fd, destDir), exc_info=True)
+		logger.error(u'move file {} to {} failed'.format(fd, destDir), exc_info=True)
 
 
 # def moveToExported(fd):
