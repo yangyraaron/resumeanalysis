@@ -96,6 +96,24 @@ class Template(object):
         self.contacts['email'] = email.strip('|')
 
     def _setEducation(self):
+        title = self.soup.find('td',text=u'教育经历')
+        if title is None:
+            return
+
+        tdEdContainer = common.indexNextSibling(title.parent,3)
+        #not default template
+        if tdEdContainer is None:
+            tdEdContainer = common.indexNextSibling(title.parent.parent.parent,1)
+            row = tdEdContainer.find('tr')
+        else:
+            row = tdEdContainer.td.table.find('tr')
+        
+        strEd = common.strip(row.get_text('|'))
+
+        strIndex = u'--'
+        graduateTime = common.getStrByIndexUtil(strIndex,strEd,'|')
+        self.education['graduateTime'] = graduateTime
+
         strEd = common.strip(self.infoTable.get_text())
         strEd = strEd.replace('\n', '|')
 
@@ -111,6 +129,7 @@ class Template(object):
         speciality = common.getStrByIndexUtil(strIndex, strEd, '|')
         self.education['speciality'] = speciality.strip('|')
 
+        logger.debug(u'graduateTime:{}'.format(self.education['graduateTime']))
         logger.debug(u'degree:{}'.format(self.education['degree']))
         logger.debug(u'college:{}'.format(self.education['college']))
         logger.debug(u'speciality:{}'.format(self.education['speciality']))
@@ -119,7 +138,7 @@ class Template(object):
         title = self.soup.find('td', text='工作经验')
         wkRow = common.indexNextSibling(title.parent, 3)
 
-        # not default layout
+        # not default template
         if wkRow is None:
             wkRow = common.indexNextSibling(title.parent.parent.parent, 1)
             rows = wkRow.find_all('tr')

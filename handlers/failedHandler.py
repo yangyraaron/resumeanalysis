@@ -2,6 +2,7 @@
 
 
 import os
+import context
 import setting
 from datetime import datetime
 import common
@@ -10,7 +11,7 @@ from string import Template
 
 logger = common.getLogger(__name__)
 
-cfgFailedHandler = setting.app['handlers']['failed']
+cfgFailedHandler = context.failedHandler #setting.app['handlers']['failed']
 rootFolder = cfgFailedHandler['folder']
 extension = cfgFailedHandler['extension']
 template = Template(cfgFailedHandler['template'])
@@ -28,11 +29,11 @@ def removeFile(fileName):
                     fdPath = os.path.join(dpath,fd)
                     if os.path.isfile(fdPath):
                         pair = os.path.split(fd)
-                        tName = common.toDefaultUnicode(pair[1])
+                        tName = pair[1]
                         if tName == fileName:
                             os.remove(fdPath)
                             logger.info(
-                                u'the failed file {} has been removed'.format(common.toDefaultUnicode(fdPath)))
+                                u'the failed file {} has been removed'.format(fdPath))
 
     except Exception:
         logger.error(
@@ -46,7 +47,7 @@ class Handler(object):
     def __init__(self):
         super(Handler, self).__init__()
         self.folder = ''
-        self.fName = ''
+        self.fName = None
         self.fd = None
 
     def _verify(self,failedFile):
@@ -81,6 +82,12 @@ class Handler(object):
             return True
         return False
 
+    def hasFailed(self):
+        return self.fName is not None
+
+    def getLogFileName(self):
+        return self.fName
+
     def handle(self, failedFile):
         if failedFile is None:
             logger.error(
@@ -89,8 +96,9 @@ class Handler(object):
             logger.error('template is none', exc_info=True)
         else:
             if self._verify(failedFile):
+                tupName = os.path.split(failedFile)
                 dicContent = {
-                    'time': common.strDefaultNow(), 'file': u'{}'.format(failedFile)}
+                    'time': common.strDefaultNow(), 'file': u'{}'.format(tupName[1])}
                 strMsg = template.substitute(dicContent)
                 # move source file to failed relavant folder
                 fileMgr.moveFile(failedFile, self.folder)

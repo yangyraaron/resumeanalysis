@@ -3,6 +3,7 @@
 
 import os
 import setting
+import context
 import common
 from persistence import fileMgr
 import failedHandler
@@ -13,8 +14,8 @@ class Handler(object):
 	"""Hanlder for moving parsing successed file to exported folder"""
 	def __init__(self):
 		super(Handler, self).__init__()
-		cfgExportedHandler = setting.app['handlers']['exported']
-		self.folder = cfgExportedHandler['folder']
+		#cfgExportedHandler = setting.app['handlers']['exported']
+		self.folder = context.exportedHandler['folder']
 
 		fileMgr.verifyExists(self.folder)
 		

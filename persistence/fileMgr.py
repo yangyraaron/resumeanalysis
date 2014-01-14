@@ -34,7 +34,7 @@ def getResumes(source):
 
     try:
         for fd in os.listdir(source):
-            resumes.append(u'{}/{}'.format(source, unicode(fd,'utf-8')))
+            resumes.append(u'{}/{}'.format(source, fd))
     except IOError as e:
         logger.error(
             u'open the resume folder {} error'.format(source), exc_info=True)

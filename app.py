@@ -8,8 +8,8 @@ from zhilian import zlFilter
 from job import jobFilter
 import logging
 import logging.config
-import setting
 import common
+import context
 from persistence import fileMgr
 import templateFactory
 import constructor
@@ -17,8 +17,8 @@ from persistence import mongodb
 import handlerFactory
 
 # initialize log
-logging.config.dictConfig(setting.logging)
-logger = common.getLogger(setting.app['name'])
+logging.config.dictConfig(context.logging)
+logger = common.getLogger(context.appName)
 
 
 class Application(object):
@@ -33,7 +33,7 @@ class Application(object):
 
     def _initialize(self):
         # initilize variables
-        fileMgr.verifyExists(setting.app['dataFolder'])
+        fileMgr.verifyExists(context.dataFolder)
 
         # register handlers
         templateFactory.registerFilter(zlFilter)
@@ -57,7 +57,7 @@ class Application(object):
     def _getMongoInstance(self):
         if self.resumeMgr is None:
             self.resumeMgr = mongodb.ResumeMgr(
-                setting.db['mongodb']['host'], setting.db['mongodb']['port'])
+                context.mongodb['host'], context.mongodb['port'])
 
         return self.resumeMgr
 
@@ -94,7 +94,7 @@ class Application(object):
 
     def run(self, args):
         # exporting
-        resumes = fileMgr.getResumes(setting.app['resumesFolder'])
+        resumes = fileMgr.getResumes(context.resumesFolder)
         for r in resumes:
             try:
                 f = open(r)
@@ -153,9 +153,19 @@ class Application(object):
 
 
     def done(self):
+        result=[]
+
+        if self.failedHandler.hasFailed():
+            result.append(os.path.abspath(self.failedHandler.getLogFileName()))
+
+        if self.duplicateHandler.hasDuplicate():
+            result.append(os.path.abspath(self.duplicateHandler.getLogFileName()))
+
         self.exportedHandler.close()
         self.failedHandler.close()
         self.duplicateHandler.close()
+
+        return u' '.join(result)
 
 
 def main():
@@ -177,7 +187,10 @@ def main():
 
     app = Application()
     app.run(cmdArgs)
-    app.done()
+    result = app.done()
+
+    logger.info(u'result:{}'.format(result))
+    print(result)
 
 
 if __name__ == '__main__':

@@ -1,9 +1,10 @@
 #-*- coding: UTF-8 -*-
 
-#-*- coding: UTF-8 -*-
 
 
+import os
 import setting
+import context
 from datetime import datetime
 import common
 from persistence import fileMgr
@@ -11,10 +12,10 @@ from string import Template
 
 logger = common.getLogger(__name__)
 
-cfgFailedHandler = setting.app['handlers']['duplicate']
-rootFolder = cfgFailedHandler['folder']
-extension = cfgFailedHandler['extension']
-template = Template(cfgFailedHandler['template'])
+cfgDuplicateHandler = context.duplicateHandler #setting.app['handlers']['duplicate']
+rootFolder = cfgDuplicateHandler['folder']
+extension = cfgDuplicateHandler['extension']
+template = Template(cfgDuplicateHandler['template'])
 
 fileMgr.verifyExists(rootFolder)
 
@@ -25,7 +26,7 @@ class Handler(object):
 
     def __init__(self):
         super(Handler, self).__init__()
-        self.fName = ''
+        self.fName = None
         self.fd = None
 
     def _verify(self,):
@@ -51,6 +52,12 @@ class Handler(object):
             return True
         return False
 
+    def hasDuplicate(self):
+        return self.fName is not None
+
+    def getLogFileName(self):
+        return self.fName
+
     def handle(self, duplicateFile):
         if duplicateFile is None:
             logger.error(
@@ -59,8 +66,9 @@ class Handler(object):
             logger.error('template is none', exc_info=True)
         else:
             if self._verify():
+                tupName = os.path.split(duplicateFile)
                 dicContent = {
-                    'time': common.strDefaultNow(), 'file': u'{}'.format(duplicateFile)}
+                    'time': common.strDefaultNow(), 'file': u'{}'.format(tupName[1])}
                 strMsg = template.substitute(dicContent)
 
                 try:

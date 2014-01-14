@@ -49,7 +49,7 @@ logging = {
         "info_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
             "level": "INFO",
-            "formatter": "simple",
+            "formatter": "verbose",
             "filename": "log/info.log",
             "maxBytes": "10485760",
             "backupCount": "20",
@@ -58,7 +58,7 @@ logging = {
         "error_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
             "level": "ERROR",
-            "formatter": "simple",
+            "formatter": "verbose",
             "filename": "log/errors.log",
             "maxBytes": "10485760",
             "backupCount": "20",
@@ -67,7 +67,7 @@ logging = {
     },
     'loggers': {
         app['name']: {
-            'handlers': ['console', 'info_file_handler', 'error_file_handler'],
+            'handlers': ['console','info_file_handler', 'error_file_handler'],
             'propagate': True,
             'level': 'DEBUG',
         }
