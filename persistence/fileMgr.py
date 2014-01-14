@@ -26,17 +26,18 @@ def _dumpJson(fd, dic):
     fd.write(strData)
 
 
-def getResumes(source='zhilian/default'):
+def getResumes(source):
     resumes = []
 
-    if source is not None or source.strip() != '':
-        directory = setting.app['resumesFolder'] + '/' + source
+    if source is None or source.strip()== '':
+        logger.error('the resume folder is not provideed')
+
     try:
-        for fd in os.listdir(directory):
-            resumes.append(u'{}/{}'.format(directory, unicode(fd,'utf-8')))
+        for fd in os.listdir(source):
+            resumes.append(u'{}/{}'.format(source, unicode(fd,'utf-8')))
     except IOError as e:
         logger.error(
-            u'open the resume folder {} error'.format(directory), exc_info=True)
+            u'open the resume folder {} error'.format(source), exc_info=True)
 
     return resumes
 

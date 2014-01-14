@@ -12,7 +12,7 @@ def construct(template):
         template.parse()
     except Exception, e:
         logger.error("some thing wrong when parsing html file",exc_info=True)
-        #logger.error('exception:'.format(str(e)))
+        return result
     else:
         userName = template.getUserName()
         result['userName'] = common.strIfNoneOrEmpty(userName)

@@ -19,7 +19,7 @@ def isDicNoneOrEmpty(dic):
     if dic is None:
         return True
     elif len(dic) == 0:
-        pass
+        return True
 
     return False
 
@@ -43,6 +43,9 @@ def dicIfNone(dic, defalutValue={}):
 
 def strDefaultNow():
     return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+def toDefaultUnicode(strValue):
+    return unicode(strValue,'UTF-8')
 
 
 def strip(strValue):

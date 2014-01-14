@@ -37,7 +37,7 @@ class Handler(object):
             try:
                 self.fd = open(self.fName, 'a')
                 logger.info(u'the file {} is opened'.format(self.fName))
-            except (IOError, Exception) as e:
+            except (IOError, Exception):
                 logger.error(
                     u'open file {} to log is failed'.format(self.fName), exc_info=True)
                 return False
@@ -54,7 +54,7 @@ class Handler(object):
     def handle(self, duplicateFile):
         if duplicateFile is None:
             logger.error(
-                'doesn\'t provide failed source file,can not handle failed exporting')
+                'doesn\'t provide duplicate source file,can not handle failed exporting')
         elif template is None:
             logger.error('template is none', exc_info=True)
         else:
@@ -67,7 +67,7 @@ class Handler(object):
                     self.fd.write(strMsg.encode('UTF-8'))
                     self.fd.write('\n')
                     self.fd.flush()
-                except (IOError, Exception) as e:
+                except (IOError, Exception):
                     logger.error(
                         u'write msg to file {} failed'.format(self.fName), exc_info=True)
 
@@ -82,6 +82,6 @@ class Handler(object):
         try:
             self.fd.close()
             logger.info(u'the file {} is closed'.format(self.fName))
-        except (IOError, Exception) as e:
+        except (IOError, Exception):
             logger.error(
                 u'try to close file {} faild'.format(self.fName), exc_info=True)

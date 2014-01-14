@@ -24,7 +24,9 @@ class Handler(object):
 		logger.info(u'the file {} has been moved into {} folder'.format(passedFile,self.folder))
 
 		pair = os.path.split(passedFile)
-		failedHandler.removeFile(pair[1])
+		fileName = pair[1]
+		logger.debug(u'the exported file name {}'.format(fileName))
+		failedHandler.removeFile(fileName)
 
 	def close(self):
 		logger.info('exported handler closed')

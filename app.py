@@ -62,7 +62,7 @@ class Application(object):
         return self.resumeMgr
 
     def _exportToDb(self, data):
-        userName = data['userName']
+        userName = data.get('userName')
         if userName is not None and userName != '':
             logger.info(u'save {} data to db...'.format(userName))
 
@@ -94,7 +94,7 @@ class Application(object):
 
     def run(self, args):
         # exporting
-        resumes = fileMgr.getResumes('zhilian/combination')
+        resumes = fileMgr.getResumes(setting.app['resumesFolder'])
         for r in resumes:
             try:
                 f = open(r)
@@ -109,9 +109,9 @@ class Application(object):
                     f.seek(0)
                     soup = BeautifulSoup(f, from_encoding=encoding)
 
-            except IOError as ioe:
+            except IOError:
                 logger.error('open file faild!', exc_info=True)
-            except Exception as e:
+            except Exception:
                 logger.error(
                     u'the {} file should be a valid html file'.format(r), exc_info=True)
             finally:
@@ -132,7 +132,6 @@ class Application(object):
                     logger.warning('the parsed result is empty')
                     #handle failed parsing
                     self.failedHandler.handle(r)
-                    continue
                 else:
                     if args > 0:
                         dummy = args.get('dummy')
@@ -165,7 +164,7 @@ def main():
     # parse the command line arguments
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'd:', ["dummy="])
-    except getopt.GetoptError as e:
+    except getopt.GetoptError():
         logger.error('the commands is invalid!', exc_info=True)
         sys.exit(2)
 
