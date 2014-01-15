@@ -17,7 +17,10 @@ rootFolder = cfgDuplicateHandler['folder']
 extension = cfgDuplicateHandler['extension']
 template = Template(cfgDuplicateHandler['template'])
 
+duplicateFilesFolder = u'{}/{}'.format(rootFolder,'duplicates')
+
 fileMgr.verifyExists(rootFolder)
+fileMgr.verifyExists(duplicateFilesFolder)
 
 
 class Handler(object):
@@ -66,10 +69,13 @@ class Handler(object):
             logger.error('template is none', exc_info=True)
         else:
             if self._verify():
-                tupName = os.path.split(duplicateFile)
+                #tupName = os.path.split(duplicateFile)
                 dicContent = {
-                    'time': common.strDefaultNow(), 'file': u'{}'.format(tupName[1])}
+                    'time': common.strDefaultNow(), 'file': u'{}'.format(duplicateFile)}
                 strMsg = template.substitute(dicContent)
+
+                # move duplicate file into duplicates folder
+                fileMgr.moveFile(duplicateFile,duplicateFilesFolder)
 
                 try:
                     self.fd.write(strMsg.encode('UTF-8'))

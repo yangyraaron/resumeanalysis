@@ -58,8 +58,7 @@ class Handler(object):
 
         if self.fd is None or self.fd.closed:
             strTime = common.strDefaultNow()
-            # create the failure folder and move the sourcefile into this
-            # folder
+            # create the failure folder and move the sourcefile into this folder
             self.folder = u'{}/{}'.format(rootFolder, strTime)
             fileMgr.verifyExists(self.folder)
 
@@ -96,9 +95,9 @@ class Handler(object):
             logger.error('template is none', exc_info=True)
         else:
             if self._verify(failedFile):
-                tupName = os.path.split(failedFile)
+                #tupName = os.path.split(failedFile)
                 dicContent = {
-                    'time': common.strDefaultNow(), 'file': u'{}'.format(tupName[1])}
+                    'time': common.strDefaultNow(), 'file': u'{}'.format(failedFile)}
                 strMsg = template.substitute(dicContent)
                 # move source file to failed relavant folder
                 fileMgr.moveFile(failedFile, self.folder)
