@@ -38,4 +38,10 @@ if _handlers is not None:
 
 logging = setting.logging
 
+handler = logging['handlers']['info_file_handler']
+handler['filename'] = u'{}/{}'.format(rootPath,handler['filename'])
+
+handler = logging['handlers']['error_file_handler']
+handler['filename'] = u'{}/{}'.format(rootPath,handler['filename'])
+
 mongodb = setting.db.get('mongodb')
