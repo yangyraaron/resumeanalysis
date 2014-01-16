@@ -197,7 +197,7 @@ def main():
     result = app.done()
 
     logger.info(u'result:{}'.format(result))
-    print(result)
+    print result,
 
 
 if __name__ == '__main__':
