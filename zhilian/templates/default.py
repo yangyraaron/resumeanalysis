@@ -119,7 +119,7 @@ class Template(object):
         seg = arrEd[0].split('-')
         self.education['graduateTime'] = common.strip(seg[1])
         self.education['college'] = common.strip(arrEd[1])
-        self.education['sepcialty'] = common.strip(arrEd[2])
+        self.education['speciality'] = common.strip(arrEd[2])
 
         self.education['degree'] = common.strip(arrEd[3])
 

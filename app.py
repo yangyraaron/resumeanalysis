@@ -165,6 +165,13 @@ class Application(object):
         self.failedHandler.close()
         self.duplicateHandler.close()
 
+        # for path in result:
+        #     if os.path.exists(path):
+        #         print(u'path {} exists'.format(path))
+        #     else:
+        #         print(u'path {} does not exist'.format(path))
+            
+
         return u' '.join(result)
 
 
