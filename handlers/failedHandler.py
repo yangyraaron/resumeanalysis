@@ -57,7 +57,7 @@ class Handler(object):
             return False
 
         if self.fd is None or self.fd.closed:
-            strTime = common.strDefaultNow()
+            strTime = common.strDirNow()
             # create the failure folder and move the sourcefile into this folder
             self.folder = u'{}/{}'.format(rootFolder, strTime)
             fileMgr.verifyExists(self.folder)

@@ -34,7 +34,7 @@ class Handler(object):
 
     def _verify(self,):
         if self.fd is None or self.fd.closed:
-            strTime = common.strDefaultNow()
+            strTime = common.strDirNow()
 
             # create the log file to record
             self.fName = u'{}/{}.{}'.format(rootFolder, strTime, extension)

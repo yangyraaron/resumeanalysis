@@ -44,6 +44,9 @@ def dicIfNone(dic, defalutValue={}):
 def strDefaultNow():
     return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
+def strDirNow():
+    return datetime.now().strftime('%Y%m%d%H%M%S')
+
 def toDefaultUnicode(strValue):
     return unicode(strValue,'UTF-8')
 

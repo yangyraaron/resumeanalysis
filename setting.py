@@ -71,7 +71,7 @@ logging = {
             'propagate': True,
             'level': 'DEBUG',
         },
-        'test': {
+        'testEnv': {
             'handlers': ['console'],
             'propagate': True,
             'level': 'DEBUG',
