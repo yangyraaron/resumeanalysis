@@ -44,7 +44,7 @@ logging = {
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
+            'formatter': 'simple'
         },
         "info_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
@@ -68,6 +68,11 @@ logging = {
     'loggers': {
         app['name']: {
             'handlers': ['info_file_handler', 'error_file_handler'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+        'test': {
+            'handlers': ['console'],
             'propagate': True,
             'level': 'DEBUG',
         }
