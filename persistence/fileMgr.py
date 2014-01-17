@@ -5,7 +5,6 @@ import os
 import setting
 import json
 import common
-import os
 import shutil
 
 logger = common.getLogger()
@@ -29,7 +28,7 @@ def _dumpJson(fd, dic):
 def getResumes(source):
     resumes = []
 
-    if source is None or source.strip()== '':
+    if source is None or source.strip() == '':
         logger.error('the resume folder is not provideed')
 
     try:
@@ -43,10 +42,12 @@ def getResumes(source):
 
 
 def moveFile(fd, destDir):
-	try:
-		shutil.move(fd, destDir)
-	except Exception as e:
-		logger.error(u'move file {} to {} failed'.format(fd, destDir), exc_info=True)
+    try:
+        shutil.copy(fd, destDir)
+        os.remove(fd)
+    except Exception as e:
+        logger.error(
+            u'move file {} to {} failed'.format(fd, destDir), exc_info=True)
 
 
 # def moveToExported(fd):
@@ -64,4 +65,5 @@ def verifyExists(dirPath):
         if not os.path.exists(dirPath):
             os.makedirs(dirPath)
     except Exception as e:
-		logger.error('make directory {} failed!'.format(dirPath),exc_info=True)
+        logger.error(
+            'make directory {} failed!'.format(dirPath), exc_info=True)
