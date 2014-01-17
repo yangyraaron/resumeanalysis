@@ -121,7 +121,7 @@ class Application(object):
 
             if template is None:
                 logger.error(
-                    'there is not any template could handle "{}"'.format(r))
+                    u'there is not any template could handle "{}"'.format(r))
                 #handle failed parsing
                 self.failedHandler.handle(r)
             else:

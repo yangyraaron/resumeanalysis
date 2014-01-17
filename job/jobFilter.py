@@ -8,7 +8,7 @@ logger = common.getLogger(__name__)
 def isSupport(soup):
 	imgs = soup.find_all(alt=u'前程无忧')
 
-	return imgs is not None 
+	return imgs is not None and len(imgs)>0
 
 def getTemplate(soup):
 	logger.debug('template is 51job default')
