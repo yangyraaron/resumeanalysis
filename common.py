@@ -3,6 +3,7 @@
 
 import logging
 import setting
+import os
 from datetime import datetime
 
 ESC_CHARS = [' ', '\n', '\t', '\r']
@@ -49,6 +50,11 @@ def strDirNow():
 
 def toDefaultUnicode(strValue):
     return unicode(strValue,'UTF-8')
+
+def getFileName(strPath):
+    strs = os.path.split(strPath)
+
+    return strs[1]
 
 
 def strip(strValue):

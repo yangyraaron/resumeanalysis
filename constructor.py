@@ -5,7 +5,7 @@ import common
 
 logger = common.getLogger(__name__)
 
-def construct(template):
+def construct(template,resumeFileName):
     result = {}
 
     try:
@@ -35,6 +35,8 @@ def construct(template):
         
         source = template.getSource()
         result['source'] = common.strIfNoneOrEmpty(source)
+
+        result['resumeFileName'] = common.getFileName(resumeFileName)
 
 
     return result

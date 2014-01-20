@@ -126,7 +126,7 @@ class Application(object):
                 self.failedHandler.handle(r)
             else:
                 logger.info(u'parsing resume {} ...'.format(r))
-                data = constructor.construct(template)
+                data = constructor.construct(template,r)
 
                 if common.isDicNoneOrEmpty(data):
                     logger.warning('the parsed result is empty')
