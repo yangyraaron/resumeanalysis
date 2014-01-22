@@ -15,7 +15,7 @@ def createExportsEnv(exportedFolder,dest):
 		logger.error('create exported env with error',exc_info=True)
 
 
-def clean(path):
+def cleanFolder(path):
 
 	try:
 		shutil.rmtree(path)
@@ -24,10 +24,13 @@ def clean(path):
 
 def _cleanLog():
 	logger.info('cleaning files....')
-	clean(context.resumesFolder)
-	clean(context.exportedHandler['folder'])
-	clean(context.failedHandler['folder'])
-	clean(context.duplicateHandler['folder'])
+	cleanFolder(context.resumesFolder)
+	cleanFolder(context.exportedHandler['folder'])
+	cleanFolder(context.failedHandler['folder'])
+	cleanFolder(context.duplicateHandler['folder'])
+
+def clean():
+	_cleanLog()
 
 
 def build():
