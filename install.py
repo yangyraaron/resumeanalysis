@@ -43,7 +43,7 @@ def installPip():
 
 def installPackages():
 	try:
-		command = 'pip install -r {}/requirements.txt'.format(context.rootPath)
+		command = 'sudo pip install -r {}/requirements.txt'.format(context.rootPath)
 		subprocess.call(command,shell=True)
 	except Exception:
 		logger.error('install packages failed',exc_info=True)
