@@ -67,7 +67,7 @@ class Template(object):
 
         logger.debug(u"birth:{}".format(strBirth))
 
-        strMobile = common.getStrByIndexUtil(u'(手机)',strInfo,'\n',True)
+        strMobile = common.getStrByIndexUtil(u'(手机)',strInfo,['\n',' '],True)
         self.contacts['mobile'] = strMobile
 
         logger.debug(u'mobile:{}'.format(strMobile))
@@ -128,8 +128,14 @@ class Template(object):
 
         strhead = row.contents[1].contents[0]
         heads = strhead.split('|')
+        # {company}|{department}|{position}
         workex['company'] = common.strip(heads[0])
-        workex['position'] = common.strip(heads[1])
+        workex['position'] = common.strip(heads[len(heads)-1])
+        # if posLen==2:
+        #     workex['position'] = common.strip(heads[1])
+        # elif posLen==3:
+        #     workex['position'] = common.strip(heads[2])
+        
 
         return workex
         

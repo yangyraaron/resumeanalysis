@@ -120,16 +120,18 @@ class Template(object):
         self.education['graduateTime'] = common.strip(seg[1])
         self.education['college'] = common.strip(arrEd[1])
         self.education['speciality'] = common.strip(arrEd[2])
-
         self.education['degree'] = common.strip(arrEd[3])
 
     # get work experiences
     def _setWorkExperiences(self):
-        """get work exprience array from resume"""
+        """get work experience array from resume"""
+
+        logger.debug('parsing and setting education')
 
         wkex_title = self.soup.find('h3', text=u'工作经历')
         # if does't have any work expriences
         if wkex_title is None:
+            logger.warning('there is not any work experiences')
             return
 
         wkex_heads = wkex_title.parent.find_all('h2')
@@ -143,9 +145,16 @@ class Template(object):
             po = hd.next_sibling.next_sibling
             pos = po.string.split(u'|')
 
-            if len(pos) == 1:
+            posLen = len(pos)
+            # {department}|{position}|{salary}
+            if posLen == 1:
                 workex['position'] = common.strip(pos[0])
-            else:
+            elif posLen==2:
+                if pos[1].find(u'元/月')!=-1:
+                    workex['position'] = common.strip(pos[0])
+                else:                        
+                    workex['position'] = common.strip(pos[1])
+            elif posLen==3:
                 workex['position'] = common.strip(pos[1])
 
             self.workexs.append(workex)

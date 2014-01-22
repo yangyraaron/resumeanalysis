@@ -48,7 +48,7 @@ logging = {
         },
         "info_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
-            "level": "INFO",
+            "level": "DEBUG",
             "formatter": "verbose",
             "filename": "log/info.log",
             "maxBytes": "10485760",
