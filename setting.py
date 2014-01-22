@@ -42,7 +42,7 @@ logging = {
     'filters': {},
     'handlers': {
         'console': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
         },
@@ -75,6 +75,11 @@ logging = {
             'handlers': ['console'],
             'propagate': True,
             'level': 'DEBUG',
+        },
+        'installer':{
+         'handlers': ['console'],
+            'propagate': True,
+            'level': 'INFO',
         }
     }
 }
