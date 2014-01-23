@@ -5,6 +5,10 @@ import subprocess
 import logging
 import logging.config
 import context
+from persistence import fileMgr
+
+fileMgr.verifyExists(context.logFolder)
+fileMgr.verifyExists(context.resumesFolder)
 
 logging.config.dictConfig(context.logging)
 logger = logging.getLogger('installer')

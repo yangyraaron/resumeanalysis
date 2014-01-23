@@ -3,6 +3,7 @@
 
 import setting
 import os
+from persistence import fileMgr
 
 rootPath = os.path.split(os.path.realpath(__file__))[0]
 
@@ -11,6 +12,10 @@ appName = setting.app.get('name')
 dataFolder = setting.app.get('dataFolder')
 if dataFolder is not None:
 	dataFolder = u'{}/{}'.format(rootPath, dataFolder)
+
+logFolder = setting.app.get('logFolder')
+if logFolder is not None:
+	logFolder = u'{}/{}'.format(rootPath,logFolder)
 
 resumesFolder = setting.app.get('resumesFolder')
 if setting.app.get('resumesFolder'):

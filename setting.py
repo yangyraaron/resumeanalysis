@@ -3,6 +3,7 @@
 app = {'name': 'resumeAnalyser',
        'dataFolder': 'jsons',
        'resumesFolder': 'files',
+       'logFolder':'log',
        'handlers': {
            'exported': {
                'folder': 'log/exported',
