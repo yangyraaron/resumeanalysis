@@ -34,6 +34,7 @@ class Application(object):
     def _initialize(self):
         # initilize variables
         fileMgr.verifyExists(context.dataFolder)
+        fileMgr.verifyExists(context.resumesFolder)
 
         # register handlers
         templateFactory.registerFilter(zlFilter)
