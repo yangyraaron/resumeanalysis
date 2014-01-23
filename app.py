@@ -97,6 +97,10 @@ class Application(object):
         # exporting
         resumes = fileMgr.getResumes(context.resumesFolder)
         for r in resumes:
+            if not os.path.isfile(r):
+                logger.warning(u'the {} is not a file'.format(r))
+                continue
+
             try:
                 f = open(r)
                 soup = BeautifulSoup(f)
