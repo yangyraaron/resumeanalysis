@@ -39,7 +39,7 @@ if __name__ == '__main__':
      	testMgr.build()
     elif testType == 'failed':
      	testMgr.buildFailed()
-    elif textType == 'clean':
+    elif testType == 'clean':
         testMgr.clean()
     
      
