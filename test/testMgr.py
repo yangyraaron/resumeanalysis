@@ -26,6 +26,7 @@ def _cleanLog():
 	logger.info('cleaning files....')
 	cleanFolder(context.resumesFolder)
 	cleanFolder(context.exportedHandler['folder'])
+	cleanFolder(context.exportedHandler['targetFolder'])
 	cleanFolder(context.failedHandler['folder'])
 	cleanFolder(context.duplicateHandler['folder'])
 

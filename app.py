@@ -45,7 +45,6 @@ class Application(object):
         self.failedHandler = handlerFactory.getFailedHandler()
         self.duplicateHandler = handlerFactory.getDuplicateHandler()
         
-
     def _exportToFile(self, data):
         userName = data['userName']
         if userName is not None and userName != '':
@@ -115,7 +114,7 @@ class Application(object):
                     soup = BeautifulSoup(f, from_encoding=encoding)
 
             except IOError:
-                logger.error('open file faild!', exc_info=True)
+                logger.error('open file failed!', exc_info=True)
             except Exception:
                 logger.error(
                     u'the {} file should be a valid html file'.format(r), exc_info=True)
@@ -146,7 +145,7 @@ class Application(object):
                         else:
                             result = self._exportToDb(data)
                             if result==0: #success to export data into db
-                                self.exportedHandler.handle(r)
+                                self.exportedHandler.handle(r,soup)
                             elif result==2: #the user has already been in db
                                 self.duplicateHandler.handle(r)
                             else:
@@ -155,7 +154,6 @@ class Application(object):
                             
 
             #break
-
 
     def done(self):
         result=[]

@@ -7,6 +7,7 @@ app = {'name': 'resumeAnalyser',
        'handlers': {
            'exported': {
                'folder': 'log/exported',
+               'targetFolder':'log/target'
            },
            'failed': {
                'folder': 'log/failed',
