@@ -2,15 +2,25 @@
 
 import common
 from templates import default
+from templates import exported
 
 logger = common.getLogger(__name__)
 
-def isSupport(soup):
-	imgs = soup.find_all(alt=u'前程无忧')
-
-	return imgs is not None and len(imgs)>0
-
 def getTemplate(soup):
-	logger.debug('template is 51job default')
+	template = default.Template(soup)
+	if template.isSupport():
+		return template
+	else:
+		template = exported.Template(soup)
+		if template.isSupport():
+			return template
+		else:
+			return None
 
-	return default.Template(soup)
+def isSupport(soup):
+	if getTemplate(soup) is None:
+		return False
+	return True
+		
+	
+		

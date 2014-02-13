@@ -21,7 +21,8 @@ class Template(object):
         self.workexs = []
 
     def isSupport(self):
-        return True
+        imgs = self.soup.find_all('img',alt=u'前程无忧')
+        return imgs is not None and len(imgs)>0
 
     def parse(self):
         self._initialize()
@@ -136,6 +137,10 @@ class Template(object):
 
     def _setWorkExperiences(self):
         title = self.soup.find('td', text='工作经验')
+        if title is None:
+            logger.warning('the work experience section can not be found')
+            return
+
         wkRow = common.indexNextSibling(title.parent, 3)
 
         # not default template
@@ -168,3 +173,6 @@ class Template(object):
                 continue
 
             track += 1
+
+            if workex:
+                self.workexs.append(workex)

@@ -1,0 +1,1896 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	张婉婉
+</title><meta http-equiv="X-UA-Compatible" content="IE=7" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link href="../App_Themes/Default/20110412/style.css" type="text/css" rel="stylesheet" /><link href="../App_Themes/Default/20110412/ui.theme.css" type="text/css" rel="stylesheet" /><link href="../App_Themes/Default/style.css" type="text/css" rel="stylesheet" /><link href="../App_Themes/Default/ui.theme.css" type="text/css" rel="stylesheet" /></head>
+    <style type="text/css">
+		table,td,p { font-family: Arial, Verdana, Helvetica, '宋体'; font-size:12px; line-height:150%;}
+        a:link{color:#296ebb;text-decoration: none;}
+        a:visited {color:black; text-decoration: none; }
+        body{overflow:visible;}
+   </style>
+   
+   <style media="print" type="text/css">.PrintHideMenuContent { display:none }</style>
+   
+<link href="http://js.51jobcdn.com/ehire2007/css/20140106/default/jquery-ui-1.8.4.custom.css" type="text/css" rel="stylesheet" />
+<link href="http://js.51jobcdn.com/ehire2007/css/20140106/default/jquery-ui-1.8.4.thin.css" type="text/css" rel="stylesheet" />
+<link href="http://js.51jobcdn.com/ehire2007/css/20140106/default/rschart.css" type="text/css" rel="stylesheet" />
+<link href="http://js.51jobcdn.com/ehire2007/css/20140106/default/candidate.css" type="text/css" rel="stylesheet" />
+<link href="http://js.51jobcdn.com/ehire2007/css/20140106/default/message.css" type="text/css" rel="stylesheet" />
+<link href="http://js.51jobcdn.com/ehire2007/css/20140106/default/tinybox.css" rel="stylesheet" />
+<body onload="try{ CreateBarChart();}catch(err){}" id="rBody" style="margin-top: 0px; margin-left: 0px; ">
+<style type="text/css">
+    .p_bottom{background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/listbgbottom.gif) repeat-x;}
+</style>
+	<script type="text/javascript" src="http://js.51jobcdn.com/ehire2007/js/20140122/PublicFunction.js"></script>
+	
+	<script src="http://js.51jobcdn.com/ehire2007/js/20140122/GlobalLogAjax.js" language="javascript" type="text/javascript"></script>	
+	<script src="http://js.51jobcdn.com/ehire2007/js/20140122/ResumeBeta.js" language="javascript" type="text/javascript"></script>
+	<script src="http://js.51jobcdn.com/ehire2007/js/20140122/jquery/jquery.js" language="javascript" type="text/javascript"></script>
+	<script src="http://js.51jobcdn.com/ehire2007/js/20140122/jquery/jquery-1.4.2.min.js" language="javascript" type="text/javascript"></script>
+	<script src="http://js.51jobcdn.com/ehire2007/js/20140122/jquery/jquery.color.js" language="javascript" type="text/javascript"></script>
+    
+    <script type="text/javascript" src="http://js.51jobcdn.com/ehire2007/js/20140122/jquery/jquery-ui-1.8.4.custom.min.js"></script> 
+    <script type="text/javascript" src="http://js.51jobcdn.com/ehire2007/js/20140122/jquery/jquery.bgiframe.min.js"></script>
+    
+    <script src="http://js.51jobcdn.com/ehire2007/js/20140122/tinybox.js" language="javascript" type="text/javascript"></script>    
+    
+    <script type="text/javascript" language="javascript" src="http://js.51jobcdn.com/ehire2007/js/20140122/DateControl.js"></script>
+    <script type="text/javascript" language="javascript">init();</script>
+    <script language="javascript" type="text/javascript">
+        var strLoadingDiv="<table style='position:absolute;margin-left:100px;margin-top:40px;width:240px;height:60px;margin:0px;margin-top:4px;margin-bottom:4px;border:1px solid #548AB4; background-color:#F7F7F7'><tr><td colspan='2' style='height:10px;'></td></tr><tr><td style='width:70px;' align='right'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/common/loading2.gif' style='padding-right:10px;vertical-align:middle;' alt=''/></td><td style='width:170px; color:#A2A2A2; font-weight:bold; font-size:17px;'>页面载入中。。。</td></tr><tr><td></td><td style='color:#B7B7B7;'>如无响应&nbsp;&nbsp;<a href='#A' onclick=\"location.reload();\" style='text-decoration:underline;cursor:pointer; color:#527499'>手动刷新</a></td></tr><tr><td colspan='2' style='height:10px;'></td></tr></table>";
+        var varLang = "";      // 语言版本
+		var strLoad = "正在加载数据";
+	    var ImagePath = "http://img01.51jobcdn.com/imehire/ehire2007/default/image/";
+	    var Refresh = "刷新页面";
+        var selectIndex=-1;
+        var tblNameUserList = "tblUserList";
+        var tab_tblNameUserList = "tab_tblUserList";
+        var hidNameCheckedIds = "hidCheckedSeqIds";
+        var hidNameAllIds = "hidAllSeqIds";
+        var hidNameId = "hidSeqID";
+        var IMGPATH	= "http://img01.51jobcdn.com/imehire/ehire2007/default/";//图片路径
+        var Rsm_CommentErr="评语不能为空";
+		var Rsm_CommentLong="评语不能超过1000字";
+		var Rsm_CommetSave="确实要保存评语吗？";
+		var In_SURE2EMP="<div style='text-align:center;margin:0px;'>确定要下载吗？<br> （需要扣除下载数）</div>";
+		var job_SureMoveInt="确定要放入面试夹吗？";
+		var job_SureMoveRecycle="确定要放入回收站吗？";
+		var C_DelCfm="确实要删除吗？";
+		/*流程设置*/
+        var C_PlsSelRsm = "请选择简历！";
+        // 面试流程弹层
+        var common_ContactBuy="联系购买";
+        var common_exisitMail="该Email已存在！";
+        var common_hasHtmlTag="{0}只支持纯文本内容！";
+        var common_WordsCheck="内容已到{0}个字，不可再输入！";
+        var common_Max="最多可输入3个Email！";
+        var common_words="个字";
+        var common_current="当前输入";
+        var common_errMails="第{0}个Email错误，请输入有效的Email!";//第*个Email错误，请输入有效的Email!
+        var common_MailToIsNull="请输入有效的E-mail地址！";//请输入有效的E-mail地址！
+        var common_CurrentSms="（现有余额：{0}条）";
+        var common_SubSms="将扣除短信：{0}条";
+        var common_SmsCountLt="短信余额不足！";
+        var common_Space="";
+        var common_ContentNotEmpty="请输入{0}!";
+        var common_revRefEmail="请输入正确邮件地址！";
+        var common_NoSetLetterTemplate="请选择信件模板！";
+        var common_Content="信件内容";
+        var common_Title="信件主题";
+        var common_ContentEmpty="请输入要发送的内容！";
+        var common_NoSetSender="请选择发信公司！";
+        var common_Reciver="收件人";
+        var common_Tips="提示";
+        var common_DeleteTag="删除标签";
+        var varComTips = "提示";
+        var varSureDeleteLabel="确定要删除标签吗？";
+        var varRecommendJob ="确定要推荐职位吗？";  
+        var varMoveCan="确定要放入人才夹吗？";  
+        var varMoveRecycle="确定要放入回收站吗？";  // 放入回收站(暂时保留)
+        var varDelTag = "删除标签";
+        var varChoose ="请选择数据！";  
+        var varMoveInt ="确定要放入面试夹吗？";   //放入面试夹用(暂时保留)  
+        var varMessage_SendInterview="发面试通知";
+        var ImgWoman ="http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/girl.gif";  //"http://img01.51jobcdn.com/imehire/ehire2007/default/image/resume_match_womanpic.gif";             // 默认照片(女)
+        var ImgMan ="http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/boy.gif"; //"http://img01.51jobcdn.com/imehire/ehire2007/default/image/resume_match_manpic.gif";                 // 默认照片(男)
+        var ImgLoad = "http://img01.51jobcdn.com/imehire/ehire2007/default/image/inbox/photo_load.gif";                   // 照片加载
+        var GR_Colon="：";                 // 分号
+        var common_MailTitleInputMore="信件主题最多150字符！";  // add by peggy 20121026 信件主题最多输入150个字符
+        var common_Interview_EmailTile="来自51job的面试信件";  // add by peggy 20121026  面试设置-默认信件主题
+        var common_Hire_EmailTile="来自51job的录用信件";  // add by peggy 20121026  录用设置-默认信件主题
+        function operateMenu(a) {
+	        var b = $("#hidMenuStatus"),
+	        a = $("#divMenuContent"),
+	        c = $("#imgMenuStatus");
+	        b.val() == "0" ? (a.hide(), b.val("1"), c.attr("src", ImagePath + "candidate/listexpand.png")) : (a.show(), b.val("0"), c.attr("src", ImagePath + "candidate/listcontract.png"))
+        }
+        function ChangeLang(lan)
+        {
+            if (lan == "1")
+            {
+                lan = "0";
+                document.getElementById("lang").value="0";
+            }
+            else
+            {
+                lan = "1";
+                document.getElementById("lang").value="1";
+            }
+            var params = {'LanType':lan}
+            AjaxShowLoadMask();
+            AjaxLoadShow();
+            post_to_url(window.location.href,params,'form1');
+        }
+        $(function(){
+            InitMenuPostion();//定位小精灵菜单
+            window.onbeforeprint=beforePrint_folder;//打印
+            window.onafterprint=afterPrint_folder;
+            tab_BuildUserList("folder");
+            displayToTopBtn();
+        });
+	</script>
+    
+    <script type="text/javascript" language="javascript" src="http://js.51jobcdn.com/ehire2007/js/20140122/FromLoad.js" ></script>
+    <script type="text/javascript" language="javascript" src="http://js.51jobcdn.com/ehire2007/js/20140122/Controls.js"></script> 
+	<form method="post" action="ResumeViewFolder.aspx?hidSeqID=5537314417&amp;hidFolder=EMP&amp;hidFilter=0" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMjE0MTY0ODMwMA8WCh4GRm9sZGVyBQNFTVAeClJlc3VtZUxhbmcFATAeBUpvYklEBQg0NzEwMjM3NR4IU2hvd0Zyb20FATEeB1ZpZXdTTVMFATEWAgIBD2QWBgIBDxYEHglpbm5lcmh0bWwFzkQ8bGluayByZWw9J3N0eWxlc2hlZXQnIHR5cGU9J3RleHQvY3NzJyAgaHJlZiA9ICdodHRwOi8vanMuNTFqb2JjZG4uY29tL2VoaXJlMjAwNy9jc3MvMjAxNDAxMDYvZGVmYXVsdC9yc2NoYXJ0LmNzcycgLz4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGFibGUgaWQ9J3RibENoYXJ0JyB3aWR0aD0nNjUwJyBib3JkZXI9JzAnIGFsaWduPSdjZW50ZXInIGNlbGxwYWRkaW5nPScwJyBjZWxsc3BhY2luZz0nMCcgc3R5bGU9J21hcmdpbjowIGF1dG8gMTBweCBhdXRvO2JvcmRlci1ib3R0b206MXB4IHNvbGlkICNjN2M3Yzc7YmFja2dyb3VuZDp1cmwoaHR0cDovL2ltZzAxLjUxam9iY2RuLmNvbS9pbWVoaXJlL2VoaXJlMjAwNy9kZWZhdWx0L2ltYWdlL3Jlc3VtZV9tYXRjaF90YWJsZWJnLmdpZikgcmVwZWF0LXggYm90dG9tOycgY2xhc3M9J3JzYm9yZGVybGluZSc+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0nd2lkdGg6MTc2cHg7aGVpZ2h0OjI0cHg7YmFja2dyb3VuZDojZjRmNGY0Oyc+PGltZyBzcmM9J2h0dHA6Ly9pbWcwMS41MWpvYmNkbi5jb20vaW1laGlyZS9laGlyZTIwMDcvZGVmYXVsdC9pbWFnZS9yZXN1bWVfbWF0Y2hfZG90aWNvLmdpZicgLz48c3BhbiBjbGFzcz0ncnNmb250MTQnPueugOWOhuS4juW6lOiBmOiBjOS9jeWMuemFjeW6pjwvc3Bhbj48L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGggc3R5bGU9J2hlaWdodDoyNHB4O2JhY2tncm91bmQ6I2Y0ZjRmNDsnIGNvbHNwYW49JzMnID48aW1nIHNyYz0naHR0cDovL2ltZzAxLjUxam9iY2RuLmNvbS9pbWVoaXJlL2VoaXJlMjAwNy9kZWZhdWx0L2ltYWdlL3Jlc3VtZV9tYXRjaF9kb3RpY28uZ2lmJyAvPjxzcGFuIGNsYXNzPSdyc2ZvbnQxNCc+5Y2V6aG55oyH5qCHPC9zcGFuPjwvdGg+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgcm93c3Bhbj0nMycgYWxpZ249J2NlbnRlcic+PGltZyBzcmM9J2h0dHA6Ly9pbWcwMS41MWpvYmNkbi5jb20vaW1laGlyZS9laGlyZTIwMDcvZGVmYXVsdC9pbWFnZS9jYW5kaWRhdGUvbWF0Y2hhbGwvbWF0Y2hiYXI2My5naWYnLz48c3BhbiBjbGFzcz0ncnNncmVlbnNjb3JlIHJzZm9udDE4Jz42MyU8L3NwYW4+PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkIHN0eWxlPSd3aWR0aDo3NHB4O2hlaWdodDoyMHB4Oyc+PGI+5a2X5q61PC9iPjwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0nd2lkdGg6MTI3cHg7aGVpZ2h0OjIwcHg7Jz48Yj7lspfkvY3opoHmsYI8L2I+PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRoIHN0eWxlPSd3aWR0aDoyNzNweDtoZWlnaHQ6MjBweDsnIHZhbGlnbj0ndG9wJz48dGFibGUgd2lkdGg9JzEwMCUnIHN0eWxlPSdoZWlnaHQ6MjBweDsnIGJvcmRlcj0nMCcgY2VsbHBhZGRpbmc9JzAnIGNlbGxzcGFjaW5nPScwJyBjbGFzcz0ncnNub25lJz4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J3dpZHRoOjQzJTsnPjxiPueugOWOhuaDheWGtTwvYj48L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkIHN0eWxlPSd3aWR0aDo1NyU7Jz48c3BhbiBjbGFzcz0ncnNncmF5YnV0dG9uJz7pgInmi6k6PC9zcGFuPjxpbWcgc3JjPSdodHRwOi8vaW1nMDEuNTFqb2JjZG4uY29tL2ltZWhpcmUvZWhpcmUyMDA3L2RlZmF1bHQvaW1hZ2UvcmVzdW1lX21hdGNoX2xpbmVzYW1wbGUuZ2lmJyBhbGlnbj0nYWJzbWlkZGxlJy8+PGEgaWQ9J3RkX2hyZWZCYXInIGNsYXNzPSdyc2JvbGRibHVlJyBzdHlsZT0nY3Vyc29yOmhhbmQnIG9uY2xpY2s9J0NyZWF0ZUJhckNoYXJ0KCknPuadoeW9ouWbvjwvYT48aW1nIHNyYz0naHR0cDovL2ltZzAxLjUxam9iY2RuLmNvbS9pbWVoaXJlL2VoaXJlMjAwNy9kZWZhdWx0L2ltYWdlL3Jlc3VtZV9tYXRjaF9yYWRhc2FtcGxlLmdpZicgYWxpZ249J2Fic21pZGRsZScvPjxhIGlkPSd0ZF9ocmVmUmFkYXInIGNsYXNzPSdyc2dyYXknIHN0eWxlPSdjdXJzb3I6aGFuZCcgb25jbGljaz0nQ3JlYXRlUmFkYXJDaGFydCgpJz7pm7fovr7lm748L2E+PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RhYmxlPjwvdGg+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J2hlaWdodDoyMHB4Oyc+6IGM6IO9PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkIHJvd3NwYW49JzgnIHN0eWxlPSd3aWR0aDoxMjdweDtib3JkZXI6MHB4Oyc+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGFibGUgd2lkdGg9JzEwMCUnIGNlbGxwYWRkaW5nPScwJyBjZWxsc3BhY2luZz0nMCcgY2xhc3M9J3JzYm9yZGVybGluZSdzdHlsZT0nbWFyZ2luOjAgYXV0byAwcHggYXV0bzt0YWJsZS1sYXlvdXQgOmZpeGVkOyc+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J2hlaWdodDoyMHB4O292ZXJmbG93OmhpZGRlbjt0ZXh0LW92ZXJmbG93OmVsbGlwc2lzO3doaXRlLXNwYWNlOm5vd3JhcDsnPjxhIHN0eWxlPSdjb2xvcjpibGFjazsnIHRpdGxlPSfova/ku7blt6XnqIvluIgs5a6e5Lmg55SfJz7ova/ku7blt6XnqIvluIgs5a6e5Lmg55SfPC9hPjwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC90cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0naGVpZ2h0OjIwcHg7b3ZlcmZsb3c6aGlkZGVuO3RleHQtb3ZlcmZsb3c6ZWxsaXBzaXM7d2hpdGUtc3BhY2U6bm93cmFwOyc+PGEgc3R5bGU9J2NvbG9yOmJsYWNrOycgdGl0bGU9J+iuoeeul+acuui9r+S7tizorqHnrpfmnLrmnI3liqEo57O757uf44CB5pWw5o2u5pyN5Yqh44CB57u05L+uKSc+6K6h566X5py66L2v5Lu2LOiuoeeul+acuuacjeWKoSjns7vnu5/jgIHmlbDmja7mnI3liqHjgIHnu7Tkv64pPC9hPjwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC90cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J2hlaWdodDoyMHB4O292ZXJmbG93OmhpZGRlbjt0ZXh0LW92ZXJmbG93OmVsbGlwc2lzO3doaXRlLXNwYWNlOm5vd3JhcDsnPjxhIHN0eWxlPSdjb2xvcjpibGFjazsnIHRpdGxlPSctLSc+LS08L2E+PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPiAgICAgICANCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J2hlaWdodDoyMHB4O292ZXJmbG93OmhpZGRlbjt0ZXh0LW92ZXJmbG93OmVsbGlwc2lzO3doaXRlLXNwYWNlOm5vd3JhcDsnPjxhIHN0eWxlPSdjb2xvcjpibGFjazsnIHRpdGxlPSfmnKznp5EnPuacrOenkTwvYT48L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J2hlaWdodDoyMHB4O292ZXJmbG93OmhpZGRlbjt0ZXh0LW92ZXJmbG93OmVsbGlwc2lzO3doaXRlLXNwYWNlOm5vd3JhcDsnPjxhIHN0eWxlPSdjb2xvcjpibGFjazsnIHRpdGxlPSflnKjor7vlrabnlJ8nPuWcqOivu+WtpueUnzwvYT48L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J2hlaWdodDoyMHB4O292ZXJmbG93OmhpZGRlbjt0ZXh0LW92ZXJmbG93OmVsbGlwc2lzO3doaXRlLXNwYWNlOm5vd3JhcDsnPjxhIHN0eWxlPSdjb2xvcjpibGFjazsnIHRpdGxlPSctLSc+LS08L2E+PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkIHN0eWxlPSdoZWlnaHQ6MjBweDtvdmVyZmxvdzpoaWRkZW47dGV4dC1vdmVyZmxvdzplbGxpcHNpczt3aGl0ZS1zcGFjZTpub3dyYXA7Jz48YSBzdHlsZT0nY29sb3I6YmxhY2s7JyB0aXRsZT0n6Z2i6K6uJz7pnaLorq48L2E+PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkIHN0eWxlPSdoZWlnaHQ6MjFweDtvdmVyZmxvdzpoaWRkZW47dGV4dC1vdmVyZmxvdzplbGxpcHNpczt3aGl0ZS1zcGFjZTpub3dyYXA7Jz48YSBzdHlsZT0nY29sb3I6YmxhY2s7JyB0aXRsZT0nLS0nPi0tPC9hPjwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC90cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdGFibGU+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0aCBzdHlsZT0nd2lkdGg6MjczcHg7JyByb3dzcGFuPSc4JyB2YWxpZ249J3RvcCcgaWQ9J2R5bmFtaWNDZWxsJz4lZHluYW1pY0NlbGwlPC90aD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0nd2lkdGg6NzRweDtoZWlnaHQ6MjBweDsnPuihjOS4mjwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J2hlaWdodDoyMHB4Oyc+PGltZyBzcmM9J2h0dHA6Ly9pbWcwMS41MWpvYmNkbi5jb20vaW1laGlyZS9laGlyZTIwMDcvZGVmYXVsdC9pbWFnZS9yZXN1bWVfbWF0Y2hfZG90aWNvLmdpZicgLz48c3BhbiBjbGFzcz0ncnNmb250MTQnPueugOWOhuWFs+mUruWtlzwvc3Bhbj48L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J3dpZHRoOjc0cHg7aGVpZ2h0OjIwcHg7Jz7kuJPkuJo8L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC90cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkIHJvd3NwYW49JzYnIHZhbGlnbj0ndG9wJyBzdHlsZT0ncGFkZGluZy1sZWZ0OjhweDt0ZXh0LWluZGVudDowO2xpbmUtaGVpZ2h0OjIycHg7Jz48c3BhbiBjbGFzcz0ncnNibHVlJz48L2JyPjxjZW50ZXI+PGZvbnQgY2xhc3M9J3JzZ3JheWJ1dHRvbic+6K+l566A5Y6G5pyq5a6a5LmJ566A5Y6G5YWz6ZSu5a2XPC9mb250PjwvY2VudGVyPjwvc3Bhbj48L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J3dpZHRoOjc0cHg7aGVpZ2h0OjIwcHg7Jz7lrabljoY8L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC90cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkIHN0eWxlPSd3aWR0aDo3NHB4O2hlaWdodDoyMHB4Oyc+5bel5L2c5bm06ZmQPC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0nd2lkdGg6NzRweDtoZWlnaHQ6MjBweDsnPuW5tOm+hDwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J3dpZHRoOjc0cHg7aGVpZ2h0OjIwcHg7Jz7olqrmsLQ8L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC90cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkIHN0eWxlPSd3aWR0aDo3NHB4O2hlaWdodDoyMHB4Oyc+5aSW6K+tPC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0nd2lkdGg6NzRweDtoZWlnaHQ6MjBweDsnPuWxheS9j+WcsDwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0nd2lkdGg6MTI3cHg7aGVpZ2h0OjIwcHg7Jz7ljZfkuqw8L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGggc3R5bGU9J2hlaWdodDoyMHB4Oyc+PHRhYmxlIHdpZHRoPScxMDAlJyBzdHlsZT0naGVpZ2h0OjIwcHg7dGFibGUtbGF5b3V0IDpmaXhlZDsnIGJvcmRlcj0nMCcgY2VsbHBhZGRpbmc9JzAnIGNlbGxzcGFjaW5nPScwJyBjbGFzcz0ncnNub25lJz4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgc3R5bGU9J3dpZHRoOjQzJTtvdmVyZmxvdzpoaWRkZW47dGV4dC1vdmVyZmxvdzplbGxpcHNpczt3aGl0ZS1zcGFjZTpub3dyYXA7Jz48YSBzdHlsZT0nY29sb3I6YmxhY2s7JyB0aXRsZT0n5Y2X5LqsJz7ljZfkuqw8L2E+PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0nd2lkdGg6NTclOyc+PGltZyBzcmM9J2h0dHA6Ly9pbWcwMS41MWpvYmNkbi5jb20vaW1laGlyZS9laGlyZTIwMDcvZGVmYXVsdC9pbWFnZS9yZXN1bWVfbWF0Y2hfb2tidXR0b24uZ2lmJy8+PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RhYmxlPjwvdGg+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdGFibGU+HgdWaXNpYmxlZ2QCAg8PZBYCHgVzdHlsZQUNZGlzcGxheTpub25lO2QCDQ8WAh4FVmFsdWUFCjU1MzczMTQ0MTdkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYKBRNjdGxFeHBvcnQxJHJkYkV4Y2VsBRNjdGxFeHBvcnQxJHJkYkV4Y2VsBRRjdGxFeHBvcnQxJHJkYkFjY2VzcwUUY3RsRXhwb3J0MSRyZGJBY2Nlc3MFEmN0bEV4cG9ydDEkcmRiSHRtbAUSY3RsRXhwb3J0MSRyZGJXb3JkBRJjdGxFeHBvcnQxJHJkYldvcmQFFmN0bEV4cG9ydDEkcmRiRG93bmxvYWQFE2N0bEV4cG9ydDEkcmRiRW1haWwFE2N0bEV4cG9ydDEkcmRiRW1haWw=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+		<iframe id="ifLoad" frameborder="0" style="display:none;"></iframe>
+        <div id="divRefresh" style="position: absolute; background-color: #fff; background-image:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/onloading_bg.gif); background-repeat:no-repeat;width: 203px; height: 39px; z-index: 9999;font-size:9pt; vertical-align:middle;line-height:39px;text-align:left;display:none;">
+           <table border="0" cellpadding="0" cellspacing="0" style="height:39px; vertical-align:middle;">
+            <tr style="padding-top:1px;">
+                <td style="width:27px;">&nbsp;</td>
+                <td style="vertical-align:middle; background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/onloading2.gif) no-repeat; background-position:left;width:16px;" title="正在加载数据">&nbsp;</td>
+                <td><span class="red_num">&nbsp;&nbsp;正在加载数据</span>&nbsp;&nbsp;<a
+                href="#" onclick="location.reload();">刷新页面</a></td>
+            </tr>
+           </table>
+        </div>
+             <table width="674" border="0" align="center" cellpadding="0" cellspacing="0" id="divResume">
+                <tr>
+                    <td width="650">
+                        <table id="tab_tableResumeMenu" width="650" border="0" align="center" cellpadding="0" cellspacing="0" style="margin:0 auto;border:0;">
+	<tr>
+		<td valign="bottom">
+                                <div id='tab_divUserListAll' style="display:none;">
+                                <p style="margin-top:10px;">&nbsp;</p>
+                                <div class="rview_tab1" id='tab_divUserList' style="width:645px;height:25px;overflow:hidden;"></div>
+                                <div class="rview_tab1">
+                                    <p style="background-color:#3778bb;height:25px;clear:both;width:650px;">
+                                    <span style="display:block;float:left;margin-top:3px;margin-left:2px;"><input name="tab_chkAllUserID" type="checkbox" id="tab_chkAllUserID" onclick="return tab_ChkAllUsers(this);" value=""/></span>
+                                    <span style="display:block;float:left;color:#FFF;margin-top:4px;"><label for="tab_chkAllUserID">全选</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已选(<label id='tab_lblChkNum'>0</label>)</span>
+                                    <span style="display:block;float:right;color:#FFF;padding:3px;"><label id="tab_lblTabPos"></label>&nbsp;<img id="tab_imgPre" src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/btn_previous_dis.gif" width="18" height="18" align="absmiddle" style="cursor:pointer;" onclick="tab_preResume(this)"/>&nbsp;<img id="tab_imgNext" src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/btn_next.gif" width="18" height="18" align="absmiddle" style="cursor:pointer;" onclick="tab_nextResume(this)"/></span>
+                                    </p>
+                                </div>
+                                </div>
+                            </td>
+	</tr>
+</table>
+
+	                    		
+	                    <div id="divHead"><table width="650" border="0" align="center" cellpadding="0" cellspacing="0" style="margin:0 auto;border:0;"><tr><td width="277" rowspan="3">应聘职位：<span class="blue">软件测试实习生（南京）</span><br/>应聘公司：<span class="blue">江苏金智教育信息技术有限公司</span><br/>投递时间：<span class="blue">2013-12-14</span><br />更新时间：<span id="lblResumeUpdateTime" class="blue">2014-02-11</span></td><td width="127" height="21">&nbsp;</td><td width="246" rowspan="2" align="right"><img src="http://img01.51jobcdn.com/imehire/ehire2007/default//image/resume_match_logo.gif" width="82" height="36" /></td></tr><tr><td height="21">&nbsp;</td></tr><tr style="vertical-align:bottom;"><td height="21" align="center"></td><td height="21" align="right"><a href="JavaScript:nodeClick1_folder('divChart');" class="blue">简历匹配度<img id="foldImg" src="http://img01.51jobcdn.com/imehire/ehire2007/default//image/resume_match_upico.gif" border="0" align="absmiddle"/></a></td></tr></table></div>
+                        <div id="divChart"><link rel='stylesheet' type='text/css'  href = 'http://js.51jobcdn.com/ehire2007/css/20140106/default/rschart.css' />
+                                        <table id='tblChart' width='650' border='0' align='center' cellpadding='0' cellspacing='0' style='margin:0 auto 10px auto;border-bottom:1px solid #c7c7c7;background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/resume_match_tablebg.gif) repeat-x bottom;' class='rsborderline'>
+                                          <tr>
+                                            <td style='width:176px;height:24px;background:#f4f4f4;'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/resume_match_dotico.gif' /><span class='rsfont14'>简历与应聘职位匹配度</span></td>
+                                            <th style='height:24px;background:#f4f4f4;' colspan='3' ><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/resume_match_dotico.gif' /><span class='rsfont14'>单项指标</span></th>
+                                          </tr>
+                                          <tr>
+                                            <td rowspan='3' align='center'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/matchall/matchbar63.gif'/><span class='rsgreenscore rsfont18'>63%</span></td>
+                                            <td style='width:74px;height:20px;'><b>字段</b></td>
+                                            <td style='width:127px;height:20px;'><b>岗位要求</b></td>
+                                            <th style='width:273px;height:20px;' valign='top'><table width='100%' style='height:20px;' border='0' cellpadding='0' cellspacing='0' class='rsnone'>
+                                              <tr>
+                                                <td style='width:43%;'><b>简历情况</b></td>
+                                                <td style='width:57%;'><span class='rsgraybutton'>选择:</span><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/resume_match_linesample.gif' align='absmiddle'/><a id='td_hrefBar' class='rsboldblue' style='cursor:hand' onclick='CreateBarChart()'>条形图</a><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/resume_match_radasample.gif' align='absmiddle'/><a id='td_hrefRadar' class='rsgray' style='cursor:hand' onclick='CreateRadarChart()'>雷达图</a></td>
+                                              </tr>
+                                            </table></th>
+                                          </tr>
+                                          <tr>
+                                            <td style='height:20px;'>职能</td>
+                                            <td rowspan='8' style='width:127px;border:0px;'>
+                                                <table width='100%' cellpadding='0' cellspacing='0' class='rsborderline'style='margin:0 auto 0px auto;table-layout :fixed;'>
+                                                    <tr>
+                                                        <td style='height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'><a style='color:black;' title='软件工程师,实习生'>软件工程师,实习生</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style='height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'><a style='color:black;' title='计算机软件,计算机服务(系统、数据服务、维修)'>计算机软件,计算机服务(系统、数据服务、维修)</a></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td style='height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'><a style='color:black;' title='--'>--</a></td>
+                                                    </tr>       
+                                                     <tr>
+                                                        <td style='height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'><a style='color:black;' title='本科'>本科</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style='height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'><a style='color:black;' title='在读学生'>在读学生</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style='height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'><a style='color:black;' title='--'>--</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style='height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'><a style='color:black;' title='面议'>面议</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style='height:21px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'><a style='color:black;' title='--'>--</a></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <th style='width:273px;' rowspan='8' valign='top' id='dynamicCell'>%dynamicCell%</th>
+                                          </tr>
+                                          <tr>
+                                            <td style='width:74px;height:20px;'>行业</td>
+                                          </tr>
+                                          <tr>
+                                            <td style='height:20px;'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/resume_match_dotico.gif' /><span class='rsfont14'>简历关键字</span></td>
+                                            <td style='width:74px;height:20px;'>专业</td>
+                                          </tr>
+                                          <tr>
+                                            <td rowspan='6' valign='top' style='padding-left:8px;text-indent:0;line-height:22px;'><span class='rsblue'></br><center><font class='rsgraybutton'>该简历未定义简历关键字</font></center></span></td>
+                                            <td style='width:74px;height:20px;'>学历</td>
+                                          </tr>
+                                          <tr>
+                                            <td style='width:74px;height:20px;'>工作年限</td>
+                                          </tr>
+                                          <tr>
+                                            <td style='width:74px;height:20px;'>年龄</td>
+                                          </tr>
+                                          <tr>
+                                            <td style='width:74px;height:20px;'>薪水</td>
+                                          </tr>
+                                          <tr>
+                                            <td style='width:74px;height:20px;'>外语</td>
+                                          </tr>
+                                          <tr>
+                                            <td style='width:74px;height:20px;'>居住地</td>
+                                            <td style='width:127px;height:20px;'>南京</td>
+                                            <th style='height:20px;'><table width='100%' style='height:20px;table-layout :fixed;' border='0' cellpadding='0' cellspacing='0' class='rsnone'>
+                                              <tr>
+                                                <td style='width:43%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'><a style='color:black;' title='南京'>南京</a></td>
+                                                <td style='width:57%;'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/resume_match_okbutton.gif'/></td>
+                                              </tr>
+                                            </table></th>
+                                          </tr>
+                                        </table></div>
+			            <table border="0" cellpadding="0" align="center" cellspacing="0" width="650">
+			  	            <tr style="height:5px"><td></td></tr>
+			            </table>
+			            <table border="0" cellpadding="0" align="center" cellspacing="0" width="650">
+				            <tr>
+					            <td align="right" valign="bottom">
+						            <table cellpadding="0" cellspacing="0" border="0">
+							            <tr valign="bottom">
+								            <td style="width: 70%; height: 100%; white-space:nowrap;" align="left">
+									            <input type="submit" name="AD_btnRefresh" value="" id="AD_btnRefresh" style="display:none;" />
+								            </td>
+								            <td style="width: 100%; height: 100%;white-space:nowrap;" align="right" colspan="2">
+								            </td>
+							            </tr>
+						            </table>
+					            </td>
+				            </tr>
+				            <tr>
+                                <td valign="top" style="BORDER-RIGHT: #4182C2 2px solid;BORDER-LEFT: #4182C2 2px solid;BORDER-TOP: #4182C2 2px solid;BORDER-BOTTOM: #4182C2 2px solid;">
+						            <style>
+          
+          body{margin:0;padding:0;}
+          table{font-size:12px;font-family:arial,"宋体";}
+          td
+          {
+          word-break:break-word;
+          }
+          .blue{color:#256fb8;}
+          .greenscore{color:#0b8e09;}
+          .redscore{color:#ed0000;}
+          .graybutton{color:#676767;}
+          .font14{font-size:14px;}
+          .font18{font-size:18px;}
+          .font25{font-size:25px;}
+          hr{width:97%;margin:0 auto;color:#cacaca;background:#cacaca;height:1px;border:0;}
+          table.borderline th{border-collapse:collapse;border:solid #c7c7c7; border-width:1px 1px 0 1px;text-indent:5px;text-align:left;font-weight:normal;}
+          table.borderline td{border-collapse:collapse;border:solid #c7c7c7; border-width:1px 0 0 1px;text-indent:5px;}
+          table.none td{border-collapse:collapse;border:0;}
+          a.blue{color:#256fb8;text-decoration:underline;}
+          a.boldblue{color:#256fb8;text-decoration:none;font-weight:bold;}
+          a.gray{color:#676767;text-decoration:none;}
+          .text_left {padding-left:10px;font-size: 12px;color: 2B2B2B;text-decoration: none;font-family: Arial, Helvetica, sans-serif;}
+          .cvtitle{padding-left:6px;font-size: 15px;color:#2670B7;text-decoration: none;font-weight: bold;font-family: Arial, Helvetica, sans-serif;}
+          hr {border:1px #cccccc}
+          .table_set{margin:8px auto;line-height:20px;padding:0 0 0 8px;}
+        .rs_tab3{padding-left:10px;border-bottom:#3778bb 4px solid;height:26px;padding-top:8px;}
+		.rs_tab3 span{display:block;float:left;margin-left:3px;}
+		.rs_tab3on{background-image:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/tabd.gif);width:95px;height:20px;_height:19px;text-align:center;color:#FFF;padding-top:7px;cursor:pointer;}
+		.rs_tab3off{background-image:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/tabc.gif);width:95px;height:20px;_height:19px;text-align:center;color:#333;padding-top:7px;cursor:pointer;}
+		
+	  </style><script><!--
+			   
+				function ShowAttach(userid,AttachID,picSize)
+				{	
+					var newwin = window.open('','attachment');
+					newwin.document.write('<img src = "../Candidate/ReadAttach.aspx?UserID=' + userid + '&AttachID=' + AttachID + '&picSize=' + picSize + '">');
+					newwin.document.close();
+				}
+        //add by huanghui 20080328 在线联系 阿里旺旺
+        function checkId(userId){
+          var req = new XMLHttpRequest();
+          req.open('POST', '/AliTalk/b.aspx', false);
+          req.setRequestHeader( "Content-Type" , "application/x-www-form-urlencoded" ); //用post方法的话，一定要加这句。
+          req.send();
+	        window.target="_blank";
+          window.open("http://amos.im.alisoft.com/msg.aw?v=2&s=2&charset=utf-8&site=cntaobao&uid="+userId);
+        }
+		//add by linsendu 20110517 在线联系 QQ
+        function checkQQId(userId,tokentime,token){
+          var req = new XMLHttpRequest();
+		  if(req)
+		  {
+          req.open('POST', '/AliTalk/c.aspx?source=2', false);
+          req.setRequestHeader( "Content-Type" , "application/x-www-form-urlencoded" );
+          req.send();
+		  }
+        }
+		 
+		  --></script><table width="650" border="0" align="center" cellpadding="0" cellspacing="0"><tr><td valign="top"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin:3px auto 0px auto;padding:5px 0px 0px 5px;"><tr><td align="left"></td></tr></table><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:2px;padding:0px 0 0 8px;background:#f5f9fd;border:1px solid #88b4e0;line-height:22px;"><tr><td height="45" style="border-bottom:1px dashed #88b4e0;vertical-align:middle;"><span style="float:right;padding-top:8px;display:none;" id="spanProcessStatusHead">流程状态：<span style="color:#cd6800;" id="spanProcessStatus"></span><img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/im2009/space.gif" width="12" border="0" height="1"></span><span style="font-size:25px;"><b>张婉婉</b></span><img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/im2009/space.gif" width="15" border="0" height="1"><img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/im2009/space.gif" width="3" border="0" height="1"><span id="spanVideoResumeIco"></span><img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/im2009/space.gif" width="3" border="0" height="1"><span id="spanRmsIco"></span><span id="spanLabelTitleHead" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;  标签：
+					  <span id="spanLabelTitle"></span></span></td></tr><tr><td valign="top" style="padding-top:4px;"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td height="26" colspan="4"><span class="blue"><b>应届毕业生 |&nbsp;女
+                            |  &nbsp;23岁（1990年10月5日）</b></span></td><td width="17%" rowspan="6" align="center" valign="middle"><img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/im2009/resume_match_womanpic.gif" width="90" height="110"><br>
+							(ID:308018718)
+						</td></tr><tr><td width="10%" height="20">居住地：</td><td width="42%" height="20">南京</td><td width="11%" height="20"></td><td width="20%" height="20"></td></tr><tr><td height="20">电　话：</td><td height="20" colspan="3">18075256514（手机）</td></tr><tr><td height="20">E-mail：</td><td height="20" colspan="3"><a class="blue" href="mailto:1577957390@qq.com">1577957390@qq.com</a></td></tr></table></td></tr></table><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0"><tr><td width="45%" colspan="2"><table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin:8px auto;line-height:22px;padding:0 0 0 8px;"><tr><td colspan="2"><span class="font14 blue"><b>最近工作</b></span><span style="color:#676767;"><b>
+                            [ 应届生简历/无工作经验 ]
+                          </b></span></td></tr><tr><td width="59">公　司：</td><td width="230"></td></tr><tr><td>行　业：</td><td></td></tr><tr><td>职　位：</td><td></td></tr></table></td><td width="43" align="center" style="background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/im2009/resume_match_space-line.gif) repeat-y;"></td><td width="49%" colspan="2"><table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin:8px auto;line-height:22px;padding:0 0 0 10px;"><tr><td colspan="2"><span class="font14 blue"><b>最高学历</b></span></td></tr><tr><td width="59">学　历：</td><td width="230">本科</td></tr><tr><td>专　业：</td><td>信息科学技术</td></tr><tr><td height="22">学　校：</td><td>安徽科技学院</td></tr></table></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="width:650px;"><p class="rs_tab3"><span class="rs_tab3on" id="tabJL1" onclick="setIfr(1)">简历信息</span><span id="tabCZ2" class="rs_tab3off" onclick="javascript:setIfr(2,308018718)">操作记录
+										</span><span id="tabTX3" class="rs_tab3off" onclick="javascript:setIfr(3,308018718)">通信记录
+										</span><span style="padding-right:10px;padding-top:5px;color:Red;display:none;float:right;" id="span18clear">
+										注意：通信记录18个月后自动清空
+									</span></p></div></td></tr><tr><td valign="top"><div id="ifrPrintInfo" style="display:none;"></div><iframe id="ifrInfo" style="width:650px;border:0px;display:none;overflow:hidden;" frameborder="0"></iframe></td></tr><tr><td style="padding-top:10px;" id="divInfo"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0" class="table_set"></table><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0"></table><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0"><tr><td align="left" valign="middle" class="cvtitle">求职意向</td></tr><tr><td align="middle" valign="middle" height="4"><img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/im2009/line1_1.gif" width="100%" height="4"></td></tr><tr><td height="10" align="left" valign="middle"></td></tr><tr><td align="left" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_set"><tr><td class="text_left">
+                          工作性质：
+                          <span class="text" style="padding-left:10px;">全职</span></td></tr><tr><td class="text_left">
+                          期望月薪：
+                          <span class="text" style="padding-left:10px;">面议</span></td></tr><tr><td class="text_left">
+                          求职状态：
+                          <span class="text" style="padding-left:10px;">目前正在找工作</span></td></tr></table></td></tr><tr><td height="20" align="left" valign="middle"></td></tr></table><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0"><tr><td align="left" valign="middle" class="cvtitle">教育经历</td></tr><tr><td align="middle" valign="middle" height="4"><img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/im2009/line1_1.gif" width="100%" height="4"></td></tr><tr><td height="10" align="left" valign="middle"></td></tr><tr><td align="left" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_set"><tr><td width="26%" class="text_left">2010
+      /9--2014
+      /7</td><td width="30%" class="text">安徽科技学院</td><td width="30%" class="text">信息科学技术</td><td width="14%" class="text">本科</td></tr><tr><td colspan="4" class="text_left">网络工程学习了c语言 jsp 数据库 操作系统 高等数学 大学英语 线性代数 等课程</td></tr></table></td></tr><tr><td height="20" align="left" valign="middle"></td></tr><tr><td align="left" valign="middle" class="cvtitle">所获奖项</td></tr><tr><td align="middle" valign="middle" height="4"><img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/im2009/line1_1.gif" width="100%" height="4"></td></tr><tr><td height="10" align="left" valign="middle"></td></tr><tr><td height="20" align="left" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_set"><tr><td width="33%" class="text_left">2013
+      /12</td><td width="33%" class="text">CET4</td><td width="33%" class="text">四级</td></tr><tr><td colspan="3" align="center" valign="middle"><hr size="1" noshade></td></tr><tr><td width="33%" class="text_left">2013
+      /1</td><td width="33%" class="text">普通话水平测试</td><td width="33%" class="text">二级甲等</td></tr><tr><td colspan="3" align="center" valign="middle"><hr size="1" noshade></td></tr><tr><td width="33%" class="text_left">2011
+      /11</td><td width="33%" class="text">三等奖学金</td><td width="33%" class="text">三等</td></tr></table></td></tr><tr><td height="20" align="left" valign="middle"></td></tr><tr><td align="left" valign="middle" class="cvtitle">社会经验</td></tr><tr><td align="middle" valign="middle" height="4"><img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/im2009/line1_1.gif" width="100%" height="4"></td></tr><tr><td height="10" align="left" valign="middle"></td></tr><tr><td height="20" align="left" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_set"><tr><td width="25%" class="text_left">2012
+      /7--2012
+      /8</td><td class="text">到江苏宏华精密实习</td></tr><tr><td colspan="2" class="text_left">虽然 没有得到和相关专业的实习机会 但是这次工作经验让我认识了 社会之大 视野之广阔 我们不应该一直呆在原地不动 应该出去看看外面的世界</td></tr></table></td></tr><tr><td height="20" align="left" valign="middle"></td></tr></table></td></tr></table></td></tr></table>
+						            
+						            
+					            </td>
+				            </tr>
+			            </table>
+			        </td>
+			        <td width="24" style="padding:0px; margin:0px;">
+                        <img onclick="window.scrollTo(0, 0)" src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/back_top.gif" alt="返回顶部" style="cursor:pointer; width:24px; height:33px; display:none; float:left; position:absolute;" id="bt_ToTop" />
+                    </td>
+			    </tr>
+			</table>
+			    <table border="0" cellpadding="0" align="center" cellspacing="0" width="650" id="divButtons">
+			    <tr><td style="width:100%; padding:20px;" align="center">
+			        <input type="button" onclick="RV_OpenResume(-1)" value="上一封" id="bt_Pre" style="display:none"/>
+			        <input type="button" onclick="RV_OpenResume(1)" value="下一封" id="bt_Next" style="display:none"/>
+			        </td></tr>
+			    </table>
+                <div id='MenuContent' class='PrintHideMenuContent'>
+                    <div id='divMainMenuElf' class='MenuContentCssFolder'><p class='rself_listtop'>简历小精灵</p><div id='divMenuContent' style='display:;'><p class='rself_listhead' id='processSetP'>流程设置</p>
+                        <table cellpadding='0' cellspacing='0' border='0' height='100' style='margin:0px;font-family:arial;font-size:12px;line-height:150%;'>
+                        <tr>
+                            <td style='padding-left:7px'>
+                            <p class='rself_btn' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_btn.png) no-repeat 0 0;' onclick='javascript:PopupProcFilter_Dialog();return false;'><i class='rself_icon_01' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_icon_01.png) no-repeat;'></i>筛选</p>
+                            </td>
+                            <td>
+                            <p class='rself_btn' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_btn.png) no-repeat 0 0;' onclick='javascript:PopupProcTransmit_Dialog();return false;'><i class='rself_icon_02' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_icon_02.png) no-repeat;'></i>转发</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='padding-left:7px'>
+                            <p class='rself_btn' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_btn.png) no-repeat 0 0;' onclick='javascript:PopupProcInterview_Dialog();return false;'><i class='rself_icon_03' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_icon_03.png) no-repeat;'></i>面试</p>
+                            </td>
+                            <td>
+                            <p class='rself_btn' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_btn.png) no-repeat 0 0;' onclick='javascript:PopupProcHire_Dialog();return false;'><i class='rself_icon_04' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_icon_04.png) no-repeat;'></i>录用</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='padding-left:7px'>
+                            <p id='vediodTip' class='rself_btn' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_btn.png) no-repeat 0 0;width:66px;' onclick='javascript:PopupProcInterview_Dialog();return false;'><i class='rself_icon_05' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_icon_05.png) no-repeat;'></i>视频
+                            <span class='rself_new' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_new.gif) no-repeat 0 0;'></span>
+                            </p>
+                            </td>
+                            <td >
+                            <p class='rself_btn' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_btn.png) no-repeat 0 0;' onclick='javascript:PopupProcEvaluateDialog();return false;'><i class='rself_icon_06' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_icon_06.png) no-repeat;'></i>测评
+                            <span class='rself_new' style='background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/rself_new.gif) no-repeat 0 0;'></span></p>
+                            </td>
+                        </tr>
+                        </table>
+                        <p class='rself_listhead'>简历操作</p><p class='rself_listoff' onclick='return ExportResume();'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/ico_1.gif' align='absmiddle'/>导出简历</p><p class='rself_listoff' id='lbtnMsgInbox_Menu' onclick='PopupSendMessage_Dialog();return false;'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/ico_2.gif' align='absmiddle'/>发消息</p><p class='rself_listoff' onclick='return PrintResume();'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/ico_3.gif' align='absmiddle'/>打印简历</p><p class='rself_listoffsub' onmouseover='moveResumeSubMenu(this)' onmouseout='canClose=true;hidMainMenu(this);' id='moveResumeDiv'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/ico_4.gif' align='absmiddle'/>移动简历</p><p class='rself_listoff'  onclick="javascript:PopupRemark_Dialog();return false;"><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/ico_5.gif' align='absmiddle'/>标签/评语</p><p class='rself_listoff'  onclick='IntoRecycle_Dialog(1);return false;'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/ico_6.gif' align='absmiddle'/>放入回收站</p><p class='rself_listoff' style='height:34px;' onclick="PopupBlacklist_Dialog();return false;"><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/ico_7.gif' align='absmiddle'/>举报/黑名单</p><div id='moveResumeSubMenu'><div class='rself_sublist' style='position:absolute;z-index:101;display:none;' id='moveResumeSubDiv' onmouseover='mouseInSubDiv(this,1)' onmouseout='mouseInSubDiv(this,0)'><p class='rself_sublistoff'  onclick='return RecomandPosition();'>推荐职位</p><p class='rself_sublistoff' style='height:24px;' onclick='return IntoHrFolder_Dialog();'>放入人才夹</p></div></div></div><div class='p_empty'></div><div class='p_bottom' onclick='operateMenu(this)'><img id='imgMenuStatus' src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/listcontract.png' style='margin-top:6px;' /></div></div>
+                </div>
+				<input name="hidMenuStatus" type="hidden" id="hidMenuStatus" value="0" />
+				<input type="hidden" name="hidViewType" value="1" id="hidViewType"/>
+				<input type="hidden" name="hidChartType" value="BAR" id="hidChartType"/>
+				<input type="hidden" name="hidgroupValB" id="hidgroupValB" value="0,0,100,100,100,100,100,100" />
+				<input type="hidden" name="hidresumeInfo" id="hidresumeInfo" value="--|--|信息科学技术|本科|应届毕业生|23岁|面议(面议)|--" />
+				<input type="hidden" name="hidgroupValR" id="hidgroupValR" value="0,0,100,100,100,100,100,100" />
+				<input type="hidden" name="hidChartTitle" id="hidChartTitle" value="职能,行业,工作年限,学历,薪水,年龄,专业,外语" />
+				
+				<input type="hidden" name="hidUserID" id="hidUserID" value="308018718" />
+				<input type="hidden" name="hidFolder" id="hidFolder" value="EMP" />
+				<input type="hidden" name="hidIsFilter" id="hidIsFilter" value="0" />
+				
+				<input type="hidden" name="hidSeqID" id="hidSeqID" value="5537314417" />
+				<input type="hidden" name="hidJobID" id="hidJobID" value="47102375" />
+                
+				<input type="hidden" name="lang" id="lang" value="0" />
+				
+                <input name="hidSMSJobName" type="hidden" id="hidSMSJobName" value="软件测试实习生" />
+				
+				
+				<input type="hidden" name="hidVisitedUserIds" id="hidVisitedUserIds" />
+				
+				<input type="hidden" name="hidAllUserNames" id="hidAllUserNames" />
+				
+				<input type="hidden" name="hidAllSeqIds" id="hidAllSeqIds" value="5537314417" />
+                <input type="hidden" name="hidAllUserIds" id="hidAllUserIds" />
+				
+                <input type="hidden" name="hidCheckedSeqIds" id="hidCheckedSeqIds" />
+                <input type="hidden" name="hidCheckedUserIds" id="hidCheckedUserIds" />
+                <input name="SubmitValue" type="hidden" id="SubmitValue" style="width: 10px" />         
+                <input type="hidden" id="hidBtnType" value="" style="width: 0px; display: none"/>                      
+                <input name="hidDisplayType" type="hidden" id="hidDisplayType" style="width: 0px; display: none" />  
+                <input type="hidden" id="hidSeqIDTmp" style="width: 0px; display: none" value="" />                    
+                <input type="hidden" id="hidUserIDTmp" style="width: 0px; display: none" value="" />                                  
+                <input name="hidUserSex" type="hidden" id="hidUserSex" style="display:none" />
+				<input id="BAK2INT" type="hidden" />
+                <a id="hidLinkButton" href="javascript:__doPostBack(&#39;hidLinkButton&#39;,&#39;&#39;)" style="width: 0px; display: none"></a>  
+				<div id="ResumeView_DeleteLabel" style="position: absolute; z-index: 999; left: 0px; top: 100px; display: none; background-color: #ffffff; border-right: #379ee9 2px solid; padding-right: 5px; border-top: #379ee9 2px solid; padding-left: 5px; padding-bottom: 5px; border-left: #379ee9 2px solid;padding-top: 5px; border-bottom: #379ee9 2px solid; table-layout: auto; width:60px; text-align: center;" onmouseout="document.getElementById(&#39;ResumeView_DeleteLabel&#39;).style.display=&#39;none&#39;;" onmouseover="document.getElementById(&#39;ResumeView_DeleteLabel&#39;).style.display=&#39;block&#39;;">
+					<a href="javascript:void(0);" onclick="mk_DeleteLabel();">删除标签</a>
+				</div>
+				<div id="linkCSS_for_external" style="display:none;"></div>
+		        
+        
+        <div id="sendMessageDialog" style="display: none;width:100%; margin:0px; padding:0px;">            
+            <div>
+                
+<input type="hidden" value="" id="msg_hidNames" />
+<input type="hidden" value="" id="msg_hidUserIDs" />
+<input type="hidden" value="" id="msg_hidSeqIDs" />
+<input type="hidden" value="" id="msg_hidFolderType" />
+<input type="hidden" value="" id="msg_hidJobId" />
+<input type="hidden" value="" id="msg_hidJobName" />
+<input type="hidden" value="" id="msg_hidCVLogIDs" />
+
+<div id="msg_divMain" style="width:100%;border:0px solid #027ec8; margin:0px;padding:0px;" >
+<table width="100%"   border="0" cellpadding="0" cellspacing="0"  align="center" style="height:16px;font-size:14px;margin:10px;margin-left:0px;margin-right:0px;">
+   <tr><td style="color:#333;white-space:nowrap;padding-left:10px;"  valign="top">选中简历：</td><td style="color:#999;width:95%;" id="msg_spanName"></td></tr>
+</table>
+<p style="clear:both;border-bottom:dashed 1px #ccc;margin-bottom:2px;line-height:normal;"/>
+<p class="ibx_tab2" style="line-height:normal;">
+    <span id="msg_tab1" class="ibx_tabxoff01" onclick="msg_tabClick(this)">站内信/Email</span>
+    <span id="msg_tab2" class="ibx_tabxoff" onclick="msg_tabClick(this)">手机短信</span>
+</p>
+<div id="msg_divPlan" class="ibx_tabxkuang">
+   <table border="0" cellpadding="0" cellspacing="0"  style="width:100%; margin:0px;">
+     <tr><td id="msg_td" style="width:100%;" valign="top" ></td></tr>
+   </table>
+   <div class="exptrs_errpadt2l10" id="msg_errDivSendPlan" style="clear:both;border-top:dashed 1px #ccc;"></div>
+      <p style="margin:2px;padding-top:10px;padding-bottom:10px;text-align:center; margin-top:-10px;"/>
+      <input id="SM_BtSave" name="" type="button" value="发送" class="ibx_an" onclick="msg_sendPlan()" style="margin-top:5px;"/></p>
+   </div>
+</div>
+
+
+<div id="msg_divAjaxLoading" style="position:absolute;display:none;"><table style='position:absolute;margin-left:100px;margin-top:40px;width:240px;height:60px;margin:0px;margin-top:4px;margin-bottom:4px;border:1px solid #548AB4; background-color:#F7F7F7'>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+<tr><td style='width:70px;' align='right'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/common/loading2.gif' style='padding-right:10px;vertical-align:middle;' alt=''/></td>
+<td style='width:170px; color:#A2A2A2; font-weight:bold; font-size:17px;'>页面载入中。。。</td></tr>
+<tr><td></td><td style='color:#B7B7B7;'>如无响应&nbsp;&nbsp;<a href='#A' onclick="location.reload();" style='text-decoration:underline;cursor:pointer; color:#527499'>手动刷新</a></td></tr>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+</table></div>
+
+
+<div id="divSendMessageResult" style="display: none;">
+   <p id="sendMessageSpn" class="exptrs_pmar20a4"></p>
+</div>
+
+
+
+
+
+<script language="javascript" type="text/javascript">
+var sendMessage_title="发消息"; 
+
+var MSG_SendCo="发信公司";
+var MSG_Type="消息类型";
+var MSG_Template="消息模板";
+var MSG_Content="消息内容";
+
+var MAIL_SendCo="发信公司";
+var MAIL_Type="<font style='color:#ff9900'>*</font>信件类型";
+var MAIL_Template="信件模板";   // modify by peggy 20121016 信件模板改为可选项，去除*标记
+var MAIL_Content="信件内容";
+var MAIL_NoSetLetterType="请选择信件类型！";
+var MAIL_NotReplyMail="请输入正确的回复邮箱！";
+var MAIL_NoSetSender="请选择发信公司！";
+var MAIL_ContentEmpty="请输入要发送的内容！";
+var MAIL_RevRefEmail="请输入正确邮件地址！";
+
+var message_Current="当前输入";
+var message_Words="个字";
+var message_SmsGtOneLtTwo="内容已超过1条，需发送第二条！";
+var message_SmsIsTwo="内容字数已满2条，不可再输入！";
+var message_ThisSmsWords="本条短信已输入{0}个字";
+var message_SmsLeftCount="将扣除{0}条短信(现有余额：{1}条)"; 
+var message_WordsCheck="内容已到{0}个字，不可再输入！";
+var message_PleaseSelect="--请选择--";
+var message_CurrentSms="（现有余额：{0}条）";
+var message_SubSms="将扣除短信：{0}条";
+var message_ContactBuy="联系购买";
+var message_SmsCountLt="短信余额不足！";
+var message_SmsSendFolderRead="huifang@wisedu.com";   //modify by lisa 20130821 替换用户邮箱
+// add by peggy 20121016 增加资源文件
+var MAIL_MailTitleInputMore="信件主题最多150字符！";  // 信件主题最多输入150个字符
+var MAIL_MailTitle="来自51job的通知邮件";  // Email-默认信件主题
+var SMS_Content="短信内容";    // 短信内容
+// end 20121016
+
+$(function(){
+  $("#divSendMessageResult").dialog({
+    bgiframe: true,
+    modal: true,
+    autoOpen: false,
+    draggable:false,
+    resizable:false,
+    width:330,
+    title:"发消息",
+    buttons:{
+               "确认": function() 
+               {       
+                  $("#sendMessageSpn").html("");      
+                  $(this).dialog('close');
+               }
+             }
+    });
+});
+
+// delete by peggy 20121025 删除同时发送短信再确认层
+//$(function(){
+// $("#syncSmsDialog").dialog({
+//            bgiframe: true,
+//            modal: true,
+//            autoOpen: false,
+//            draggable:false,
+//            resizable:false,  
+//            width:420,
+//            title:"发消息",
+//            buttons: {
+//                "确认": function() { 
+//                    useAlertSendMobile="1";
+//                    msg_sendPlan();
+//                    $(this).dialog('close');
+//                 }
+//            }
+//        });
+//});
+// end 20121025
+</script>
+
+<script src="http://js.51jobcdn.com/ehire2007/js/20140122/Message.js" type="text/javascript" language="javascript"></script>
+
+            </div>
+        </div>
+        
+        
+        
+        <div id="exportDialog" style="display: none;width:100%;">
+            <div>
+                
+
+<div>
+    <table style="width:435px;background-color:#fff;" cellpadding="0" cellspacing="0">
+        <tr> 
+            <td>
+                <table width="435"  border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style ="height:27px" colspan="2" align="left">
+                            <table width="435"  border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td class="exptrs_per45h25pl10"><span>请选择导出格式</span></td>
+                                    <td class="exptrs_pr15vabtar"><span id="ViewTxt" style="display:none;color:Red;height:25;padding-top:5px;">注： 支持word2003及以上版本</span></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td align="center" class="exptrs_detial" style="width:20px">&nbsp;</td>
+                        <td align="left" class="exptrs_detial">
+                        <input id="ctlExport1_rdbExcel" type="radio" name="ctlExport1$1" value="rdbExcel" onclick="TS_ViewWordText(false);" /><label for="ctlExport1_rdbExcel">Excel 文件</label>
+                        <input id="ctlExport1_rdbAccess" type="radio" name="ctlExport1$1" value="rdbAccess" onclick="TS_ViewWordText(false);" /><label for="ctlExport1_rdbAccess">Access文件</label>
+                        <input id="ctlExport1_rdbHtml" type="radio" name="ctlExport1$1" value="rdbHtml" checked="checked" onclick="TS_ViewWordText(false);" /><label for="ctlExport1_rdbHtml">Html文件</label>
+                        <input id="ctlExport1_rdbWord" type="radio" name="ctlExport1$1" value="rdbWord" onclick="TS_ViewWordText(true);" /><label for="ctlExport1_rdbWord">Word文件</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="left" class="exptrs_per85h27pl10">
+                            <span>下载方式</span>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td align="center">&nbsp;</td>
+                        <td align="left">
+                            <input id="ctlExport1_rdbDownload" type="radio" name="ctlExport1$2" value="rdbDownload" checked="checked" onclick="TS_nodeClick_Uc(this,false);" /><label for="ctlExport1_rdbDownload">从页面下载</label>
+                            &nbsp; &nbsp;&nbsp;
+                            
+                            <input id="ctlExport1_rdbEmail" type="radio" name="ctlExport1$2" value="rdbEmail" onclick="FillExportDiv(this);" /><label for="ctlExport1_rdbEmail">发送到邮箱</label>                                            
+                        </td>
+                    </tr>
+                    <tr align="center" style="display:none;">
+                        
+                        <td id="ExportDiv" align="center" valign="middle"  colspan ="2"></td>
+                        
+                    </tr>  
+                    <tr><td colspan="2">
+                        <div style="overflow:hidden;background:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/bid_dash.gif) repeat-x;width:430px;height:5px;clear:both;margin-left:-1px;margin-top:5px;">
+                        </div>
+                        <div class="exptrs_padb5clear">
+                            <div class="exptrs_errpadt2l10" id="errExportDiv">
+                            </div>
+                        </div>  
+                    </td></tr>                                   
+                </table>
+            </td>
+        </tr>                        
+        <tr align="center">
+            <td>
+                <input type="submit" name="ctlExport1$btnSubmit" value="" id="ctlExport1_btnSubmit" style="display:none;" />  
+                <input id="hidExportFolder" name="hidExportFolder" type="hidden" />
+                <input type="hidden" name="hidExportFilter" id="hidExportFilter" value="0" />
+                <input id="hidExportSeqID" name="hidExportSeqID" type="hidden" /> 
+                <input id="hidExportJobID" name="hidExportJobID" type="hidden" />
+                <input id="hidExportUserID" name="hidExportUserID" type="hidden" />
+                <input id="hidExportFormat" name="hidExportFormat" type="hidden" />
+            </td>
+        </tr>
+    </table>   
+</div>
+<div id="divExportMails" class="exptrs_divdnopabsz1003">    
+    <div class="exptrs_padt5h18">
+        <div class="exptrs_padl10float">以下为网才用户，请选择&nbsp;&nbsp;</div>
+        <div onclick="TS_HideMailsDiv()" class="exptrs_closepadr10cur">关闭</div>        
+    </div>
+    <div class="exptrs_errpadl10h17" id="divExportErr"></div>
+    <div id="ctlExport1_labMails" class="exptrs_labh144bor1"></div>
+</div>
+<div id="promptExport" style="display: none;">
+    <p id="exportSpn" class="exptrs_pmar20a4"></p>
+</div>
+
+
+<div id="divAjaxLoading" style="position:absolute;display:none;">
+  <div style="position:absolute;margin-left:50px;margin-top:40px;background-color: #fff; background-image:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/onloading_bg.gif); background-repeat:no-repeat;width: 203px; height: 39px; z-index: 9999;">
+     <table border="0" cellpadding="0" cellspacing="0" style="width:100%;font-size:9pt;">
+	    <tr><td style="height:39px;width:100%;"><img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/onloading2.gif" alt="" style="margin-left:30px;margin-right:10px;"/>
+	            <span class="red_num">正在加载数据</span>
+	        </td>
+	    </tr>
+     </table>
+  </div>
+</div>
+
+<script type="text/javascript" language="javascript">
+    var export_hfid="ctlExport1_";
+    var export_lan="";
+    var reExport=1;
+    var isNewExport="1";
+    var C_Reciver="收件人";
+    var export_defSubject="(51job)导出简历";
+    var export_defContent="附件简历导出自51job“网才”系统，已经过筛选。";
+    var export_email3="最多可输入3个Email！";
+    var export_exisitMail="该Email已存在！";
+    var export_errMails="第{0}个Email错误，请输入有效的Email!";//第*个Email错误，请输入有效的Email!
+    var export_MailFromIsNull="发件人不能为空";//收件人不能为空！
+    var export_MailToIsNull="请输入有效的E-mail地址！";//请输入有效的E-mail地址！
+    var export_lt500content="留言最多可输入500个字！";
+    var export_title="<img align='absmiddle' src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/icon.gif' />&nbsp;导出"+(export_lan=="en-us"?" ":"")+"简历";
+    var common_hasHtmlTag="{0}只支持纯文本内容！";
+    var common_etitle="信件主题";
+    var common_econtent="留言";
+    var common_esender="发件人";
+</script>
+<script type="text/javascript" language="javascript">
+    $(function(){
+        $("#exportDialog").dialog({
+            bgiframe: true,
+            modal: true,
+            autoOpen: false,
+            resizable:false,
+            draggable:false,
+            width:435,
+            buttons: {
+                "确认": function() {
+                    var result=TS_SubmitExportValid();
+                    if(result)
+                    {
+                        __doPostBack(export_hfid.replace("_","")+'$btnSubmit','');
+                    }	                
+                 },
+			    "取消": function() {
+				    $(this).dialog('close');
+			    }
+            }
+        });	
+        $("#exportDialog").removeClass("ui-dialog-content");
+    
+        $("#promptExport").dialog({
+            bgiframe: true,
+            modal: true,
+            autoOpen: false,
+            draggable:false,
+            resizable:false,
+            width:330,
+            title:"<img align='absmiddle' src='"+ImagePath+"icon.gif' />&nbsp;导出",
+            buttons: {
+                "确认": function() {             
+                    $(this).dialog('close');
+                 }
+            }
+        });        
+    }); 
+</script>
+            </div>
+        </div>        
+        
+        <!--流程设置-->
+        
+        <div id="procInterviewDialog" style="display: none;width:100%; margin:0px; padding:0px;">
+            
+<input type="hidden" value="" id="si_hidNames" />
+<input type="hidden" value="" id="si_hidUserIDs" />
+<input type="hidden" value="" id="si_hidSeqIDs" />
+<input type="hidden" value="" id="si_hidFolderType" />
+<input type="hidden" value="" id="si_hidJobId" />
+<input type="hidden" value="" id="si_hidJobName" />
+<input type="hidden" value="" id="si_hidCVLogIDs" />
+<div id="si_divMain" style="width:100%;border:0px solid #027ec8; margin:0px;padding:0px;" >
+<table width="100%"   border="0" cellpadding="0" cellspacing="0"  align="center" style="height:16px;font-size:14px;margin:10px;margin-left:0px;margin-right:0px;">
+<tr><td style="color:#333;white-space:nowrap;padding-left:10px;"  valign="top">选中简历：</td><td style="color:#999;width:95%;" id="si_spanName"></td></tr>
+</table>
+<p style="clear:both;border-bottom:dashed 1px #ccc;margin-bottom:2px;line-height:normal;"></p>
+<p class="ibx_tab2" style="line-height:normal;" >
+<span id="si_tab1" class="ibx_tabxon" onclick="si_tabClick(this)">面试安排</span>
+<span id="si_tab3" class="ibx_tabxoff" onclick="si_tabClick(this)">视频面试<img alt="Beta" style="vertical-align:top;margin-top:1px;margin-left:3px;" src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/common/beta2.gif"/></span>
+<span id="si_tab2" class="ibx_tabxoff" onclick="si_tabClick(this)">面试结果</span>
+
+<span id="si_whatVideo" style="padding:6px;padding-top:12px;padding-bottom:0px;float:right;text-align:right;display:none;"><a href='http://www.51job.com/pm/ehire/interview/video.html' target='_blank' style='color:#0066cc;text-decoration:underline;' title='视频面试帮助'>视频面试帮助</a></span>
+</p>
+<div id="si_divPlan" class="ibx_tabxkuang">
+<p style="clear:both;border-bottom:dashed 1px #ccc;margin:2px;padding-left:5px;padding-top:10px;padding-bottom:10px;">
+<span style="color:#333;margin-right:30px;"><input id="si_chk1" name="" type="checkbox" value="si_td1"  onclick="si_checkboxClick(this)" />通知候选人</span>
+<span style="color:#333;"><input id="si_chk2" name="" type="checkbox" value="si_td2" onclick="si_checkboxClick(this)" />通知面试官</span>
+</p>
+
+<table  border="0" cellpadding="0" cellspacing="10"  align="center" >
+<tr><td style="border:solid 1px #999;width:400px; height:300px; padding:8px; display:none " valign="top" id="si_td1"></td>
+	<td style="border:solid 1px #999;width:400px;height:300px;padding:8px;display:none"  valign="top"  id="si_td2"></td>
+</tr>
+<tr><td colspan="2" align="center" style="height:30px; padding-bottom:20px;" id="si_td3">将候选人设置为已安排面试状态。</td></tr>
+</table>
+
+<div class="exptrs_errpadt2l10" id="si_errDivSendPlan" style="clear:both;border-top:dashed 1px #ccc;"></div>
+<p style="margin:2px;padding-top:10px;padding-bottom:10px;text-align:center; margin-top:-10px;">
+<input name="" type="button" value="面试安排" class="ibx_an" onclick="si_sendPlan()" style="margin-top:5px;"/></p>
+</div>
+
+<div id="si_divResult" class="ibx_tabxkuang" style="display:none;"></div>
+
+<div id="si_divVideo" class="ibx_tabxkuang" style="display:none;"></div>
+</div>
+
+<div id="divInterviewResult" style="display: none;">
+   <p id="procInterviewSpn" class="exptrs_pmar20a4"></p>
+</div>
+
+<div id="si_syncSmsDialog" style="display: none;">
+    <div style="margin-left:20px;">
+        <div style="padding-top:10px;padding-bottom:15px;">您有可使用的短信数，在发送站内信时，是否需要同时发送？</div>
+        <div style="vertical-align:top;"><input id="si_chkAlertMobile" type="checkbox" onclick="si_chkAlertSendMobile(this)" />&nbsp;同时发送到手机(短信)<span id="si_spanCurrSms" style="color:#cc6633;"></span></div>  
+        <div style="padding-top:10px;padding-left:28px;color:#cc6633;" id="si_divSubSms"></div>
+        <div style="height:50px;">&nbsp;</div>
+    </div>  
+</div>
+
+<div id="si_VideoSaveDialog" style="display: none;">
+    <div style="margin-left:20px;">
+        <div style="padding-top:30px;padding-bottom:15px;" id='si_divDeductVideoTips'></div>
+    </div>  
+</div>
+
+<div id="si_VideoSmsDialog" style="display: none;">
+    <div style="margin-left:20px;">
+        <div style="padding-top:10px;padding-bottom:15px;">您有可使用的短信数，在发送站内信时，是否需要同时发送？</div>
+        <div style="vertical-align:top;"><input id="si_chkVideoAlertMobile" type="checkbox" onclick="si_chkVideoAlertSendMobile(this)" />&nbsp;同时发送到手机(短信)<span id="si_spanVideoCurrSms" style="color:#cc6633;"></span></div>  
+        <div style="padding-top:10px;padding-left:28px;color:#cc6633;" id="si_divVideoSubSms"></div>
+        <div style="height:50px;">&nbsp;</div>
+    </div>  
+</div>
+
+<div id="divVideoList" style="display:none;">
+   <div  style="padding:4px;text-align:center;height:200px;">
+   <table id="VideoListBody" style="width:500px;overflow-y:scroll; margin-bottom:6px;" align="center" border="0">
+       <tr align="center" style="font-weight:bold;background-color:#E7F6FE;height:26px;">
+       <td>职位名称</td>
+       <td style="width:140px;">完成时间</td>
+       <td style="width:80px;">视频连接</td>
+       </tr>
+   </table>
+   </div>
+   
+   <div id="si_VideoListLoading" style="position:absolute;display:none;"><table style='position:absolute;margin-left:100px;margin-top:40px;width:240px;height:60px;margin:0px;margin-top:4px;margin-bottom:4px;border:1px solid #548AB4; background-color:#F7F7F7'>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+<tr><td style='width:70px;' align='right'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/common/loading2.gif' style='padding-right:10px;vertical-align:middle;' alt=''/></td>
+<td style='width:170px; color:#A2A2A2; font-weight:bold; font-size:17px;'>页面载入中。。。</td></tr>
+<tr><td></td><td style='color:#B7B7B7;'>如无响应&nbsp;&nbsp;<a href='#A' onclick="location.reload();" style='text-decoration:underline;cursor:pointer; color:#527499'>手动刷新</a></td></tr>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+</table></div>
+</div>
+
+
+<div id="si_divAjaxLoading" style="position:absolute;display:none;"><table style='position:absolute;margin-left:100px;margin-top:40px;width:240px;height:60px;margin:0px;margin-top:4px;margin-bottom:4px;border:1px solid #548AB4; background-color:#F7F7F7'>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+<tr><td style='width:70px;' align='right'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/common/loading2.gif' style='padding-right:10px;vertical-align:middle;' alt=''/></td>
+<td style='width:170px; color:#A2A2A2; font-weight:bold; font-size:17px;'>页面载入中。。。</td></tr>
+<tr><td></td><td style='color:#B7B7B7;'>如无响应&nbsp;&nbsp;<a href='#A' onclick="location.reload();" style='text-decoration:underline;cursor:pointer; color:#527499'>手动刷新</a></td></tr>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+</table></div>
+
+<script language="javascript" type="text/javascript">
+var interview_Set="面试设置"; 
+var message_SmsLeftCount="将扣除{0}条短信(现有余额：{1}条)"; 
+var message_SmsGtOneLtTwo="内容已超过1条，需发送第二条！";
+var message_SmsIsTwo="内容字数已满2条，不可再输入！";
+var message_ThisSmsWords="短信已输入{0}个字";
+var si_NoticeInterviewer="通知面试官";
+var si_NoticeCandidate="通知候选人";
+var si_kiom="第";
+var si_round="轮面试";
+var si_remark="简历评语";
+var si_SendFolder="接收回复邮箱";
+var si_tabxonObj=document.getElementById("si_tab1");
+
+var video_sltTemplet="请选择面试模板！";
+var video_dateErr1="请填写生效开始日期！";
+var video_dateErr2="生效开始日期格式不正确！";
+var video_dateErr3="请填写生效结束日期！";
+var video_dateErr4="生效结束日期格式不正确！";
+var video_dateErr5="生效开始日期必须大于或等于当前日期！";
+var video_dateErr6="生效结束时间必须大于生效开始时间！";
+var video_dateErr7="有效日期最长为60天！";
+var video_contentNotEmpty="信件内容不可为空！";
+var video_eamilErr="请输入正确邮件地址！";
+var video_jobNumNotEnough="您目前职位数不足！";
+var video_SMSNumNotEnough="您目前短信数不足！";
+var video_VideoList="视频播放列表";
+
+$(function(){
+  $("#procInterviewDialog").dialog({
+     bgiframe: true,         //则调用bgiframe插件，用于修复在IE6浏览器中无法显示于其它控件（select,flash）之上的问题。    
+     modal: true,            //模式窗体 true
+     autoOpen: false,        //自动打开 true
+     resizable:false,        //可改大小 true
+     draggable:false,        //可拖动 true
+     width:450,              //height:500,    $("#procInterviewDialog").dialog({ height: 800,width:200 });  dialog({ position:[100,100]});
+     minHeight:260,
+     closeOnEscape:true,     //设置当对话框打开的时候，用户按ESC键是否关闭对话框
+     dialogClass:"",         //屏蔽右上角关闭按钮 dialogClass:"my-dialog-disableclose"
+     title:"面试设置",
+     beforeclose: function(event, ui) 
+            {
+              hideCalendar();
+            } 
+     });	
+});
+
+$(function(){
+  $("#divInterviewResult").dialog({
+    bgiframe: true,
+    modal: true,
+    autoOpen: false,
+    draggable:false,
+    resizable:false,
+    width:360,
+    title:"面试设置",
+    buttons:{
+               "确认": function() 
+               {       
+                  $("#procInterviewSpn").html("");
+                  $("#si_td1").html("");
+                  $("#si_td2").html("");
+                  $("#si_divResult").html("");
+                  $("#procInterviewDialog").dialog("close");
+                  $(this).dialog('close');
+               }
+             }
+    });
+});
+
+$(function(){
+ $("#si_syncSmsDialog").dialog({
+            bgiframe: true,
+            modal: true,
+            autoOpen: false,
+            draggable:false,
+            resizable:false,  
+            width:420,
+            title:"发消息",
+            buttons: {
+                "确认": function() { 
+                    si_UseAlertSendMobile="1";
+                    si_sendPlan();
+                    $(this).dialog('close');
+                 }
+            }
+        });
+});
+
+$(function(){
+ $("#si_VideoSmsDialog").dialog({
+            bgiframe: true,
+            modal: true,
+            autoOpen: false,
+            draggable:false,
+            resizable:false,  
+            width:420,
+            title:"发消息",
+            buttons: {
+                "确认": function() { 
+                    si_UseVideoAlertSendMobile="1";
+                    si_sendVideo();
+                    $(this).dialog('close');
+                 }
+            }
+        });
+});
+
+$(function(){
+ $("#si_VideoSaveDialog").dialog({
+            bgiframe: true,
+            modal: true,
+            autoOpen: false,
+            draggable:false,
+            resizable:false,  
+            width:360,
+            title:"面试设置",
+            buttons: {
+                "确认": function() {
+                    si_UseVideoSaveDialog="1";
+                    si_sendVideo();
+                    $(this).dialog('close');               
+                 },
+			    "取消": function() {
+				    $(this).dialog('close');
+			    }
+			}
+        });
+});
+
+$(function(){
+  $("#divVideoList").dialog({bgiframe: true,modal: true,autoOpen: false,draggable:false,resizable:false,width:550,
+    title:"视频播放列表"});
+});
+</script>
+        </div>
+        <div id="procHireDialog" style="display: none;width:100%; margin:0px; padding:0px;">
+            
+<input type="hidden" value="" id="se_hidNames" />
+<input type="hidden" value="" id="se_hidUserIDs" />
+<input type="hidden" value="" id="se_hidSeqIDs" />
+<input type="hidden" value="" id="se_hidFolderType" />
+<input type="hidden" value="" id="se_hidJobId" />
+<input type="hidden" value="" id="se_hidJobName" />
+<input type="hidden" value="" id="se_hidCVLogIDs" />
+<div id="se_divMain" style="width:100%;border:0px solid #027ec8; margin:0px;padding:0px;" >
+<table width="100%"   border="0" cellpadding="0" cellspacing="0"  align="center" style="height:16px;font-size:14px;margin:10px;margin-left:0px;margin-right:0px;">
+<tr><td style="color:#333;white-space:nowrap; padding-left:10px;"  valign="top">选中简历：</td><td style="color:#999;width:95%;" id="se_spanName"></td></tr>
+</table>
+<p style="clear:both;border-bottom:dashed 1px #ccc;margin-bottom:2px;line-height:normal">
+<p class="ibx_tab2" style="line-height:normal">
+<span id="se_tab1" class="ibx_tabxon" onclick="se_tabClick(this)">安排录用</span>
+<span id="se_tab2" class="ibx_tabxoff" onclick="se_tabClick(this)">录用状态</span>
+</p>
+<div id="se_divPlan" class="ibx_tabxkuang">
+<p style="clear:both;border-bottom:dashed 1px #ccc;margin:2px;padding-left:5px;padding-top:10px;padding-bottom:10px;">
+<span style="color:#333;margin-right:30px;"><input id="se_chk1" name="" type="checkbox" value="se_td1"  onclick="se_checkboxClick(this)" />通知候选人</span>
+<span style="color:#333;"><input id="se_chk2" name="" type="checkbox" value="se_td2" onclick="se_checkboxClick(this)" />通知用人方/HR</span>
+</p>
+
+<table  border="0" cellpadding="0" cellspacing="10"  align="center">
+<tr><td style="border:solid 1px #999;width:400px; height:250px; padding:8px; display:none " valign="top" id="se_td1"></td>
+	<td style="border:solid 1px #999;width:400px;height:250px;padding:8px;display:none"  valign="top"  id="se_td2"></td>
+</tr>
+<tr><td colspan="2" align="center" style="height:30px; padding-bottom:20px;" id="se_td3">将候选人设置为已发Offer状态。</td></tr>
+</table>
+<div class="exptrs_errpadt2l10" id="se_errDivSendPlan" style="clear:both;border-top:dashed 1px #ccc;"></div>
+<p style="margin:2px;padding-top:10px;padding-bottom:10px;text-align:center; margin-top:-10px;">
+<input name="" type="button" value="安排录用" class="ibx_an" onclick="se_sendPlan()" style="margin-top:5px;"/></p>
+</div>
+
+<div id="se_divResult" class="ibx_tabxkuang" style="display:none"></div>
+
+</div>
+
+
+<div id="se_divAjaxLoading" style="position:absolute;display:none;"><table style='position:absolute;margin-left:100px;margin-top:40px;width:240px;height:60px;margin:0px;margin-top:4px;margin-bottom:4px;border:1px solid #548AB4; background-color:#F7F7F7'>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+<tr><td style='width:70px;' align='right'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/common/loading2.gif' style='padding-right:10px;vertical-align:middle;' alt=''/></td>
+<td style='width:170px; color:#A2A2A2; font-weight:bold; font-size:17px;'>页面载入中。。。</td></tr>
+<tr><td></td><td style='color:#B7B7B7;'>如无响应&nbsp;&nbsp;<a href='#A' onclick="location.reload();" style='text-decoration:underline;cursor:pointer; color:#527499'>手动刷新</a></td></tr>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+</table></div>
+
+<div id="divProcHireResult" style="display: none;">
+   <p id="sendProcHireSpn" class="exptrs_pmar20a4"></p>
+</div>
+
+<div id="se_syncSmsDialog" style="display: none;">
+    <div style="margin-left:20px;">
+        <div style="padding-top:10px;padding-bottom:15px;">您有可使用的短信数，在发送站内信时，是否需要同时发送？</div>
+        <div style="vertical-align:top;"><input id="se_chkAlertMobile" type="checkbox" onclick="se_chkAlertSendMobile(this)" />&nbsp;同时发送到手机(短信)<span id="se_spanCurrSms" style="color:#cc6633;"></span></div>  
+        <div style="padding-top:10px;padding-left:28px;color:#cc6633;" id="se_divSubSms"></div>
+        <div style="height:50px;">&nbsp;</div>
+    </div>  
+</div>
+
+<script language="javascript" type="text/javascript">
+var employ_Set="录用设置";
+var se_Inform="通知用人方/HR";
+var se_remark="简历评语";
+var se_tabxonObj=document.getElementById("se_tab1");
+
+$(function(){
+  $("#procHireDialog").dialog({
+     bgiframe: true,         //则调用bgiframe插件，用于修复在IE6浏览器中无法显示于其它控件（select,flash）之上的问题。    
+     modal: true,            //模式窗体 true
+     autoOpen: false,        //自动打开 true
+     resizable:false,        //可改大小 true
+     draggable:false,        //可拖动 true
+     width:450,              //height:500,    $("#procInterviewDialog").dialog({ height: 800,width:200 });  dialog({ position:[100,100]});
+     minHeight:260,
+     closeOnEscape:true,     //设置当对话框打开的时候，用户按ESC键是否关闭对话框
+     dialogClass:"",         //屏蔽右上角关闭按钮 dialogClass:"my-dialog-disableclose"
+     title:"录用设置",
+     beforeclose: function(event, ui) 
+            {
+              hideCalendar();
+            } 
+     });	
+});
+
+$(function(){
+  $("#divProcHireResult").dialog({
+    bgiframe: true,
+    modal: true,
+    autoOpen: false,
+    draggable:false,
+    resizable:false,
+    width:330,
+    title:"录用设置",
+    buttons:{
+               "确认": function() 
+               {       
+                  $("#sendProcHireSpn").html("");
+                  $("#se_td1").html("");
+                  $("#se_td2").html("");
+                  $("#se_divResult").html("");
+                  $("#procHireDialog").dialog("close");
+                  $(this).dialog('close');
+               }
+             }
+    });
+});
+
+$(function(){
+ $("#se_syncSmsDialog").dialog({
+            bgiframe: true,
+            modal: true,
+            autoOpen: false,
+            draggable:false,
+            resizable:false,  
+            width:420,
+            title:"发消息",
+            buttons: {
+                "确认": function() { 
+                    se_UseAlertSendMobile="1";
+                    se_sendPlan();
+                    $(this).dialog('close');
+                 }
+            }
+        });
+});
+
+</script>
+        </div>
+        <div id="procFilterDialog" style="display: none;width:100%; margin:0px; padding:0px;">
+            
+<div id="sl_divMain" style="width: 100%; border: 0px solid #027ec8; margin: 0px;
+    padding: 0px;">
+    <table border="0" cellpadding="0" cellspacing="0" align="center" style="width: 100%;
+        margin-top: 10px; font-size: 14px;">
+        <tr>
+            <td style="width: 80px; padding-top: 1px;" align="right" valign='bottom'>
+                设定状态：
+            </td>
+            <td align="left" style="padding-left: 0px;" valign='bottom'>
+                <input type="radio" id="sl_RadioType1" value="0" name="sl_radioType1" checked="checked"
+                    style="margin-left: 0px;" />合格
+                <input type="radio" id="sl_RadioType2" value="1" name="sl_radioType1" style="margin-left: 15px;" />不合格
+                <input type="radio" id="sl_RadioType3" value="2" name="sl_radioType1" style="margin-left: 15px;" />待定
+            </td>
+        </tr>
+        <tr>
+            <td align="right" style="padding-top: 10px; width: 80px;" valign="top">
+                简历评语：
+            </td>
+            <td style="padding-top: 10px;">
+                <textarea id="sl_txtRemark" rows="10" style="margin: 0px; padding: 4px; width: 334px;
+                    height: 100px; border: 1px solid #7f9db9;" onpaste="sl_check_Words(this,document.getElementById('sl_txtInfo'))"
+                    onkeyup="sl_check_Words(this,document.getElementById('sl_txtInfo'))" onmouseup="sl_check_Words(this,document.getElementById('sl_txtInfo'))"></textarea></td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td style="padding: 0px; width: 344px;">
+                <table border="0" cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px;
+                    width: 344px;">
+                    <tr>
+                        <td id="errsl_txtInfo" style="color: Red; padding: 0px; width: 154px;">
+                        </td>
+                        <td style="padding: 0px;" align="right" valign="top">
+                            <div class="ibx_zs" id="sl_txtInfo" style="width: 190px;">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div class="exptrs_errpadt2l10" id="errDivProcFilterResult" style="clear: both; border-top: dashed 1px #ccc;">
+    </div>
+    <br />
+    <p style="margin: 2px; text-align: center;">
+        <input name="" type="button" value="提交" class="ibx_an"
+            onclick="sl_Send()" style="margin-bottom: 5px;" /></p>
+</div>
+
+<div id="sl_divAjaxLoading" style="position: absolute; display: none;">
+    <table style='position:absolute;margin-left:100px;margin-top:40px;width:240px;height:60px;margin:0px;margin-top:4px;margin-bottom:4px;border:1px solid #548AB4; background-color:#F7F7F7'>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+<tr><td style='width:70px;' align='right'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/common/loading2.gif' style='padding-right:10px;vertical-align:middle;' alt=''/></td>
+<td style='width:170px; color:#A2A2A2; font-weight:bold; font-size:17px;'>页面载入中。。。</td></tr>
+<tr><td></td><td style='color:#B7B7B7;'>如无响应&nbsp;&nbsp;<a href='#A' onclick="location.reload();" style='text-decoration:underline;cursor:pointer; color:#527499'>手动刷新</a></td></tr>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+</table>
+</div>
+<div id="divProcFilterResult" style="display: none;">
+    <p id="sendProcFilterSpn" class="exptrs_pmar20a4">
+    </p>
+</div>
+
+<script type="text/javascript" language="javascript">
+var procFilter_Title="筛选简历";
+var sl_Remark="简历评语";
+
+$(function(){
+    $("#procFilterDialog").dialog({
+         bgiframe: true,         //则调用bgiframe插件，用于修复在IE6浏览器中无法显示于其它控件（select,flash）之上的问题。    
+         modal: true,            //模式窗体 true
+         autoOpen: false,        //自动打开 true
+         resizable:false,        //可改大小 true
+         draggable:false,        //可拖动 true
+         width:440,              //height:500,    $("#setupDialog").dialog({ height: 800,width:200 });  dialog({ position:[100,100]});
+         closeOnEscape:true,     //设置当对话框打开的时候，用户按ESC键是否关闭对话框
+         title:procFilter_Title
+     });	
+     
+    $("#divProcFilterResult").dialog({
+        bgiframe: true,
+        modal: true,
+        autoOpen: false,
+        draggable:false,
+        resizable:false,
+        width:330,
+        title:"筛选简历",
+        buttons:{
+                   "确认": function() 
+                   {       
+                      $("#sendProcFilterSpn").html("");
+                      $("#procFilterDialog").dialog("close");
+                      $(this).dialog('close');
+                   }
+                 }
+    });
+}); 
+</script>
+
+
+        </div>
+        
+        <div id="procEvaluateDialog" style="display: none;width:100%; margin:0px; padding:0px;">
+            
+<input value="" id="ev_hidNames" type="hidden" />
+<input value="" id="ev_hidUserIDs" type="hidden" />
+<input value="" id="ev_hidSeqIDs" type="hidden" />
+<input value="" id="ev_hidFolderType" type="hidden" />
+<input value="" id="ev_hidCVLogIDs" type="hidden" />
+<input value="" id="ev_hidKey" type="hidden" />
+<input value="" id="ev_hidServerTime" type="hidden" />
+<div id="ev_divMain" style="width:100%;border:0px solid #027ec8; margin:0px;padding:0px;">
+
+<table style="height:16px;font-size:13px;margin:10px;margin-left:0px;margin-right:0px;" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tbody>
+        <tr>
+            <td style="color:#333;white-space:nowrap;padding-left:10px;" valign="top">选中简历：</td>
+            <td style="color:#999;width:95%;" id="ev_spanName"></td>
+        </tr>
+    </tbody>
+</table>
+
+<p style="border-bottom:dashed 1px #ccc;margin-bottom:2px;line-height:normal;"></p>
+
+<table style="background-color:#E7F5FE;border:solid 2px #93B5CF;font-size:14px;margin-top:10px;margin-left:10px;width:96%;" cellspacing="0">
+    <tbody>
+        <tr style="height:30px;line-height:25px;padding-top:5px;vertical-align:bottom;"><td align="right" class="tdEvContent1"><span style="color:orange;font-size:12px;">*</span>测评内容：</td><td align="left" class="tdEvContent2"><select id="ev_sel" onchange="ev_SelectAssessmentChange(this)" style="width:220px;height:25px;"><option value="0">--请选择--</option></select></td><td class="tdEvContent3"><a href="http://tr.51job.com/train/51px2009/assessment_spi2.php" target="_blank" style="color:#0066cc;cursor:pointer;text-decoration:none;">&nbsp;&nbsp;查看测评介绍</a></td></tr>
+        <tr style="height:20px;line-height:20px;display:none;" id="trLicenceTips"><td style="height:25px;"></td><td id="ev_ChoiceTip" style="color:red;" colspan="2"></td></tr>
+        <tr style="height:25px;">
+            <td style="word-break:keep-all;" align="right"><span style="color:orange;font-size:12px;">*</span>生效日期：</td>
+            <td align="left" id="ev_Date" colspan="2"></td></tr>
+        <tr style="height:25px;"><td colspan="3" style="color:#bbb;font-size:13px;padding-left:18px;text-align:left;width:100%; vertical-align:middle;">提醒：系统会自动过滤已发送邀请的应聘者，以避免重复邀请。</td></tr>
+    </tbody>
+</table>
+
+
+<table style="background-color:#F2F2F2;border:dotted 2px #93B5CF;font-size:14px;margin-top:10px;margin-left:10px;width:96%;" cellspacing="0">
+    <tbody>
+        <tr><td style="color:#666;padding-left:15px;height:30px;line-height:30px;">填写邀请测评信内容</td></tr>
+        <tr><td style="padding-left:15px;"><textarea id="ev_txtMailContent" maxlength="500" rows="8" style="margin:0px;padding:4px;width:390px; height:60px;color:#999999;border:1px solid #7f9db9;resize:none;scroll:auto;"  onpaste="ev_CheckWords(this,document.getElementById('ev_txtInfo'))" onkeyup="ev_CheckWords(this,document.getElementById('ev_txtInfo'))" onmouseup="ev_ClearAllErrors();ev_CheckWords(this,document.getElementById('ev_txtInfo'))"></textarea></td></tr>
+        <tr><td style="padding-right:13px;padding-top:0px;" align="right">
+            <table style="margin:0px;padding:0px;padding-bottom:15px;" border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr><td id="errev_txtInfo" align="left" style="color:Red;padding:0px;width:210px;"></td><td style="padding:0px;" align="right" valign="top"><div class="ibx_zs" id="ev_txtInfo" style="width:190px;"></div></td></tr>
+                </tbody>
+            </table></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table align="center" style="width:98%">
+    <tbody>
+        <tr id="trSmsSet" valign="middle"></tr>
+        <tr valign="middle"><td colspan="2" style='padding-left:15px;'><input type='checkbox' checked='checked' disabled='disabled'/>发送邮件&nbsp;(接收回复邮箱<input id="ev_ReplyToMail" style="width:170px;color:#999" maxlength="80" onclick="ev_ClearAllErrors();" />)</td></tr>
+    </tbody>
+</table>
+<p style="clear:both;border-bottom:dashed 1px #ccc;margin-bottom:2px;"></p>
+
+<div id="ev_ErrorDiv" style="width:95%;color:red;padding-left:10px;display:none;"></div>
+<p style="margin:2px;padding-top:10px;padding-bottom:10px;text-align:center; margin-top:-10px;">
+<input name="" value="确定" class="ibx_an" onclick="ev_SendEvaluateInfo()" style="margin-top:5px;" type="button" /></p>
+</div>
+
+
+<div id="ev_InvitateError" style="display: none;">
+   <div id="ev_failSpn" style="font-size:13px;font-family:微软雅黑;word-wrap:break-word;word-break:break-all;"></div>
+</div>
+
+
+<div id="ev_InvitateResult" style="display: none;">
+   <img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/success.gif" alt="邀请成功图片" style="width:34px;height:33px;margin-top:20px;margin-left:70px;float:left;" /><div id="ev_successSpn" style="float:left;margin-top:25px;margin-left:15px;font-size:20px;font-weight:bolder;"></div>
+</div>
+
+
+<div id="ev_DeductTips" style="display: none;">
+   <div id="ev_deductTipsSpn" style="font-size:13px;font-family:微软雅黑;word-wrap:break-word;word-break:break-all;margin-left:20px;margin-top:25px;"></div>
+</div>
+
+<script language="javascript" type="text/javascript">
+var evaluate_Title = "邀请测评";
+var evaluate_SelectTip = "本次需扣除{0}个邀请数，目前剩余{1}个邀请数"; 
+var evaluate_DateErr1 = "请填写生效开始日期！";
+var evaluate_DateErr2 = "生效开始日期格式不正确！";
+var evaluate_DateErr3 = "请填写生效结束日期！";
+var evaluate_DateErr4 = "生效结束日期格式不正确！";
+var evaluate_DateErr5 = "生效开始日期必须大于或等于当前日期！";
+var evaluate_DateErr6 = "起始日期必须小于结束日期！";
+var evaluate_DateErr7 = "有效日期最长为60天！";
+var evaluate_EmailContentErr1 = "请输入邀请信内容！";
+var evaluate_EmailContentErr2 = "请输入正确邮件地址！";
+var evaluate_ConfirmSend = "是否确认发送？";
+var evaluate_NoLicence = "测评邀请数不足";
+var evaluate_NoSms = "短信数不足";
+var evaluate_LicenceDeductTip = "本次需扣除{0}个邀请数，目前剩余{1}个邀请数";
+var evaluate_SmsDeductTip = "短信扣除{0}条（目前剩余{1}条）";
+var evaluate_ContactRmsSale = "<a href='/CommonPage/ProductPurchase.aspx?Type=RMS' target='_blank' style='color:#0066cc;cursor:pointer;text-decoration:underline;'>联系购买</a>";
+
+$(function(){
+    $("#procEvaluateDialog").dialog({
+        bgiframe: true,         //则调用bgiframe插件，用于修复在IE6浏览器中无法显示于其它控件（select,flash）之上的问题。    
+        modal: true,            //模式窗体 true
+        autoOpen: false,        //自动打开 true
+        resizable:false,        //可改大小 true
+        draggable:false,        //可拖动 true
+        width:450,              //height:500,    $("#procInterviewDialog").dialog({ height: 800,width:200 });  dialog({ position:[100,100]});
+        minHeight:260,
+        closeOnEscape:true,     //设置当对话框打开的时候，用户按ESC键是否关闭对话框
+        dialogClass:"",         //屏蔽右上角关闭按钮 dialogClass:"my-dialog-disableclose"
+        title:evaluate_Title,
+        beforeclose: function(event, ui) 
+        {
+            hideCalendar();
+        } 
+    });	
+
+    $("#ev_InvitateError").dialog({
+        bgiframe: true,
+        modal: true,
+        autoOpen: false,
+        draggable:false,
+        resizable:false,
+        width:360,
+        title:evaluate_Title,
+        buttons:{
+            "确认": function() 
+            {       
+                $("#procEvaluateDialog").dialog("close");
+                $(this).dialog('close');
+            }
+        }
+    });
+    
+    $("#ev_InvitateResult").dialog({
+        bgiframe: true,
+        modal: true,
+        autoOpen: false,
+        draggable:false,
+        resizable:false,
+        width:360,
+        title:evaluate_Title,
+        buttons:{
+            "确认": function() 
+            {       
+                $("#procEvaluateDialog").dialog("close");
+                $(this).dialog('close');
+            }
+        }
+    });
+    
+     $("#ev_DeductTips").dialog({
+        bgiframe: true,
+        modal: true,
+        autoOpen: false,
+        draggable:false,
+        resizable:false,  
+        width:360,
+        title:evaluate_Title,
+        buttons: {
+            "确认": function() {
+              
+                isRmsShowTips = 1;
+                ev_SendEvaluateInfo();
+             
+                $(this).dialog('close');               
+             },
+		    "取消": function() {
+			    $(this).dialog('close');
+		    }
+		}
+    });
+});
+
+</script>
+
+        </div>
+        
+        <div id="procTransmitDialog" style="display: none;width:100%; margin:0px; padding:0px;">
+            
+<div id="fw_divMain" style="width: 100%; border: 0px solid #027ec8; margin: 0px;
+    padding: 0px;">
+</div>
+<div class="exptrs_errpadt2l10" id="Div1" style="clear: both; border-top: dashed 1px #ccc;
+    margin-top: 10px;">
+</div>
+<table border="0" cellpadding="0" cellspacing="0" align="left" style="width: 495;
+    font-size: 14px; margin-bottom: 10px; margin-top: 5px;">
+    <tr>
+        <td style="width: 100px; padding-top: 6px;" align="right">
+            信件主题：
+        </td>
+        <td align="left" style="padding-left: 0px; padding-top: 6px;">
+            <input id="fw_txtTitle" style="width: 338px;" value="(51job)转发简历"
+                maxlength="100" /></td>
+    </tr>
+    <tr>
+        <td style="padding-top: 6px;" align="right" valign="top">
+            留言：
+        </td>
+        <td style="padding-top: 6px;">
+            <textarea id="fw_txtRemark" rows="10" style="margin: 0px; padding: 4px; width: 334px;
+                height: 100px; border: 1px solid #7f9db9;" onpaste="fw_check_Words(this,document.getElementById('fw_txtInfo'))"
+                onkeyup="fw_check_Words(this,document.getElementById('fw_txtInfo'))" onmouseup="fw_check_Words(this,document.getElementById('fw_txtInfo'))"></textarea></td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td style="padding: 0px; width: 344px;">
+            <table border="0" cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px;
+                width: 344px;">
+                <tr>
+                    <td id="errfw_txtInfo" style="color: Red; padding: 0px; width: 154px;">
+                    </td>
+                    <td style="padding: 0px;" align="right" valign="top">
+                        <div class="ibx_zs" id="fw_txtInfo" style="width: 190px;">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<br />
+<div id="fw_divTip" style="clear: both; border-top: dashed 1px #ccc; padding: 5px;
+    display: none; padding-left: 65px;">
+    <span id="fw_TipInfo"><font style="color: #FF9900">提示：</font> 该（部分）简历已进入后续流程，是否变更状态为“已转发”？</span>
+    <br />
+    <input id="fw_radio1" value="1" type="radio" name="fw_radio1" style="margin-left: 140px;" />是
+    <input id="fw_radio0" value="0" type="radio" name="fw_radio1" checked="checked" style="margin-left: 1px;" />否
+</div>
+<div class="exptrs_errpadt2l10" id="errDivProcTransmitResult" style="clear: both;
+    border-top: dashed 1px #ccc; margin-top: 0px;">
+</div>
+<br />
+<p style="margin: 2px; text-align: center;">
+    <input name="" type="button" value="发送" class="ibx_an"
+        onclick="fw_Send()" style="margin-bottom: 5px;" /></p>
+
+<div id="fw_divAjaxLoading" style="position: absolute; display: none;">
+    <table style='position:absolute;margin-left:100px;margin-top:40px;width:240px;height:60px;margin:0px;margin-top:4px;margin-bottom:4px;border:1px solid #548AB4; background-color:#F7F7F7'>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+<tr><td style='width:70px;' align='right'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/common/loading2.gif' style='padding-right:10px;vertical-align:middle;' alt=''/></td>
+<td style='width:170px; color:#A2A2A2; font-weight:bold; font-size:17px;'>页面载入中。。。</td></tr>
+<tr><td></td><td style='color:#B7B7B7;'>如无响应&nbsp;&nbsp;<a href='#A' onclick="location.reload();" style='text-decoration:underline;cursor:pointer; color:#527499'>手动刷新</a></td></tr>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+</table>
+</div>
+<div id="divProcTransmitResult" style="display: none;">
+    <p id="sendProcTransmitSpn" class="exptrs_pmar20a4">
+    </p>
+</div>
+
+<script type="text/javascript" language="javascript">
+var procTransmit_Title="转发用人方";
+var fw_MailFromIsNull="发件人不能为空!";
+var fw_EmailContent="留言";
+var fw_EmailTitle="信件主题";
+var fw_MailContentIsNull="留言内容不能为空";
+var fw_MailContent="以下简历转发自51job“网才”系统，已经过筛选，可点击姓名（ID）链接查看具体简历内容。若有反馈或问题，可直接回复此邮件，亦可发送至：";
+var fw_MailAddess2="请输入有效的E-mail地址！";
+var fw_SynCCEmail="请输入有效的抄送邮箱！";
+
+$(function(){
+    $("#procTransmitDialog").dialog({
+        bgiframe: true,         //则调用bgiframe插件，用于修复在IE6浏览器中无法显示于其它控件（select,flash）之上的问题。    
+        modal: true,            //模式窗体 true
+        autoOpen: false,        //自动打开 true
+        resizable:false,        //可改大小 true
+        draggable:false,        //可拖动 true
+        width:500,              //height:500,    $("#setupDialog").dialog({ height: 800,width:200 });  dialog({ position:[100,100]});
+        closeOnEscape:true,     //设置当对话框打开的时候，用户按ESC键是否关闭对话框
+        title:"转发用人方"
+    });	
+
+    $("#divProcTransmitResult").dialog({
+        bgiframe: true,
+        modal: true,
+        autoOpen: false,
+        draggable:false,
+        resizable:false,
+        width:330,
+        title:"转发用人方",
+        buttons:{
+                   "确认": function() 
+                   {       
+                      $("#sendProcTransmitSpn").html("");
+                      $("#procTransmitDialog").dialog("close");
+                      $(this).dialog('close');
+                   }
+                 }
+    });
+}); 
+
+
+</script>
+
+
+        </div>
+         
+        
+        <div id="blacklistDialog" style="display: none;width:100%; margin:0px; padding:0px;">
+            
+<div id="bl_divMain" style="width: 100%; border: 0px solid #027ec8; margin: 0px;
+    padding: 0px;">
+    <div class="exptrs_errpadt2l10" id="Div1" style="clear: both; border-top: dashed 1px #ccc;">
+    </div>
+    <table border="0" cellpadding="0" cellspacing="0" align="center" style="width: 100%;
+        margin-top: 10px; font-size: 14px; line-height: normal">
+        <tr>
+            <td style="width: 80px; padding-top: 4px;" align="right" valign="top">
+                举报原因：
+            </td>
+            <td align="left" style="padding-left: 0px;">
+                <input id="rdoReason1" value="1" onclick="ChangeReason()" type="radio" name="bl_radio1" checked="checked" />广告/垃圾简历
+                <input id="rdoReason2" value="2" onclick="ChangeReason()" type="radio" name="bl_radio1" style="margin-left: 20px;" />重复/恶意投递简历
+                <br />
+                <input id="rdoReason3" value="3" onclick="ChangeReason()" type="radio" name="bl_radio1" />无故缺席面试
+                <br />
+                <input id="rdoReason9" value="9" onclick="ChangeReason()" type="radio" name="bl_radio1" />其他<span style="color:#999999">（请输入）</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" style="padding-top: 6px; width: 80px;" valign="top">
+            </td>
+            <td style="padding-top: 6px;">
+                <textarea id="bl_txtRemark" rows="10" style="margin: 0px; padding: 4px; width: 334px;
+                    height: 100px; border: 1px solid #7f9db9;" onpaste="check_Words(this,document.getElementById('bl_txtInfo'),200)"
+                    onkeyup="check_Words(this,document.getElementById('bl_txtInfo'),200)" onmouseup="check_Words(this,document.getElementById('bl_txtInfo'),200)"></textarea></td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td style="padding: 0px; width: 344px; line-height: normal">
+                <table border="0" cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px;
+                    width: 344px;">
+                    <tr>
+                        <td id="errbl_txtInfo" style="color: Red; padding: 0px; width: 154px;">
+                        </td>
+                        <td style="padding: 0px;" align="right" valign="top">
+                            <div class="ibx_zs" id="bl_txtInfo" style="width: 190px;">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div style="clear: both; border-bottom: dashed 1px #ccc; padding: 15px;">
+        <input id="bl_chkBlacklist" type="checkbox" onclick="if(this.checked){$('#div_Alert').css('display',''); }else{$('#div_Alert').css('display','none'); }" /><span
+            id="bl_spanBlacklist">同时放入黑名单（每个会员最多放入40份简历）</span>
+        <br />
+        <div style="margin-left: 20px; color: #ff9900; display: none" id="div_Alert">
+            简历一旦放入黑名单，将无法投递贵公司的任何职位，请慎重选择
+        </div>
+    </div>
+    <div style="padding: 15px; line-height: 20px;">
+        <p>谢谢您的反馈，我们将及时跟进！如需回复，请填写您的联系方式。</p>
+        <p><input id="bl_chkDontReply" type="checkbox" onclick="$('#tabContactInfo').toggle();ChangeReason();" /><label for="bl_chkDontReply">无需回复</label></p>
+        <table id="tabContactInfo" border="0" cellspacing="0" cellpadding="0" style="margin-left:20px; display: block;">
+            <tr>
+                <td style="width: 60px;">联系人</td>
+                <td style="width: auto;"><input id="bl_txtFilter_Contact" type="text" style="width: 260px;height: 18px; line-height: 18px;border: 1px solid #54a1d9; margin: 3px 0; padding-left: 4px; padding-top: 3px;vertical-align: text-bottom;" maxlength="100" /></td>
+            </tr>
+            <tr>
+                <td style="width: 60px;">Email</td>
+                <td style="width: auto;"><input id="bl_txtFilter_Email" type="text" style="width: 260px;height: 18px; line-height: 18px;border: 1px solid #54a1d9; margin: 3px 0; padding-left: 4px; padding-top: 3px;vertical-align: text-bottom;" maxlength="80" value="huifang@wisedu.com" /></td>
+            </tr>
+            <tr>
+                <td style="width: 60px;">电话</td>
+                <td style="width: auto;"><input id="bl_txtFilter_Tel" type="text" style="width: 260px;height: 18px; line-height: 18px;border: 1px solid #54a1d9; margin: 3px 0; padding-left: 4px; padding-top: 3px;vertical-align: text-bottom;" maxlength="20" /></td>
+            </tr>
+        </table>
+    </div>
+    <div class="exptrs_errpadt2l10" id="errDivBlacklistResult" style="clear: both; border-top: dashed 1px #ccc;">
+    </div>
+    <br />
+    <p style="margin: 2px; text-align: center;">
+        <input name="" type="button" value="提交" class="ibx_an"
+            onclick="bl_Send()" style="margin-bottom: 5px;" /></p>
+</div>
+
+<div id="divBlackListResult" style="display: none;">
+    <p id="sendBlackListSpn" class="exptrs_pmar20a4">
+    </p>
+</div>
+
+
+<div id="bl_divAjaxLoading" style="position: absolute; display: none;">
+    <table style='position:absolute;margin-left:100px;margin-top:40px;width:240px;height:60px;margin:0px;margin-top:4px;margin-bottom:4px;border:1px solid #548AB4; background-color:#F7F7F7'>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+<tr><td style='width:70px;' align='right'><img src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/common/loading2.gif' style='padding-right:10px;vertical-align:middle;' alt=''/></td>
+<td style='width:170px; color:#A2A2A2; font-weight:bold; font-size:17px;'>页面载入中。。。</td></tr>
+<tr><td></td><td style='color:#B7B7B7;'>如无响应&nbsp;&nbsp;<a href='#A' onclick="location.reload();" style='text-decoration:underline;cursor:pointer; color:#527499'>手动刷新</a></td></tr>
+<tr><td colspan='2' style='height:10px;'></td></tr>
+</table>
+</div>
+
+<input type="hidden" id="hidBlklstSuccessSeqIds" style="width: 0px; display: none" value="" />   
+
+<script type="text/javascript" language="javascript">
+var blacklist_Title="举报/黑名单";
+var blacklist_Reason="举报原因";
+var blacklist_OtherReason="提示：请输入其他举报原因！";
+var blacklist_Max40="同时放入黑名单（每个会员最多放入40份简历）";
+var blacklist_Unlock="同时放入黑名单（黑名单已满40个，请到“系统设置”中解除部分简历）";
+var blacklist_emailError="EMAIL格式填写错误!";
+var blacklist_telError="电话格式填写错误!";
+var blacklist_maxEmailCharacters="EMAIL不能超过80个字符!";
+var blacklist_maxTelCharacters="电话不能超过20个字符!";
+var blacklist_maxContactCharacters="联系人不能超过100个字!";
+var blacklist_userEmail="huifang@wisedu.com";
+function ChangeReason()
+{
+        $("#bl_divAjaxLoading").css("display","none"); 
+        $("#errDivBlacklistResult").html(""); 
+}
+$(function(){
+    $("#blacklistDialog").dialog({
+        bgiframe: true,         //则调用bgiframe插件，用于修复在IE6浏览器中无法显示于其它控件（select,flash）之上的问题。    
+        modal: true,            //模式窗体 true
+        autoOpen: false,        //自动打开 true
+        resizable:false,        //可改大小 true
+        draggable:false,        //可拖动 true
+        width:460,              //height:500,    $("#setupDialog").dialog({ height: 800,width:200 });  dialog({ position:[100,100]});
+        closeOnEscape:true,     //设置当对话框打开的时候，用户按ESC键是否关闭对话框
+        title:blacklist_Title
+        });	
+     
+    $("#divBlackListResult").dialog({
+        bgiframe: true,
+        modal: true,
+        autoOpen: false,
+        draggable:false,
+        resizable:false,
+        width:340,
+        title:"转发用人方",
+        buttons:{
+            "确认": function() 
+            {       
+                $("#sendBlackListSpn").html("");
+                $("#blacklistDialog").dialog("close");
+                if($("#hidBlklstSuccessSeqIds").val()!="")
+                {
+                    var arrSuccessSeqIds = $("#hidBlklstSuccessSeqIds").val().split(',');
+                    if($("#hidAllSeqIds").length>0)
+                    {
+                        try
+                        {
+                            RefreshOpener_folder();
+                        }
+                        catch(ex){}
+                        if($("#hidAllSeqIds").val().split(',').length==1||($("#hidAllSeqIds").val().split(',').length==arrSuccessSeqIds.length))
+                        {
+                            $("html").html("");
+                            window.close();
+                        }
+                        else
+                        {
+                            var bNeedRefresh=false;
+                            for(var i=0; i<arrSuccessSeqIds.length; i++)
+                            {
+                                if(i==arrSuccessSeqIds.length-1)
+                                {
+                                    bNeedRefresh=true;
+                                }
+                                else
+                                {
+                                    bNeedRefresh=false;
+                                }
+                                tab_RemoveUser(arrSuccessSeqIds[i],bNeedRefresh);
+                                tab_BuildUserList("folder",1);
+                            }
+                        }
+                    }
+                }
+                $(this).dialog('close');
+            }
+        }
+    });
+}); 
+</script>
+
+
+        </div>
+        
+        
+        
+         
+
+<div id="divInboxCommonLayer" style="display:none; z-index:500;position:absolute;">
+<table cellpadding="0" cellspacing="0" class="inbox_table3">
+<tr>
+ 
+ <td style="background-color:#017dc7;color:#FFFFFF;height:25px;border:1px solid #ffffff;">
+   <p class="inbox_p4"><span id="spCommonTitle"></span></p>
+   <p class="inbox_p5">
+     <img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/inbox/layerClose.gif" onclick="CloseDivMask('divInboxCommonLayer')" style="vertical-align:middle;cursor:pointer;" />
+   </p>
+ </td>
+</tr>
+<tr>
+ 
+ <td class="inbox_td16">
+   <span id="spContentValue"></span><br />
+   <div id="divMoveHrTip" style="width:100%;display:none;padding-top:12px;">
+    <ul>
+     <li style="float:left;color:#FF9900;width:100%"><span style="font-family:'宋体'; ">注：收件箱将不再保存简历，若有附属招聘流程及面试等信息<p style='padding-left:24px;'>亦将自动清除。</p></span></li>
+     <li style="float:left;color:#FF9900;padding-left:25px;padding-top:5px;"></li>
+    </ul>
+   </div>
+ </td>
+</tr>
+
+<tr><td style="background-image:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/inbox/dot_line_gray.gif);width:100%;height:2px;"></td></tr>
+<tr>
+ 
+ <td style="height:40px;vertical-align:middle;text-align:center;">
+    <input id="btnCommonOK" type="button" class="inbox_btnimg2" value="确 认" onclick="ResumeComfirmCommonLayer()" />
+    <input id="btnCommonCancel" type="button" class="inbox_btnimg2"  value="取 消" onclick="CloseDivMask('divInboxCommonLayer')" />
+ </td>
+</tr>
+</table>
+</div>
+
+
+<div id="divInboxWarningLayer" style="display:none;z-index:501;position:absolute;width:250px;">
+<table cellpadding="0" cellspacing="0" class="inbox_table3">
+<tr>
+ 
+ <td style="background-color:#017dc7;color:#FFFFFF;height:25px;border:1px solid #ffffff;">
+   <p class="inbox_p4">提示</p>
+   <p class="inbox_p5">
+     <img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/inbox/layerClose.gif" onclick="CloseWarningDialog('divInboxWarningLayer')" style="vertical-align:middle;cursor:pointer;" />
+   </p>
+ </td>
+</tr>
+<tr>
+ 
+ <td style="padding:10px;">
+   <span id="spWarnContent"></span>
+ </td>
+</tr>
+
+<tr><td style="background-image:url(http://img01.51jobcdn.com/imehire/ehire2007/default/image/inbox/dot_line_gray.gif);width:100%;height:2px;"></td></tr>
+<tr>
+ 
+ <td style="height:30px;vertical-align:middle;text-align:center;">
+    <input id="btnWarnOk" type="button" class="inbox_btnimg2" value="确 认" onclick="CloseWarningDialog('divInboxWarningLayer')" />
+ </td>
+</tr>
+</table>
+</div>
+
+
+<div id="divMultiResume" style="display:none; width:500px; padding:0px;">
+<table cellpadding="0" cellspacing="0">
+<tr>
+ 
+ <td style="padding:20px; vertical-align:middle;">
+   <img src="http://img01.51jobcdn.com/imehire/ehire2007/default/image/common/multi_send.gif" alt="" align="middle" style="vertical-align:middle; margin-right:5px;" /><span id="MultiResume_header" style="vertical-align:middle;">最近半年内的其他投递记录</span>
+ </td>
+</tr>
+
+<tr>
+    <td align="center" style="width:100%; text-align:center; padding:0px 10px 10px 10px;">
+            <table cellpadding="0" cellspacing="0" style="width:100%; margin-bottom:5px; text-align:center;">
+                <tr style="height:30px;"><th style="width:103px;">职位名称</th><th style="width:103px;">公司名称</th><th style="width:103px;">工作地点</th><th style="width:103px;">投递时间</th><th style="width:50px;">操作</th><th style="width:17px;">&nbsp;</th></tr>
+            </table>
+            <div style="width:100%; height:5px; line-height:5px; border-top:solid 1px #296EBB;"></div>
+            <div id="MultiResume_content" style="width:100%; height:160px; overflow-y:scroll; overflow-x:hidden;">
+            </div>
+    </td>
+</tr>
+</table>
+</div>
+<div style="display:none; text-align:center;" id="dialogConfirm"><p id="removeConfimTips" style="margin-top:30px;">请确认是否删除？</p><input type="hidden" id="hidMRCvlogId" name="hidMRCvlogId" value="" /><input type="hidden" id="hidMRJobId" name="hidMRJobId" value="" /><input type="hidden" id="hidMRKey" name="hidMRKey" value="" /></div>
+<div style="display:none; text-align:center;" id="dialogMessage"><p id="spnMessage" style="margin-top:30px;"></p></div>
+
+<div style="display:none;"><input type="button" id="btnNoShowview" onclick="ajaxSendRequest('../GlobalUserProfileAjax.aspx?action=3');" /></div>  
+<input type="hidden" name="resumeViewFolderType" id="resumeViewFolderType" value="EMP" />      
+
+<script language='javascript' type='text/javascript'>var valueGroupB='';var valueGroupR='';var rsInfo = '';var radarChartTitle = '';function CreateBarChart(){ document.getElementById("hidChartType").value = "BAR";valueGroupB = document.getElementById('hidgroupValB').value;rsInfo = document.getElementById('hidresumeInfo').value;var strTableOp = "<table width='100%' cellpadding='0' cellspacing='0' class='rsnone'style='table-layout:fixed;'>";var strTableEd = "</table>";var strRowOp = "<tr>";var strRowEd = "</tr>";var strCell_rsInfo1 = "<td width='43%' height='21' style='overflow:hidden; text-overflow:ellipsis;white-space:nowrap;'><a style='color:black;' title='";var strCell_rsInfo2 = "'>";var strCell_rsInfo3 = "</a></td>";var strCell_rsChartOp = "<td width='57%' height='21' align='left'><img title='显示图形' alt='显示图形' src='http://img01.51jobcdn.com/imehire/ehire2007/default/image/resume_match_line_";var strCell_rsChartEd = ".gif' /></td>";var strDynamicCell = '';strDynamicCell += strTableOp;for (var iloop = 0; iloop < 8; iloop++){strDynamicCell += strRowOp;strDynamicCell += strCell_rsInfo1;strDynamicCell += rsInfo.split("|")[iloop] + strCell_rsInfo2;strDynamicCell += rsInfo.split("|")[iloop] + strCell_rsInfo3;strDynamicCell += strCell_rsChartOp + valueGroupB.split(",")[iloop] + strCell_rsChartEd;strDynamicCell += strRowEd;}strDynamicCell += strTableEd;document.getElementById('dynamicCell').innerHTML = strDynamicCell;document.getElementById('td_hrefBar').className = 'rsboldblue';document.getElementById('td_hrefRadar').className = 'rsgray';}function CreateRadarChart(){document.getElementById("hidChartType").value = "RADAR";valueGroupR = document.getElementById('hidgroupValR').value;radarChartTitle = document.getElementById('hidChartTitle').value;var strTableOp = "<table width='100%' border='0' cellpadding='0' cellspacing='0' class='rsnone' style='margin:0 auto 0px auto;table-layout:fixed;'>";var strTableEd = "</table>";var strRowOp = "<tr>";var strRowEd = "</tr>";var strImg = "<img id = 'Img1' title='显示图形' alt='显示图形' src='http://ehire.51job.com/Candidate/ResumeChart.aspx?ImageType=radar&group=" + radarChartTitle + "&value=" + valueGroupR + "' />";var strCell_rsChart = "<td width='100%' height='100%' align='left'>" + strImg + "</td>";var strDynamicCell = '';strDynamicCell += strTableOp;strDynamicCell += strRowOp;strDynamicCell += strCell_rsChart;strDynamicCell += strRowEd;strDynamicCell += strTableEd;document.getElementById('dynamicCell').innerHTML = strDynamicCell;document.getElementById('td_hrefBar').className = 'rsgray';document.getElementById('td_hrefRadar').className = 'rsboldblue';}</script><script type="text/javascript">SetCvHeight_folder();</script>
+<script type="text/javascript">
+//<![CDATA[
+RV_InitButton();//]]>
+</script>
+</form>
+</body>
+</html>
+
+<script type="text/javascript" language="javascript">
+document.getElementById(ifFromLoad).style.display = 'none';
+document.getElementById(divFromLoad).style.display = 'none';
+RV_InitButton(); 
+var selectReason="提示：请选择举报原因！";
+var selectOtherReason="提示：请输入其他举报原因！";
+var characters200="提示：最多可输入200个字！";
+var emailError="EMAIL格式填写错误!";
+var telError="电话格式填写错误!";
+var maxEmailCharacters="EMAIL不能超过80个字符!";
+var maxTelCharacters="电话不能超过20个字符!";
+var maxContactCharacters="联系人不能超过100个字!";
+
+$(function(){
+	//打开简历多投层
+	$("#divMultiResume").dialog({bgiframe: true,modal: true,autoOpen: false,resizable:false,draggable: false,width:500,title:"简历多投"});
+	
+	//删除多投简历确认对话框
+	$("#dialogConfirm").dialog({bgiframe: true,modal: true,autoOpen: false,resizable:false,draggable: false,title:"提示",
+	    buttons: { "确认": function() { RemoveMultiResumeRecord(); $(this).dialog('close');},
+		           "取消": function() { $(this).dialog('close'); }}
+    });
+	
+	//多投简历信息提示对话框
+	$("#dialogMessage").dialog({bgiframe: true,modal: true,autoOpen: false,resizable:false,draggable:false,width:300,minHeight:150,closeOnEscape:true,title:"提示",
+        buttons: { "确认": function() {$(this).dialog('close'); }}
+    });
+});
+
+try{
+    var v="8",sti;
+    function showSmsTip(){    
+        if(v>0)
+        {
+            var divbg="http://img01.51jobcdn.com/imehire/ehire2007/default/image/candidate/bluespan.gif";
+            //var content="<div>您有可使用的短信产品，可以在这里给您的应聘者发送短信。</div>";
+            var content="<div style='padding-top:7px;padding-left:7px;padding-right:7px;color:white;width:200px;'><span style='font-family:宋体;font-weight:bold;line-height:17px;'>恭喜您！！！<span><br /><span style='font-family:宋体;font-weight:normal;'>免费视频面试体验，快来邀请吧！<span><br><a style='text-decoration:underline;color:white;font:9pt 宋体 normal;' target='_blank' href='http://www.51job.com/pm/ehire/interview/demo.html'>看看怎么玩</a></div>";
+            var divclose= 'http://img01.51jobcdn.com/imehire/ehire2007/default/image/Ehire_Delete.gif';
+            var noshow="不再显示";
+            //TINY.box.showViaObj(content,216,75,0,0,"view",noshow,"lbtnMsgInbox_SubMenuInBox",355,18,divbg);            
+            //Modified by lisa 2013-08-15(此次视频面试免费试用没有不再显示功能，但以后可能还会有，先注释方便以后恢复该功能使用)TINY.box.showViaObj(content,216,75,0,0,"view",noshow,"vediodTip",365,25,divbg);
+            TINY.box.showViaObj(content,216,75,0,0,"view","","vediodTip",305,25,divbg);
+            sti = setInterval(function(){
+                if(TINY.completed==1){
+                    T$('tinyimgcloseview').src =divclose;
+                    TINY.complete=0;
+                    clearInterval(sti);
+                 }
+            },1);  
+        }
+    }
+    setTimeout("showSmsTip()",50);
+}catch(ex){}
+
+//打开测评报告
+function EM_ViewReport(obj)
+{
+   var rms_TestId=obj.id.replace("ti_","");
+   var rms_Status=$("#"+obj.id).attr("ts");
+   var rms_ServerTime=$("#"+obj.id).attr("st");
+   var rms_UrlType=$("#"+obj.id).attr("ut");
+   var rms_Key=$("#"+obj.id).attr("key");
+   var rand=Math.random();
+   if(rms_ServerTime!="" && rms_Key!="" &&  rms_TestId!="")
+   {
+       window.open("ts="+rms_Status+"&id="+rms_TestId+"&st="+rms_ServerTime+"&key="+rms_Key+"&rand="+rand+"&ut="+rms_UrlType,"_blank","scrollbars=yes,Width=500px,Height=450px,resizable=yes");
+   }
+}
+</script> 

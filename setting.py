@@ -44,13 +44,13 @@ logging = {
     'filters': {},
     'handlers': {
         'console': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
         },
         "info_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
-            "level": "DEBUG",
+            "level": "INFO",
             "formatter": "verbose",
             "filename": "log/info.log",
             "maxBytes": "10485760",
@@ -69,7 +69,7 @@ logging = {
     },
     'loggers': {
         app['name']: {
-            'handlers': ['info_file_handler', 'error_file_handler'],
+            'handlers': ['console','info_file_handler', 'error_file_handler'],
             'propagate': True,
             'level': 'DEBUG',
         },

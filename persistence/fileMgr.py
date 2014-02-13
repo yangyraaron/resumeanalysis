@@ -6,6 +6,7 @@ import setting
 import json
 import common
 import shutil
+import context
 
 logger = common.getLogger()
 
@@ -13,7 +14,7 @@ logger = common.getLogger()
 def saveJson(dic):
     logger.debug(u'save json to file {}'.format(dic['userName']))
 
-    filePath = u'{}/{}.json'.format(setting.app['dataFolder'], dic['userName'])
+    filePath = u'{}/{}.json'.format(context.dataFolder, dic['userName'])
 
     with open(filePath, 'w') as f:
         _dumpJson(f, dic)
