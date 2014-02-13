@@ -15,7 +15,6 @@ import templateFactory
 import constructor
 from persistence import mongodb
 import handlerFactory
-from tidylib import tidy_document
 
 # initialize log
 logging.config.dictConfig(context.logging)
