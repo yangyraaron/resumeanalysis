@@ -71,6 +71,9 @@ class Template(object):
         self.userName = common.getStrByIndexUtil(u'流程状态：',strBasic,' ')
         logger.debug(u'name:{}'.format(self.userName))
 
+        self.sex = common.getStrByIndexUtil(u'|',strBasic,'|')
+        logger.debug(u'sex:{}'.format(self.sex))
+
         ibirth = strBasic.find(u'日）')
         self.birthday = common.strGetUnitl(strBasic, ibirth, u'（', True)
         logger.debug(u'birthday:{}'.format(self.birthday))
