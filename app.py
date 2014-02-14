@@ -104,6 +104,9 @@ class Application(object):
                 f = open(r)
                 soup = BeautifulSoup(f)
                 encoding = self._getEncoding(soup)
+                #when the encoding is gb2312 ,beautifulsoup should use GB18030 as encoding
+                if encoding == 'gb2312':
+                    encoding = 'GB18030'
 
                 logger.debug(u'encoding of file {} is {}'.format(r, encoding))
 

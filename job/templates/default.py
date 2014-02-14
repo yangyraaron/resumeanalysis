@@ -174,5 +174,5 @@ class Template(object):
 
             track += 1
 
-            if workex:
-                self.workexs.append(workex)
+        if workex:
+            self.workexs.append(workex)
